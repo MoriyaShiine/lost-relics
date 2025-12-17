@@ -35,7 +35,7 @@ public class AltarBlock extends HorizontalFacingBlock implements BlockEntityProv
 
 	private static final VoxelShape SHAPE = createCuboidShape(0.5, 0, 0.5, 15.5, 15, 15.5);
 
-	private final TagKey<Item> relicTag;
+	public final TagKey<Item> relicTag;
 
 	public AltarBlock(Settings settings, TagKey<Item> relicTag) {
 		super(settings);

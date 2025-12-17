@@ -65,6 +65,8 @@ public class AltarBlockEntity extends BlockEntity {
 	public void setStack(ItemStack stack) {
 		this.stack = stack;
 		markDirty();
-		world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
+		if (world != null) {
+			world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
+		}
 	}
 }
