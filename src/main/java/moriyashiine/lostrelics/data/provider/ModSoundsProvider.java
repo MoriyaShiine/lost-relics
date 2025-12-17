@@ -1,0 +1,33 @@
+/*
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
+ */
+package moriyashiine.lostrelics.data.provider;
+
+import moriyashiine.lostrelics.common.LostRelics;
+import moriyashiine.lostrelics.common.init.ModSoundEvents;
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricSoundsProvider;
+import net.minecraft.data.DataOutput;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.sound.SoundEvents;
+
+import java.util.concurrent.CompletableFuture;
+
+import static net.fabricmc.fabric.api.client.datagen.v1.builder.SoundTypeBuilder.EntryBuilder.ofEvent;
+import static net.fabricmc.fabric.api.client.datagen.v1.builder.SoundTypeBuilder.of;
+
+public class ModSoundsProvider extends FabricSoundsProvider {
+	public ModSoundsProvider(DataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		super(output, registriesFuture);
+	}
+
+	@Override
+	protected void configure(RegistryWrapper.WrapperLookup registryLookup, SoundExporter exporter) {
+		exporter.add(ModSoundEvents.BLOCK_ALTAR_CONVERT, of().subtitle("subtitles.lostrelics.block.altar.convert")
+				.sound(ofEvent(SoundEvents.BLOCK_FIRE_EXTINGUISH)));
+	}
+
+	@Override
+	public String getName() {
+		return LostRelics.MOD_ID + "_sounds";
+	}
+}

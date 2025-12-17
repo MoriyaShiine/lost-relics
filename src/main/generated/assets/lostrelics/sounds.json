@@ -1,0 +1,11 @@
+{
+  "block.altar.convert": {
+	"sounds": [
+	  {
+		"type": "event",
+		"name": "minecraft:block.fire.extinguish"
+	  }
+	],
+	"subtitle": "subtitles.lostrelics.block.altar.convert"
+  }
+}
