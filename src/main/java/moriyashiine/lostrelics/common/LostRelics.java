@@ -3,6 +3,9 @@
  */
 package moriyashiine.lostrelics.common;
 
+import moriyashiine.lostrelics.common.init.ModBlocks;
+import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.strawberrylib.api.SLib;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 
@@ -11,6 +14,9 @@ public class LostRelics implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		SLib.init(MOD_ID);
+		ModBlocks.init();
+		ModItems.init();
 	}
 
 	public static Identifier id(String value) {

@@ -23,6 +23,12 @@ chenille {
     }
 }
 
+fabricApi {
+    configureDataGeneration() {
+        client = true
+    }
+}
+
 repositories {
     chenille.repositories.ladysnake()
     maven {
