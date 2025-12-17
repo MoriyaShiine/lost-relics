@@ -3,31 +3,8 @@
   "package": "moriyashiine.lostrelics.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-	"cursedamulet.ActiveTargetGoalMixin",
-	"cursedamulet.EscapeDangerGoalMixin",
-	"cursedamulet.IronGolemEntityMixin",
-	"cursedamulet.LivingEntityMixin",
-	"cursedamulet.VillagerEntityMixin",
-	"smokingmirror.LivingEntityMixin",
-	"tripletoothedsnake.ArrowEntityMixin",
-	"tripletoothedsnake.BrewingRecipeRegistryMixin",
-	"tripletoothedsnake.EnchantmentHelperMixin",
-	"tripletoothedsnake.ItemStackMixin",
-	"tripletoothedsnake.LivingEntityMixin",
-	"tripletoothedsnake.PersistentProjectileEntityMixin",
-	"tripletoothedsnake.PotionEntityMixin",
-	"tripletoothedsnake.TippedArrowRecipeMixin",
-	"turquoiseeye.LivingEntityMixin",
-	"util.AnvilScreenHandlerMixin",
-	"util.ItemStackMixin",
-	"util.StructurePieceMixin"
   ],
   "client": [
-	"cursedamulet.client.PlayerEntityRendererMixin",
-	"smokingmirror.client.EntityRenderDispatcherMixin",
-	"smokingmirror.client.PlayerEntityRendererMixin",
-	"tripletoothedsnake.client.ModelLoaderMixin",
-	"turquoiseeye.client.MinecraftClientMixin"
   ],
   "injectors": {
 	"defaultRequire": 1
