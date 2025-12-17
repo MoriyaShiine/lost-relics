@@ -3,6 +3,7 @@
  */
 package moriyashiine.lostrelics.data;
 
+import moriyashiine.lostrelics.data.provider.ModAdvancementProvider;
 import moriyashiine.lostrelics.data.provider.ModBlockLootTableProvider;
 import moriyashiine.lostrelics.data.provider.ModBlockTagProvider;
 import moriyashiine.lostrelics.data.provider.ModModelProvider;
@@ -13,6 +14,7 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+		pack.addProvider(ModAdvancementProvider::new);
 		pack.addProvider(ModBlockLootTableProvider::new);
 		pack.addProvider(ModBlockTagProvider::new);
 		pack.addProvider(ModModelProvider::new);
