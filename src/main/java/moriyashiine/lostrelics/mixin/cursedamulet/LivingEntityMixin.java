@@ -63,7 +63,7 @@ public class LivingEntityMixin {
 				player.setHealth(1);
 				DeathProtectionComponent.TOTEM_OF_UNDYING.applyDeathEffects(cursedAmuletStack, player);
 				player.getEntityWorld().sendEntityStatus(player, EntityStatuses.USE_TOTEM_OF_UNDYING);
-				player.getItemCooldownManager().set(cursedAmuletStack, 6000);
+				LostRelicsUtil.setCooldown(player, cursedAmuletStack, 6000);
 				return true;
 			}
 		}

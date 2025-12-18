@@ -3,6 +3,7 @@
  */
 package moriyashiine.lostrelics.common.util;
 
+import moriyashiine.lostrelics.common.init.ModEntityComponents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -22,5 +23,10 @@ public class LostRelicsUtil {
 			}
 		}
 		return ItemStack.EMPTY;
+	}
+
+	public static void setCooldown(PlayerEntity player, ItemStack relic, int cooldown) {
+		ModEntityComponents.PERSISTENT_COOLDOWN.get(player).setCooldown(relic, cooldown);
+		player.getItemCooldownManager().set(relic, cooldown);
 	}
 }

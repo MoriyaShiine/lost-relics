@@ -42,8 +42,7 @@
   },
   "custom": {
 	"cardinal-components": [
-	  "lostrelics:cursed_amulet",
-	  "lostrelics:smoking_mirror"
+	  "lostrelics:persistent_cooldown"
 	]
   }
 }
