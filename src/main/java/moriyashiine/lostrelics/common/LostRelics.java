@@ -8,6 +8,7 @@ import moriyashiine.lostrelics.common.event.TripleToothedSnakeEvent;
 import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
 import moriyashiine.strawberrylib.api.SLib;
+import moriyashiine.strawberrylib.api.event.ModifyCriticalStatusEvent;
 import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
 import moriyashiine.strawberrylib.api.event.PreventHostileTargetingEvent;
 import net.fabricmc.api.ModInitializer;
@@ -40,6 +41,6 @@ public class LostRelics implements ModInitializer {
 
 		EnchantmentEvents.ALLOW_ENCHANTING.register(new TripleToothedSnakeEvent());
 
-		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new TurquoiseEyeEvent());
+		ModifyCriticalStatusEvent.EVENT.register(new TurquoiseEyeEvent());
 	}
 }
