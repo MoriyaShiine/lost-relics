@@ -4,8 +4,7 @@
 package moriyashiine.lostrelics.mixin.cursedamulet;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import moriyashiine.lostrelics.common.init.ModItems;
-import moriyashiine.lostrelics.common.util.LostRelicsUtil;
+import moriyashiine.lostrelics.common.item.CursedAmuletItem;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public class VillagerEntityMixin {
 	@ModifyReturnValue(method = "getReputation", at = @At("RETURN"))
 	private int lostrelics$cursedAmulet(int original, PlayerEntity player) {
-		if (LostRelicsUtil.hasRelic(player, ModItems.CURSED_AMULET)) {
+		if (CursedAmuletItem.doNegativesApply(player)) {
 			return original - 128;
 		}
 		return original;

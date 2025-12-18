@@ -5,8 +5,12 @@ package moriyashiine.lostrelics.common.item;
 
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.ModComponentTypes;
+import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.component.type.TooltipDisplayComponent;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -68,5 +72,12 @@ public class CursedAmuletItem extends Item {
 		textConsumer.accept(Text.empty());
 		textConsumer.accept(Text.translatable("item.modifiers.armor").formatted(Formatting.GRAY));
 		GOOD_MODIFIERS.forEach((attribute, modifier) -> textConsumer.accept(Text.translatable("attribute.modifier.plus." + modifier.operation().getId(), AttributeModifiersComponent.DECIMAL_FORMAT.format(modifier.value()), Text.translatable(attribute.value().getTranslationKey())).append("?").formatted(Formatting.LIGHT_PURPLE)));
+	}
+
+	public static boolean doNegativesApply(Entity entity) {
+		if (entity instanceof LivingEntity living && !living.isInCreativeMode()) {
+			return LostRelicsUtil.hasRelic(living, ModItems.CURSED_AMULET);
+		}
+		return false;
 	}
 }
