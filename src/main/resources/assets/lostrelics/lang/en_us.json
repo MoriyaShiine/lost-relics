@@ -32,5 +32,5 @@
   "subtitles.lostrelics.entity.generic.spawn": "Something spawns",
   "subtitles.lostrelics.entity.tainted_blood_crystal.shatter": "Tainted Blood Crystal shatters",
   "subtitles.lostrelics.item.relic.toggle": "Relic toggles",
-  "tooltip.lostrelics.hide_skeleton": "Hide Skeleton: %s"
+  "tooltip.lostrelics.show_skeleton": "Show Skeleton"
 }

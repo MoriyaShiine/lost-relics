@@ -3,6 +3,10 @@
   "package": "moriyashiine.lostrelics.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+	"cursedamulet.EscapeDangerGoalMixin",
+	"cursedamulet.IronGolemEntityMixin",
+	"cursedamulet.LivingEntityMixin",
+	"cursedamulet.VillagerEntityMixin",
 	"util.StructurePieceMixin"
   ],
   "client": [
