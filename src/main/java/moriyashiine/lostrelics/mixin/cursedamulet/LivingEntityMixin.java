@@ -55,15 +55,15 @@ public class LivingEntityMixin {
 	@ModifyReturnValue(method = "tryUseDeathProtector", at = @At(value = "RETURN", ordinal = 1))
 	private boolean lostrelics$cursedAmulet$preventDeath(boolean original) {
 		if (!original && (Object) this instanceof PlayerEntity player && player.getRandom().nextFloat() < 1 / 3F) {
-			ItemStack cursedAmuletStack = LostRelicsUtil.getRelic(player, ModItems.CURSED_AMULET);
-			if (LostRelicsUtil.isUsable(player, cursedAmuletStack)) {
+			ItemStack relicStack = LostRelicsUtil.getRelic(player, ModItems.CURSED_AMULET);
+			if (LostRelicsUtil.isUsable(player, relicStack)) {
+				LostRelicsUtil.setCooldown(player, relicStack, 6000);
 				if (player instanceof ServerPlayerEntity serverPlayer) {
 					serverPlayer.incrementStat(Stats.USED.getOrCreateStat(ModItems.CURSED_AMULET));
 				}
 				player.setHealth(1);
-				DeathProtectionComponent.TOTEM_OF_UNDYING.applyDeathEffects(cursedAmuletStack, player);
+				DeathProtectionComponent.TOTEM_OF_UNDYING.applyDeathEffects(relicStack, player);
 				player.getEntityWorld().sendEntityStatus(player, EntityStatuses.USE_TOTEM_OF_UNDYING);
-				LostRelicsUtil.setCooldown(player, cursedAmuletStack, 6000);
 				return true;
 			}
 		}

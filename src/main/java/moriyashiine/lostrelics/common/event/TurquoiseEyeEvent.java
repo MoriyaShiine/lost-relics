@@ -18,9 +18,9 @@ public class TurquoiseEyeEvent implements ModifyCriticalStatusEvent {
 	@Override
 	public TriState isCritical(PlayerEntity attacker, Entity target, float attackCooldownProgress) {
 		if (target instanceof LivingEntity living && living.getHealth() == living.getMaxHealth()) {
-			ItemStack turquoiseEyeStack = LostRelicsUtil.getRelic(attacker, ModItems.TURQUOISE_EYE);
-			if (LostRelicsUtil.isUsable(attacker, turquoiseEyeStack)) {
-				LostRelicsUtil.setCooldown(attacker, turquoiseEyeStack, 600);
+			ItemStack relicStack = LostRelicsUtil.getRelic(attacker, ModItems.TURQUOISE_EYE);
+			if (LostRelicsUtil.isUsable(attacker, relicStack)) {
+				LostRelicsUtil.setCooldown(attacker, relicStack, 600);
 				living.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 100, 1));
 				living.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS));
 				return TriState.TRUE;

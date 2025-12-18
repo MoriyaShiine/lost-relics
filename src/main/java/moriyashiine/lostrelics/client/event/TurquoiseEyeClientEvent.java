@@ -25,8 +25,8 @@ public class TurquoiseEyeClientEvent {
 	public static class Tick implements ClientTickEvents.EndWorldTick {
 		@Override
 		public void onEndTick(ClientWorld world) {
-			ItemStack turquoiseEyeStack = LostRelicsUtil.getRelic(client.player, ModItems.TURQUOISE_EYE);
-			isRelicUsable = LostRelicsUtil.isUsable(client.player, turquoiseEyeStack);
+			ItemStack relicStack = LostRelicsUtil.getRelic(client.player, ModItems.TURQUOISE_EYE);
+			isRelicUsable = LostRelicsUtil.isUsable(client.player, relicStack);
 		}
 	}
 
