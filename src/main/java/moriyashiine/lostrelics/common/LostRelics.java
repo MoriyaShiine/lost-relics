@@ -4,6 +4,7 @@
 package moriyashiine.lostrelics.common;
 
 import moriyashiine.lostrelics.common.event.CursedAmuletEvent;
+import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
 import moriyashiine.strawberrylib.api.SLib;
 import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
@@ -32,5 +33,7 @@ public class LostRelics implements ModInitializer {
 	private void initEvents() {
 		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new CursedAmuletEvent.FireWeakness());
 		PreventHostileTargetingEvent.EVENT.register(new CursedAmuletEvent.UndeadNeutrality());
+
+		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new TurquoiseEyeEvent());
 	}
 }

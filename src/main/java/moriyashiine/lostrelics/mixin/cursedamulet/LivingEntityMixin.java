@@ -56,7 +56,7 @@ public class LivingEntityMixin {
 	private boolean lostrelics$cursedAmulet$preventDeath(boolean original) {
 		if (!original && (Object) this instanceof PlayerEntity player && player.getRandom().nextFloat() < 1 / 3F) {
 			ItemStack cursedAmuletStack = LostRelicsUtil.getRelic(player, ModItems.CURSED_AMULET);
-			if (!cursedAmuletStack.isEmpty() && !player.getItemCooldownManager().isCoolingDown(cursedAmuletStack)) {
+			if (LostRelicsUtil.isUsable(player, cursedAmuletStack)) {
 				if (player instanceof ServerPlayerEntity serverPlayer) {
 					serverPlayer.incrementStat(Stats.USED.getOrCreateStat(ModItems.CURSED_AMULET));
 				}

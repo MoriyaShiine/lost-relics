@@ -10,10 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class LostRelicsUtil {
-	public static boolean hasRelic(LivingEntity entity, Item relic) {
-		return !getRelic(entity, relic).isEmpty();
-	}
-
 	public static ItemStack getRelic(LivingEntity entity, Item relic) {
 		if (entity instanceof PlayerEntity player) {
 			for (ItemStack stack : player.getInventory()) {
@@ -23,6 +19,20 @@ public class LostRelicsUtil {
 			}
 		}
 		return ItemStack.EMPTY;
+	}
+
+	public static boolean hasRelic(LivingEntity entity, Item relic) {
+		return !getRelic(entity, relic).isEmpty();
+	}
+
+	public static boolean isUsable(LivingEntity entity, ItemStack relic) {
+		if (relic.isEmpty()) {
+			return false;
+		}
+		if (entity instanceof PlayerEntity player) {
+			return !player.getItemCooldownManager().isCoolingDown(relic);
+		}
+		return true;
 	}
 
 	public static void setCooldown(PlayerEntity player, ItemStack relic, int cooldown) {
