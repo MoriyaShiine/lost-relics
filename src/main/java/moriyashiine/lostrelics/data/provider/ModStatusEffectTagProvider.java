@@ -12,6 +12,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -25,5 +27,8 @@ public class ModStatusEffectTagProvider extends FabricTagProvider.FabricValueLoo
 		valueLookupBuilder(ModStatusEffectTags.BYPASSES_CURSED_AMULET).add(
 				StatusEffects.INSTANT_DAMAGE.value(),
 				StatusEffects.WITHER.value());
+
+		valueLookupBuilder(ModStatusEffectTags.CANNOT_BE_SIPHONED)
+				.addOptionalTag(TagKey.of(RegistryKeys.STATUS_EFFECT, Identifier.of("nycto", "infection")));
 	}
 }
