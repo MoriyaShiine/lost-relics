@@ -24,7 +24,7 @@ public class ModModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateItemModels(ItemModelGenerator generator) {
-		generator.register(ModItems.JUNGLE_ATLAR, Models.GENERATED);
+		generator.register(ModItems.JUNGLE_ALTAR, Models.GENERATED);
 		generator.register(ModItems.CURSED_AMULET, Models.GENERATED);
 		generator.register(ModItems.SMOKING_MIRROR, Models.GENERATED);
 		generator.register(ModItems.TRIPLE_TOOTHED_SNAKE, SMALL_HANDHELD);

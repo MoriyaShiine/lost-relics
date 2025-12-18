@@ -16,7 +16,7 @@ import static moriyashiine.strawberrylib.api.module.SLibRegistries.*;
 public class ModItems {
 	public static ItemGroup GROUP;
 
-	public static final Item JUNGLE_ATLAR = registerBlockItem("jungle_altar", ModBlocks.JUNGLE_ALTAR);
+	public static final Item JUNGLE_ALTAR = registerBlockItem("jungle_altar", ModBlocks.JUNGLE_ALTAR);
 
 	public static final Item CURSED_AMULET = registerItem("cursed_amulet", CursedAmuletItem::new, relicSettings().component(ModComponentTypes.SHOW_SKELETON, true));
 	public static final Item SMOKING_MIRROR = registerItem("smoking_mirror", relicSettings());
@@ -29,7 +29,7 @@ public class ModItems {
 
 	public static void init() {
 		GROUP = registerItemGroup(FabricItemGroup.builder().displayName(Text.translatable("itemGroup." + LostRelics.MOD_ID)).icon(CURSED_AMULET::getDefaultStack).entries((displayContext, entries) -> {
-			entries.add(JUNGLE_ATLAR);
+			entries.add(JUNGLE_ALTAR);
 
 			entries.add(CURSED_AMULET);
 			entries.add(SMOKING_MIRROR);
