@@ -4,12 +4,14 @@
 package moriyashiine.lostrelics.common;
 
 import moriyashiine.lostrelics.common.event.CursedAmuletEvent;
+import moriyashiine.lostrelics.common.event.TripleToothedSnakeEvent;
 import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
 import moriyashiine.strawberrylib.api.SLib;
 import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
 import moriyashiine.strawberrylib.api.event.PreventHostileTargetingEvent;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
 import net.minecraft.util.Identifier;
 
 public class LostRelics implements ModInitializer {
@@ -21,7 +23,9 @@ public class LostRelics implements ModInitializer {
 		ModBlocks.init();
 		ModBlockEntityTypes.init();
 		ModComponentTypes.init();
+		ModEntityTypes.init();
 		ModItems.init();
+		ModRecipeSerializers.init();
 		ModSoundEvents.init();
 		initEvents();
 	}
@@ -33,6 +37,8 @@ public class LostRelics implements ModInitializer {
 	private void initEvents() {
 		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new CursedAmuletEvent.FireWeakness());
 		PreventHostileTargetingEvent.EVENT.register(new CursedAmuletEvent.UndeadNeutrality());
+
+		EnchantmentEvents.ALLOW_ENCHANTING.register(new TripleToothedSnakeEvent());
 
 		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new TurquoiseEyeEvent());
 	}

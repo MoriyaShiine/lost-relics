@@ -7,9 +7,16 @@
 	"cursedamulet.IronGolemEntityMixin",
 	"cursedamulet.LivingEntityMixin",
 	"cursedamulet.VillagerEntityMixin",
+	"tripletoothedsnake.BrewingRecipeRegistryMixin",
+	"tripletoothedsnake.ItemStackMixin",
+	"tripletoothedsnake.LivingEntityMixin",
+	"tripletoothedsnake.PersistentProjectileEntityMixin",
+	"tripletoothedsnake.TippedArrowRecipeMixin",
 	"util.StructurePieceMixin"
   ],
   "client": [
+	"tripletoothedsnake.client.ItemModelManagerMixin",
+	"tripletoothedsnake.client.NumericPropertiesMixin"
   ],
   "injectors": {
 	"defaultRequire": 1
