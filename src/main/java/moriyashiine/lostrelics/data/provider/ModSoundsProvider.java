@@ -25,6 +25,8 @@ public class ModSoundsProvider extends FabricSoundsProvider {
 		exporter.add(ModSoundEvents.BLOCK_ALTAR_CONVERT, of().subtitle("subtitles.lostrelics.block.altar.convert")
 				.sound(ofEvent(SoundEvents.BLOCK_FIRE_EXTINGUISH)));
 
+		exporter.add(ModSoundEvents.ENTITY_GENERIC_TRANSFORM, of().subtitle("subtitles.lostrelics.entity.generic.transform")
+				.sound(ofEvent(SoundEvents.BLOCK_FIRE_EXTINGUISH)));
 		exporter.add(ModSoundEvents.ENTITY_TAINTED_BLOOD_CRYSTAL_SHATTER, of().subtitle("subtitles.lostrelics.entity.tainted_blood_crystal.shatter")
 				.sound(ofEvent(SoundEvents.BLOCK_GLASS_BREAK)));
 	}

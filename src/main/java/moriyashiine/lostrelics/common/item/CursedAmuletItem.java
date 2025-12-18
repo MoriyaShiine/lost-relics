@@ -5,6 +5,7 @@ package moriyashiine.lostrelics.common.item;
 
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.ModComponentTypes;
+import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -64,5 +65,8 @@ public class CursedAmuletItem extends Item {
 			formatting = Formatting.DARK_GREEN;
 		}
 		textConsumer.accept(icon.append(Text.translatable("tooltip.lostrelics.show_skeleton")).formatted(formatting));
+		textConsumer.accept(Text.empty());
+		textConsumer.accept(Text.translatable("item.modifiers.armor").formatted(Formatting.GRAY));
+		GOOD_MODIFIERS.forEach((attribute, modifier) -> textConsumer.accept(Text.translatable("attribute.modifier.plus." + modifier.operation().getId(), AttributeModifiersComponent.DECIMAL_FORMAT.format(modifier.value()), Text.translatable(attribute.value().getTranslationKey())).append("?").formatted(Formatting.LIGHT_PURPLE)));
 	}
 }

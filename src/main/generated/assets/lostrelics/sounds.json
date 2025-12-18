@@ -8,6 +8,15 @@
 	],
 	"subtitle": "subtitles.lostrelics.block.altar.convert"
   },
+  "entity.generic.transform": {
+	"sounds": [
+	  {
+		"type": "event",
+		"name": "minecraft:block.fire.extinguish"
+	  }
+	],
+	"subtitle": "subtitles.lostrelics.entity.generic.transform"
+  },
   "entity.tainted_blood_crystal.shatter": {
 	"sounds": [
 	  {

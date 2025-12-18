@@ -11,6 +11,7 @@ import moriyashiine.strawberrylib.api.SLib;
 import moriyashiine.strawberrylib.api.event.ModifyCriticalStatusEvent;
 import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
 import moriyashiine.strawberrylib.api.event.PreventHostileTargetingEvent;
+import moriyashiine.strawberrylib.api.event.TickEntityEvent;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
 import net.minecraft.util.Identifier;
@@ -36,6 +37,7 @@ public class LostRelics implements ModInitializer {
 	}
 
 	private void initEvents() {
+		TickEntityEvent.EVENT.register(new CursedAmuletEvent.Tick());
 		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new CursedAmuletEvent.FireWeakness());
 		PreventHostileTargetingEvent.EVENT.register(new CursedAmuletEvent.UndeadNeutrality());
 
