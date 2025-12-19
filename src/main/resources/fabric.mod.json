@@ -42,6 +42,7 @@
   },
   "custom": {
 	"cardinal-components": [
+	  "lostrelics:supporter",
 	  "lostrelics:persistent_cooldown"
 	]
   }

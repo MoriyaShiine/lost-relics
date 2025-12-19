@@ -6,6 +6,7 @@ package moriyashiine.lostrelics.common.init;
 import moriyashiine.lostrelics.common.entity.mob.RelicSkeletonEntity;
 import moriyashiine.lostrelics.common.entity.projectile.TaintedBloodCrystalEntity;
 import moriyashiine.strawberrylib.api.module.SLibRegistries;
+import moriyashiine.strawberrylib.impl.common.supporter.SupporterInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.PlayerLikeEntity;
 import net.minecraft.entity.SpawnGroup;
@@ -35,6 +36,9 @@ public class ModEntityTypes {
 		SLibRegistries.registerModelReplacementCopyFunction((player, replacement) -> {
 			if (replacement instanceof RelicSkeletonEntity relicSkeleton) {
 				relicSkeleton.setPlayerUuid(player.getUuid());
+				if (SupporterInit.isSupporter(player)) {
+					relicSkeleton.setGemType(ModEntityComponents.SUPPORTER.get(player).getGemType());
+				}
 			}
 		});
 	}

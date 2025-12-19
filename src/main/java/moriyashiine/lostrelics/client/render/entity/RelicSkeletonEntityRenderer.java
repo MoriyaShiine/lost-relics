@@ -5,7 +5,7 @@ package moriyashiine.lostrelics.client.render.entity;
 
 import moriyashiine.lostrelics.client.render.entity.model.RelicSkeletonEntityModel;
 import moriyashiine.lostrelics.client.render.entity.state.RelicSkeletonEntityRenderState;
-import moriyashiine.lostrelics.common.LostRelics;
+import moriyashiine.lostrelics.client.supporter.GemType;
 import moriyashiine.lostrelics.common.entity.mob.RelicSkeletonEntity;
 import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -15,20 +15,7 @@ import net.minecraft.client.render.entity.model.EquipmentModelData;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-import java.util.List;
-
 public class RelicSkeletonEntityRenderer extends BipedEntityRenderer<RelicSkeletonEntity, RelicSkeletonEntityRenderState, RelicSkeletonEntityModel> {
-	public static final List<Identifier> RELIC_SKELETON_TEXTURES = List.of(
-			LostRelics.id("textures/entity/relic_skeleton/alexandrite.png"),
-			LostRelics.id("textures/entity/relic_skeleton/amethyst.png"),
-			LostRelics.id("textures/entity/relic_skeleton/aquamarine.png"),
-			LostRelics.id("textures/entity/relic_skeleton/diamond.png"),
-			LostRelics.id("textures/entity/relic_skeleton/emerald.png"),
-			LostRelics.id("textures/entity/relic_skeleton/gold.png"),
-			LostRelics.id("textures/entity/relic_skeleton/jade.png"),
-			LostRelics.id("textures/entity/relic_skeleton/turquoise.png")
-	);
-
 	public RelicSkeletonEntityRenderer(EntityRendererFactory.Context context) {
 		super(context, new RelicSkeletonEntityModel(context.getPart(RelicSkeletonEntityModel.LAYER)), 0.5F);
 		addFeature(new ArmorFeatureRenderer<>(this, EquipmentModelData.mapToEntityModel(EntityModelLayers.SKELETON_EQUIPMENT, context.getEntityModels(), RelicSkeletonEntityModel::new), context.getEquipmentRenderer()));
@@ -36,7 +23,7 @@ public class RelicSkeletonEntityRenderer extends BipedEntityRenderer<RelicSkelet
 
 	@Override
 	public Identifier getTexture(RelicSkeletonEntityRenderState state) {
-		return RELIC_SKELETON_TEXTURES.get(state.textureIndex);
+		return GemType.values()[state.textureIndex].getTexture();
 	}
 
 	@Override
@@ -56,10 +43,13 @@ public class RelicSkeletonEntityRenderer extends BipedEntityRenderer<RelicSkelet
 	}
 
 	public static int getTextureIndex(RelicSkeletonEntity entity) {
-		int index = entity.getPlayerUuid().hashCode() % RELIC_SKELETON_TEXTURES.size();
-		if (index < 0) {
-			index += RELIC_SKELETON_TEXTURES.size();
+		if (entity.getGemType() != GemType.DEFAULT) {
+			return entity.getGemType().ordinal();
 		}
-		return index;
+		int index = entity.getPlayerUuid().hashCode() % (GemType.values().length - 1);
+		if (index < 0) {
+			index += (GemType.values().length - 1);
+		}
+		return index + 1;
 	}
 }

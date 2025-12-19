@@ -32,5 +32,15 @@
   "subtitles.lostrelics.entity.generic.spawn": "Something spawns",
   "subtitles.lostrelics.entity.tainted_blood_crystal.shatter": "Tainted Blood Crystal shatters",
   "subtitles.lostrelics.item.relic.toggle": "Relic toggles",
-  "tooltip.lostrelics.show_skeleton": "Show Skeleton"
+  "tooltip.lostrelics.show_skeleton": "Show Skeleton",
+  "options.lostrelics.gemType": "Relic Skeleton Gem Type",
+  "gemtype.lostrelics.default": "Default",
+  "gemtype.lostrelics.alexandrite": "Alexandrite",
+  "gemtype.lostrelics.amethyst": "Amethyst",
+  "gemtype.lostrelics.aquamarine": "Aquamarine",
+  "gemtype.lostrelics.diamond": "Diamond",
+  "gemtype.lostrelics.emerald": "Emerald",
+  "gemtype.lostrelics.gold": "Gold",
+  "gemtype.lostrelics.jade": "Jade",
+  "gemtype.lostrelics.turquoise": "Turquoise"
 }

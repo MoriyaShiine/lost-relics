@@ -16,6 +16,8 @@
   ],
   "client": [
 	"cursedamulet.client.PlayerEntityRendererMixin",
+	"supporter.client.GameOptionsMixin",
+	"supporter.client.SupporterOptionsScreenMixin",
 	"tripletoothedsnake.client.ItemModelManagerMixin",
 	"tripletoothedsnake.client.NumericPropertiesMixin"
   ],

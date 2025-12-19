@@ -5,6 +5,7 @@ package moriyashiine.lostrelics.client.event;
 
 import moriyashiine.lostrelics.client.render.entity.RelicSkeletonEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.model.RelicSkeletonEntityModel;
+import moriyashiine.lostrelics.client.supporter.GemType;
 import moriyashiine.lostrelics.common.entity.mob.RelicSkeletonEntity;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -23,7 +24,7 @@ public class CursedAmuletClientEvent implements ClientTickEvents.EndTick {
 			@Nullable LivingEntity replacement = SLibUtils.getModelReplacement(client.player);
 			if (replacement instanceof RelicSkeletonEntity relicSkeleton) {
 				relicSkeletonModel = new RelicSkeletonEntityModel(client.getLoadedEntityModels().getModelPart(RelicSkeletonEntityModel.LAYER));
-				relicSkeletonTexture = RelicSkeletonEntityRenderer.RELIC_SKELETON_TEXTURES.get(RelicSkeletonEntityRenderer.getTextureIndex(relicSkeleton));
+				relicSkeletonTexture = GemType.values()[RelicSkeletonEntityRenderer.getTextureIndex(relicSkeleton)].getTexture();
 			} else {
 				relicSkeletonModel = null;
 				relicSkeletonTexture = null;
