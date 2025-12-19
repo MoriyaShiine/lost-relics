@@ -49,9 +49,10 @@ public class CursedAmuletEvent {
 					SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
 					SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
 				}
+				boolean apply = !relicStack.isEmpty() && !player.isCreative() && player.isPartOfGame();
 				boolean applyNegative = world.isDay() && world.isSkyVisible(entity.getBlockPos());
-				CursedAmuletItem.GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, !relicStack.isEmpty() && !applyNegative));
-				CursedAmuletItem.BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, !relicStack.isEmpty() && applyNegative));
+				CursedAmuletItem.GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, apply && !applyNegative));
+				CursedAmuletItem.BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, apply && applyNegative));
 			}
 		}
 	}
