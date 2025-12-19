@@ -6,7 +6,9 @@ package moriyashiine.lostrelics.common.item;
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.ModComponentTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.init.ModSoundEvents;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
+import moriyashiine.strawberrylib.api.module.SLibUtils;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.Entity;
@@ -21,11 +23,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ClickType;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,12 +53,25 @@ public class CursedAmuletItem extends Item {
 	}
 
 	@Override
+	public ActionResult use(World world, PlayerEntity user, Hand hand) {
+		if (user.isSneaking()) {
+			ItemStack stack = user.getStackInHand(hand);
+			if (stack.contains(ModComponentTypes.SHOW_SKELETON)) {
+				SLibUtils.playSound(user, ModSoundEvents.ITEM_RELIC_TOGGLE);
+				stack.set(ModComponentTypes.SHOW_SKELETON, !stack.get(ModComponentTypes.SHOW_SKELETON));
+				return ActionResult.SUCCESS;
+			}
+		}
+		return super.use(world, user, hand);
+	}
+
+	@Override
 	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
 		if (clickType == ClickType.RIGHT && stack.contains(ModComponentTypes.SHOW_SKELETON)) {
-			stack.set(ModComponentTypes.SHOW_SKELETON, !stack.get(ModComponentTypes.SHOW_SKELETON));
 			if (player.getEntityWorld().isClient()) {
-				player.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 1, 1);
+				player.playSound(ModSoundEvents.ITEM_RELIC_TOGGLE, 1, 1);
 			}
+			stack.set(ModComponentTypes.SHOW_SKELETON, !stack.get(ModComponentTypes.SHOW_SKELETON));
 			return true;
 		}
 		return super.onClicked(stack, otherStack, slot, clickType, player, cursorStackReference);

@@ -25,5 +25,14 @@
 	  }
 	],
 	"subtitle": "subtitles.lostrelics.entity.tainted_blood_crystal.shatter"
+  },
+  "item.relic.toggle": {
+	"sounds": [
+	  {
+		"type": "event",
+		"name": "minecraft:entity.experience_orb.pickup"
+	  }
+	],
+	"subtitle": "subtitles.lostrelics.item.relic.toggle"
   }
 }

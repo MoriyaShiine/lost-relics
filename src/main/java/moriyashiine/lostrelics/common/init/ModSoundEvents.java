@@ -13,6 +13,8 @@ public class ModSoundEvents {
 	public static final SoundEvent ENTITY_GENERIC_TRANSFORM = registerSoundEvent("entity.generic.transform");
 	public static final SoundEvent ENTITY_TAINTED_BLOOD_CRYSTAL_SHATTER = registerSoundEvent("entity.tainted_blood_crystal.shatter");
 
+	public static final SoundEvent ITEM_RELIC_TOGGLE = registerSoundEvent("item.relic.toggle");
+
 	public static void init() {
 	}
 }
