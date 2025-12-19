@@ -15,6 +15,7 @@
 	"util.StructurePieceMixin"
   ],
   "client": [
+	"cursedamulet.client.PlayerEntityRendererMixin",
 	"tripletoothedsnake.client.ItemModelManagerMixin",
 	"tripletoothedsnake.client.NumericPropertiesMixin"
   ],

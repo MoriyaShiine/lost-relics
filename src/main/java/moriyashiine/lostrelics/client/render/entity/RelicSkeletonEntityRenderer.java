@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class RelicSkeletonEntityRenderer extends BipedEntityRenderer<RelicSkeletonEntity, RelicSkeletonEntityRenderState, RelicSkeletonEntityModel> {
-	private static final List<Identifier> RELIC_SKELETON_TEXTURES = List.of(
+	public static final List<Identifier> RELIC_SKELETON_TEXTURES = List.of(
 			LostRelics.id("textures/entity/relic_skeleton/alexandrite.png"),
 			LostRelics.id("textures/entity/relic_skeleton/amethyst.png"),
 			LostRelics.id("textures/entity/relic_skeleton/aquamarine.png"),
@@ -47,15 +47,19 @@ public class RelicSkeletonEntityRenderer extends BipedEntityRenderer<RelicSkelet
 	@Override
 	public void updateRenderState(RelicSkeletonEntity entity, RelicSkeletonEntityRenderState state, float tickProgress) {
 		super.updateRenderState(entity, state, tickProgress);
-		int index = entity.getPlayerUuid().hashCode() % RELIC_SKELETON_TEXTURES.size();
-		if (index < 0) {
-			index += RELIC_SKELETON_TEXTURES.size();
-		}
-		state.textureIndex = index;
+		state.textureIndex = getTextureIndex(entity);
 	}
 
 	@Override
 	protected void scale(RelicSkeletonEntityRenderState state, MatrixStack matrices) {
 		matrices.scale(0.9375F, 0.9375F, 0.9375F);
+	}
+
+	public static int getTextureIndex(RelicSkeletonEntity entity) {
+		int index = entity.getPlayerUuid().hashCode() % RELIC_SKELETON_TEXTURES.size();
+		if (index < 0) {
+			index += RELIC_SKELETON_TEXTURES.size();
+		}
+		return index;
 	}
 }

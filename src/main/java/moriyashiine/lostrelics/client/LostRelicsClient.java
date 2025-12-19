@@ -3,6 +3,7 @@
  */
 package moriyashiine.lostrelics.client;
 
+import moriyashiine.lostrelics.client.event.CursedAmuletClientEvent;
 import moriyashiine.lostrelics.client.event.TurquoiseEyeClientEvent;
 import moriyashiine.lostrelics.client.render.block.entity.AltarBlockEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.RelicSkeletonEntityRenderer;
@@ -28,6 +29,8 @@ public class LostRelicsClient implements ClientModInitializer {
 	}
 
 	private void initEvents() {
+		ClientTickEvents.END_CLIENT_TICK.register(new CursedAmuletClientEvent());
+
 		ClientTickEvents.END_WORLD_TICK.register(new TurquoiseEyeClientEvent.Tick());
 		OutlineEntityEvent.EVENT.register(new TurquoiseEyeClientEvent.Outline());
 	}
