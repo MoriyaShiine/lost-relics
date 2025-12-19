@@ -5,7 +5,6 @@ package moriyashiine.lostrelics.client.render.entity;
 
 import moriyashiine.lostrelics.client.render.entity.model.RelicSkeletonEntityModel;
 import moriyashiine.lostrelics.client.render.entity.state.RelicSkeletonEntityRenderState;
-import moriyashiine.lostrelics.client.supporter.GemType;
 import moriyashiine.lostrelics.common.entity.mob.RelicSkeletonEntity;
 import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -23,7 +22,7 @@ public class RelicSkeletonEntityRenderer extends BipedEntityRenderer<RelicSkelet
 
 	@Override
 	public Identifier getTexture(RelicSkeletonEntityRenderState state) {
-		return GemType.values()[state.textureIndex].getTexture();
+		return state.gemType.getTexture();
 	}
 
 	@Override
@@ -34,22 +33,11 @@ public class RelicSkeletonEntityRenderer extends BipedEntityRenderer<RelicSkelet
 	@Override
 	public void updateRenderState(RelicSkeletonEntity entity, RelicSkeletonEntityRenderState state, float tickProgress) {
 		super.updateRenderState(entity, state, tickProgress);
-		state.textureIndex = getTextureIndex(entity);
+		state.gemType = entity.getGemType();
 	}
 
 	@Override
 	protected void scale(RelicSkeletonEntityRenderState state, MatrixStack matrices) {
 		matrices.scale(0.9375F, 0.9375F, 0.9375F);
-	}
-
-	public static int getTextureIndex(RelicSkeletonEntity entity) {
-		if (entity.getGemType() != GemType.DEFAULT) {
-			return entity.getGemType().ordinal();
-		}
-		int index = entity.getPlayerUuid().hashCode() % (GemType.values().length - 1);
-		if (index < 0) {
-			index += (GemType.values().length - 1);
-		}
-		return index + 1;
 	}
 }
