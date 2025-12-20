@@ -9,6 +9,7 @@ import moriyashiine.lostrelics.client.render.block.entity.AltarBlockEntityRender
 import moriyashiine.lostrelics.client.render.entity.RelicSkeletonEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.TaintedBloodCrystalEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.model.RelicSkeletonEntityModel;
+import moriyashiine.lostrelics.client.supporter.ClientSupporterInit;
 import moriyashiine.lostrelics.common.init.ModBlockEntityTypes;
 import moriyashiine.lostrelics.common.init.ModEntityTypes;
 import moriyashiine.strawberrylib.api.event.client.OutlineEntityEvent;
@@ -21,6 +22,7 @@ import net.minecraft.client.render.entity.EntityRendererFactories;
 public class LostRelicsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
+		ClientSupporterInit.init();
 		BlockEntityRendererFactories.register(ModBlockEntityTypes.ALTAR, AltarBlockEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(RelicSkeletonEntityModel.LAYER, RelicSkeletonEntityModel::getTexturedModelData);
 		EntityRendererFactories.register(ModEntityTypes.RELIC_SKELETON, RelicSkeletonEntityRenderer::new);

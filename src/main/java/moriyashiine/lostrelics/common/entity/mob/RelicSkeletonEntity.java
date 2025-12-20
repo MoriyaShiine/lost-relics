@@ -4,8 +4,8 @@
 package moriyashiine.lostrelics.common.entity.mob;
 
 import moriyashiine.lostrelics.client.supporter.GemType;
-import moriyashiine.lostrelics.common.init.ModEntityComponents;
-import moriyashiine.strawberrylib.impl.common.supporter.SupporterInit;
+import moriyashiine.lostrelics.common.supporter.SupporterInit;
+import moriyashiine.strawberrylib.api.module.SLibSupporterUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,8 +23,8 @@ public class RelicSkeletonEntity extends SkeletonEntity {
 	}
 
 	public void updateGemType(PlayerEntity player) {
-		if (SupporterInit.isSupporter(player)) {
-			gemType = ModEntityComponents.SUPPORTER.get(player).getGemType();
+		if (SLibSupporterUtils.isSupporter(player)) {
+			gemType = SLibSupporterUtils.getData(player, SupporterInit.RELIC_SKELETON_GEM_TYPE);
 			if (gemType != GemType.DEFAULT) {
 				return;
 			}

@@ -7,7 +7,7 @@ import moriyashiine.lostrelics.common.event.CursedAmuletEvent;
 import moriyashiine.lostrelics.common.event.TripleToothedSnakeEvent;
 import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
-import moriyashiine.lostrelics.common.supporter.payload.SyncGemTypePayload;
+import moriyashiine.lostrelics.common.supporter.SupporterInit;
 import moriyashiine.strawberrylib.api.SLib;
 import moriyashiine.strawberrylib.api.event.ModifyCriticalStatusEvent;
 import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
@@ -15,8 +15,6 @@ import moriyashiine.strawberrylib.api.event.PreventHostileTargetingEvent;
 import moriyashiine.strawberrylib.api.event.TickEntityEvent;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
 
 public class LostRelics implements ModInitializer {
@@ -25,9 +23,9 @@ public class LostRelics implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		SLib.init(MOD_ID);
+		SupporterInit.init();
 		initRegistries();
 		initEvents();
-		initPayloads();
 	}
 
 	public static Identifier id(String value) {
@@ -52,12 +50,5 @@ public class LostRelics implements ModInitializer {
 		EnchantmentEvents.ALLOW_ENCHANTING.register(new TripleToothedSnakeEvent());
 
 		ModifyCriticalStatusEvent.EVENT.register(new TurquoiseEyeEvent());
-	}
-
-	private void initPayloads() {
-		// server payloads
-		PayloadTypeRegistry.playC2S().register(SyncGemTypePayload.ID, SyncGemTypePayload.CODEC);
-		// server receivers
-		ServerPlayNetworking.registerGlobalReceiver(SyncGemTypePayload.ID, new SyncGemTypePayload.Receiver());
 	}
 }
