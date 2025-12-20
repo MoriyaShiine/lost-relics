@@ -3,7 +3,6 @@
  */
 package moriyashiine.lostrelics.common.entity.mob;
 
-import moriyashiine.lostrelics.client.supporter.GemType;
 import moriyashiine.lostrelics.common.supporter.SupporterInit;
 import moriyashiine.strawberrylib.api.module.SLibSupporterUtils;
 import net.minecraft.entity.EntityType;

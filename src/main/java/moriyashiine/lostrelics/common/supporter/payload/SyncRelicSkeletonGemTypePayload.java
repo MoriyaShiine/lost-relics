@@ -3,8 +3,8 @@
  */
 package moriyashiine.lostrelics.common.supporter.payload;
 
-import moriyashiine.lostrelics.client.supporter.GemType;
 import moriyashiine.lostrelics.common.LostRelics;
+import moriyashiine.lostrelics.common.entity.mob.GemType;
 import moriyashiine.lostrelics.common.supporter.SupporterInit;
 import moriyashiine.strawberrylib.api.module.SLibSupporterUtils;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-package moriyashiine.lostrelics.client.supporter;
+package moriyashiine.lostrelics.common.entity.mob;
 
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;

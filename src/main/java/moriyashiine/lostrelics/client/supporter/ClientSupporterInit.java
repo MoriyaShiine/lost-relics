@@ -3,6 +3,7 @@
  */
 package moriyashiine.lostrelics.client.supporter;
 
+import moriyashiine.lostrelics.common.entity.mob.GemType;
 import moriyashiine.lostrelics.common.supporter.SupporterInit;
 import moriyashiine.lostrelics.common.supporter.payload.SyncRelicSkeletonGemTypePayload;
 import moriyashiine.strawberrylib.api.module.SLibSupporterUtils;
