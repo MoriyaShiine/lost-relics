@@ -7,6 +7,7 @@ import moriyashiine.lostrelics.client.event.CursedAmuletClientEvent;
 import moriyashiine.lostrelics.client.event.TurquoiseEyeClientEvent;
 import moriyashiine.lostrelics.client.render.block.entity.AltarBlockEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.RelicSkeletonEntityRenderer;
+import moriyashiine.lostrelics.client.render.entity.SmokeBallEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.TaintedBloodCrystalEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.model.RelicSkeletonEntityModel;
 import moriyashiine.lostrelics.client.supporter.ClientSupporterInit;
@@ -26,6 +27,7 @@ public class LostRelicsClient implements ClientModInitializer {
 		BlockEntityRendererFactories.register(ModBlockEntityTypes.ALTAR, AltarBlockEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(RelicSkeletonEntityModel.LAYER, RelicSkeletonEntityModel::getTexturedModelData);
 		EntityRendererFactories.register(ModEntityTypes.RELIC_SKELETON, RelicSkeletonEntityRenderer::new);
+		EntityRendererFactories.register(ModEntityTypes.SMOKE_BALL, SmokeBallEntityRenderer::new);
 		EntityRendererFactories.register(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, TaintedBloodCrystalEntityRenderer::new);
 		initEvents();
 	}

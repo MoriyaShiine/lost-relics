@@ -4,6 +4,7 @@
 package moriyashiine.lostrelics.common.init;
 
 import moriyashiine.lostrelics.common.entity.mob.RelicSkeletonEntity;
+import moriyashiine.lostrelics.common.entity.projectile.SmokeBallEntity;
 import moriyashiine.lostrelics.common.entity.projectile.TaintedBloodCrystalEntity;
 import moriyashiine.strawberrylib.api.module.SLibRegistries;
 import net.minecraft.entity.EntityType;
@@ -23,6 +24,13 @@ public class ModEntityTypes {
 					.maxTrackingRange(32)
 					.trackingTickInterval(2),
 			AbstractSkeletonEntity.createAbstractSkeletonAttributes());
+
+	public static final EntityType<SmokeBallEntity> SMOKE_BALL = registerEntityType("smoke_ball", EntityType.Builder.<SmokeBallEntity>create(SmokeBallEntity::new, SpawnGroup.MISC)
+			.dropsNothing()
+			.dimensions(0.5F, 0.5F)
+			.eyeHeight(0.13F)
+			.maxTrackingRange(4)
+			.trackingTickInterval(20));
 
 	public static final EntityType<TaintedBloodCrystalEntity> TAINTED_BLOOD_CRYSTAL = registerEntityType("tainted_blood_crystal", EntityType.Builder.<TaintedBloodCrystalEntity>create(TaintedBloodCrystalEntity::new, SpawnGroup.MISC)
 			.dropsNothing()

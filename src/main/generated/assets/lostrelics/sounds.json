@@ -8,6 +8,16 @@
 	],
 	"subtitle": "subtitles.lostrelics.block.altar.convert"
   },
+  "entity.generic.spawn": {
+	"sounds": [
+	  {
+		"type": "event",
+		"name": "minecraft:entity.wither.shoot",
+		"volume": 0.2
+	  }
+	],
+	"subtitle": "subtitles.lostrelics.entity.generic.spawn"
+  },
   "entity.generic.transform": {
 	"sounds": [
 	  {

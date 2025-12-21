@@ -4,6 +4,7 @@
 package moriyashiine.lostrelics.common;
 
 import moriyashiine.lostrelics.common.event.CursedAmuletEvent;
+import moriyashiine.lostrelics.common.event.SmokingMirrorEvent;
 import moriyashiine.lostrelics.common.event.TripleToothedSnakeEvent;
 import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
@@ -46,6 +47,8 @@ public class LostRelics implements ModInitializer {
 		TickEntityEvent.EVENT.register(new CursedAmuletEvent.Tick());
 		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new CursedAmuletEvent.FireWeakness());
 		PreventHostileTargetingEvent.EVENT.register(new CursedAmuletEvent.UndeadNeutrality());
+
+		ModifyDamageTakenEvent.MULTIPLY_BASE.register(new SmokingMirrorEvent());
 
 		EnchantmentEvents.ALLOW_ENCHANTING.register(new TripleToothedSnakeEvent());
 
