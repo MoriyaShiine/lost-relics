@@ -3,6 +3,7 @@
  */
 package moriyashiine.lostrelics.common.init;
 
+import moriyashiine.lostrelics.common.entity.mob.DoppelgangerEntity;
 import moriyashiine.lostrelics.common.entity.mob.RelicSkeletonEntity;
 import moriyashiine.lostrelics.common.entity.projectile.SmokeBallEntity;
 import moriyashiine.lostrelics.common.entity.projectile.TaintedBloodCrystalEntity;
@@ -25,6 +26,12 @@ public class ModEntityTypes {
 					.trackingTickInterval(2),
 			AbstractSkeletonEntity.createAbstractSkeletonAttributes());
 
+	public static final EntityType<DoppelgangerEntity> DOPPELGANGER = registerEntityType("doppelganger", EntityType.Builder.<DoppelgangerEntity>create(DoppelgangerEntity::new, SpawnGroup.MISC)
+					.dimensions(0.6F, 1.8F)
+					.eyeHeight(1.62F)
+					.vehicleAttachment(PlayerLikeEntity.VEHICLE_ATTACHMENT)
+					.maxTrackingRange(8),
+			DoppelgangerEntity.createDoppelgangerAttributes());
 	public static final EntityType<SmokeBallEntity> SMOKE_BALL = registerEntityType("smoke_ball", EntityType.Builder.<SmokeBallEntity>create(SmokeBallEntity::new, SpawnGroup.MISC)
 			.dropsNothing()
 			.dimensions(0.5F, 0.5F)

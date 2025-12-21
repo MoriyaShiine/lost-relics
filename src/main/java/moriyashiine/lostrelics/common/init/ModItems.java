@@ -5,6 +5,7 @@ package moriyashiine.lostrelics.common.init;
 
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.item.CursedAmuletItem;
+import moriyashiine.lostrelics.common.item.SmokingMirrorItem;
 import moriyashiine.lostrelics.common.item.TaintedBloodCrystalItem;
 import moriyashiine.lostrelics.common.item.TripleToothedSnakeItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -23,7 +24,7 @@ public class ModItems {
 
 	public static final Item CURSED_AMULET = registerItem("cursed_amulet", CursedAmuletItem::new, relicSettings()
 			.component(ModComponentTypes.SHOW_SKELETON, true));
-	public static final Item SMOKING_MIRROR = registerItem("smoking_mirror", relicSettings());
+	public static final Item SMOKING_MIRROR = registerItem("smoking_mirror", SmokingMirrorItem::new, relicSettings());
 	public static final Item TRIPLE_TOOTHED_SNAKE = registerItem("triple_toothed_snake", TripleToothedSnakeItem::new, relicSettings()
 			.sword(ModToolMaterials.TRIPLE_TOOTHED_SNAKE, 5, -2.4F)
 			.component(ModComponentTypes.SNAKE_CHARGE, 0)

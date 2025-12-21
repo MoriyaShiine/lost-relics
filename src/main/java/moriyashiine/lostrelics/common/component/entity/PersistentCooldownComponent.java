@@ -50,6 +50,12 @@ public class PersistentCooldownComponent implements AutoSyncedComponent, ServerT
 	}
 
 	public void setCooldown(ItemStack stack, int cooldown) {
+		for (CooldownEntry entry : cooldownEntries) {
+			if (ItemStack.areEqual(stack, entry.stack)) {
+				entry.cooldown = cooldown;
+				return;
+			}
+		}
 		cooldownEntries.add(new CooldownEntry(stack, cooldown));
 	}
 
