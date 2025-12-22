@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) MoriyaShiine. All Rights Reserved.
+ */
 package moriyashiine.lostrelics.data.provider;
 
 import moriyashiine.lostrelics.common.init.ModItems;

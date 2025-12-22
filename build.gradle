@@ -45,7 +45,6 @@ dependencies {
     modApi "org.ladysnake.cardinal-components-api:cardinal-components-base:${cardinal_components_version}"
     modApi "org.ladysnake.cardinal-components-api:cardinal-components-entity:${cardinal_components_version}"
 
-
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modImplementation "moriyashiine:strawberrylib:${strawberrylib_version}"
 }
