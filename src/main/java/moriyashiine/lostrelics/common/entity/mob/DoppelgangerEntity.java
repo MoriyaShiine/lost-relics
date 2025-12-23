@@ -129,9 +129,18 @@ public class DoppelgangerEntity extends PathAwareEntity {
 			@Nullable LivingEntity copiedEntity = getCopiedEntity();
 			if (copiedEntity != null) {
 				for (EquipmentSlot slot : EquipmentSlot.values()) {
-					equipStack(slot, copiedEntity.getEquippedStack(slot));
+					equipStack(slot, copiedEntity.getEquippedStack(slot).copy());
 				}
 			}
+		}
+	}
+
+	@Override
+	public void onDeath(DamageSource damageSource) {
+		super.onDeath(damageSource);
+		if (!getEntityWorld().isClient()) {
+			SLibUtils.addParticles(this, ParticleTypes.SMOKE, 128, ParticleAnchor.BODY);
+			discard();
 		}
 	}
 
@@ -178,6 +187,11 @@ public class DoppelgangerEntity extends PathAwareEntity {
 			return false;
 		}
 		return getOwner() != target && super.canTarget(target);
+	}
+
+	@Override
+	protected boolean shouldDropLoot(ServerWorld world) {
+		return false;
 	}
 
 	public final boolean cannotFollowOwner() {

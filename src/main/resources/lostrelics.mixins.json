@@ -12,6 +12,8 @@
 	"tripletoothedsnake.LivingEntityMixin",
 	"tripletoothedsnake.PersistentProjectileEntityMixin",
 	"tripletoothedsnake.TippedArrowRecipeMixin",
+	"util.ItemCooldownManagerMixin",
+	"util.PlayerEntityMixin",
 	"util.StructurePieceMixin"
   ],
   "client": [

@@ -16,6 +16,6 @@ public class ModEntityComponents implements EntityComponentInitializer {
 
 	@Override
 	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-		registry.registerForPlayers(PERSISTENT_COOLDOWN, PersistentCooldownComponent::new, RespawnCopyStrategy.LOSSLESS_ONLY);
+		registry.registerForPlayers(PERSISTENT_COOLDOWN, player -> new PersistentCooldownComponent(), RespawnCopyStrategy.LOSSLESS_ONLY);
 	}
 }

@@ -32,7 +32,7 @@ public class SmokingMirrorItem extends Item {
 				for (int i = 0; i < (mirrorDemon ? 1 : 4); i++) {
 					DoppelgangerEntity doppelganger = new DoppelgangerEntity(world, user, mirrorDemon);
 					final int minH = 1, maxH = 2;
-					for (int j = 0; j < 8; j++) {
+					for (int j = 0; j < 32; j++) {
 						int dX = user.getRandom().nextBetween(minH, maxH) * (user.getRandom().nextBoolean() ? 1 : -1);
 						int dY = user.getRandom().nextBetween(-6, 6);
 						int dZ = user.getRandom().nextBetween(minH, maxH) * (user.getRandom().nextBoolean() ? 1 : -1);
