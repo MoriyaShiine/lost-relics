@@ -28,7 +28,7 @@ public class ModItems {
 			.component(DataComponentTypes.MAX_DAMAGE, null)
 			.component(DataComponentTypes.REPAIRABLE, null));
 	public static final Item TAINTED_BLOOD_CRYSTAL = registerItem("tainted_blood_crystal", TaintedBloodCrystalItem::new, new Item.Settings().fireproof().rarity(Rarity.UNCOMMON));
-	public static final Item TURQUOISE_EYE = registerItem("turquoise_eye", settings -> new ToggleableRelicItem(settings, "tooltip.lostrelics.treasure_sense"), relicSettings());
+	public static final Item TURQUOISE_EYE = registerItem("turquoise_eye", TurquoiseEyeItem::new, relicSettings());
 
 	private static Item.Settings relicSettings() {
 		return new Item.Settings().fireproof().rarity(Rarity.RARE).maxCount(1);

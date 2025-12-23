@@ -60,6 +60,9 @@ public class TurquoiseEyeClientEvent {
 
 		@Override
 		public @Nullable OutlineEntityEvent.OutlineData getOutlineData(Entity entity) {
+			if (entity instanceof LivingEntity living && LostRelicsUtil.hasRelic(living, ModItems.TURQUOISE_EYE)) {
+				return DATA;
+			}
 			if (isRelicUsable && client.player != null && entity instanceof LivingEntity living && living.getHealth() == living.getMaxHealth() && entity.distanceTo(client.player) <= 32 && living.canSee(client.player)) {
 				return DATA;
 			}

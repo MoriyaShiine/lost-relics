@@ -13,6 +13,7 @@
 	"tripletoothedsnake.LivingEntityMixin",
 	"tripletoothedsnake.PersistentProjectileEntityMixin",
 	"tripletoothedsnake.TippedArrowRecipeMixin",
+	"turquoiseeye.LivingEntityMixin",
 	"util.ItemCooldownManagerMixin",
 	"util.PlayerEntityMixin",
 	"util.StructurePieceMixin"
