@@ -4,10 +4,7 @@
 package moriyashiine.lostrelics.common.init;
 
 import moriyashiine.lostrelics.common.LostRelics;
-import moriyashiine.lostrelics.common.item.CursedAmuletItem;
-import moriyashiine.lostrelics.common.item.SmokingMirrorItem;
-import moriyashiine.lostrelics.common.item.TaintedBloodCrystalItem;
-import moriyashiine.lostrelics.common.item.TripleToothedSnakeItem;
+import moriyashiine.lostrelics.common.item.*;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
@@ -31,7 +28,7 @@ public class ModItems {
 			.component(DataComponentTypes.MAX_DAMAGE, null)
 			.component(DataComponentTypes.REPAIRABLE, null));
 	public static final Item TAINTED_BLOOD_CRYSTAL = registerItem("tainted_blood_crystal", TaintedBloodCrystalItem::new, new Item.Settings().fireproof().rarity(Rarity.UNCOMMON));
-	public static final Item TURQUOISE_EYE = registerItem("turquoise_eye", relicSettings());
+	public static final Item TURQUOISE_EYE = registerItem("turquoise_eye", settings -> new ToggleableRelicItem(settings, "tooltip.lostrelics.treasure_sense"), relicSettings());
 
 	private static Item.Settings relicSettings() {
 		return new Item.Settings().fireproof().rarity(Rarity.RARE).maxCount(1);

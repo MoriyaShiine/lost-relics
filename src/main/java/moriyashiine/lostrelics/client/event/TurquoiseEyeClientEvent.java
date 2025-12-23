@@ -3,16 +3,21 @@
  */
 package moriyashiine.lostrelics.client.event;
 
+import moriyashiine.lostrelics.common.init.ModComponentTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.tag.ModBlockTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.strawberrylib.api.event.client.OutlineEntityEvent;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.util.TriState;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.OptionalInt;
@@ -27,6 +32,26 @@ public class TurquoiseEyeClientEvent {
 		public void onEndTick(ClientWorld world) {
 			ItemStack relicStack = LostRelicsUtil.getRelic(client.player, ModItems.TURQUOISE_EYE);
 			isRelicUsable = LostRelicsUtil.isUsable(client.player, relicStack);
+			if (world.getTime() % 10 == 0 && relicStack.getOrDefault(ModComponentTypes.RELIC_TOGGLE, false)) {
+				for (BlockPos pos : BlockPos.iterateOutwards(client.player.getBlockPos(), 12, 12, 12)) {
+					BlockState state = world.getBlockState(pos);
+					if (state.isIn(ModBlockTags.TREASURE) && !state.isIn(ModBlockTags.UNIMPORTANT_TREASURE)) {
+						int color = state.getMapColor(world, pos).color;
+						double x = client.player.getX();
+						double y = client.player.getBodyY(0.5);
+						double z = client.player.getZ();
+						double bX = pos.getX() + 0.5;
+						double bY = pos.getY() + 0.5;
+						double bZ = pos.getZ() + 0.5;
+						for (float i = 0.1F; i <= 1; i += 0.1F) {
+							double dX = x - (x - bX) * i;
+							double dY = y - (y - bY) * i;
+							double dZ = z - (z - bZ) * i;
+							world.addParticleClient(ParticleTypes.BUBBLE_POP, dX, dY, dZ, 0, 0, 0);
+						}
+					}
+				}
+			}
 		}
 	}
 

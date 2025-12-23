@@ -20,9 +20,11 @@ public class TurquoiseEyeEvent implements ModifyCriticalStatusEvent {
 		if (target instanceof LivingEntity living && living.getHealth() == living.getMaxHealth()) {
 			ItemStack relicStack = LostRelicsUtil.getRelic(attacker, ModItems.TURQUOISE_EYE);
 			if (LostRelicsUtil.isUsable(attacker, relicStack)) {
-				LostRelicsUtil.setCooldown(attacker, relicStack, 600);
-				living.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 100, 1));
-				living.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS));
+				if (!attacker.getEntityWorld().isClient()) {
+					LostRelicsUtil.setCooldown(attacker, relicStack, 60);
+					living.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 100, 1));
+					living.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS));
+				}
 				return TriState.TRUE;
 			}
 		}

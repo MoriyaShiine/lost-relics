@@ -32,6 +32,7 @@
   "subtitles.lostrelics.entity.tainted_blood_crystal.shatter": "Tainted Blood Crystal shatters",
   "subtitles.lostrelics.item.relic.toggle": "Relic toggles",
   "tooltip.lostrelics.show_skeleton": "Show Skeleton",
+  "tooltip.lostrelics.treasure_sense": "Treasure Sense",
   "options.lostrelics.relic_skeleton_gem_type": "Relic Skeleton Gem Type",
   "gemtype.lostrelics.default": "Default",
   "gemtype.lostrelics.alexandrite": "Alexandrite",
