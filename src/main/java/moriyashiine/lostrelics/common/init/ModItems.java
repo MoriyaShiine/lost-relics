@@ -22,8 +22,7 @@ public class ModItems {
 
 	public static final Item JUNGLE_ALTAR = registerBlockItem("jungle_altar", ModBlocks.JUNGLE_ALTAR);
 
-	public static final Item CURSED_AMULET = registerItem("cursed_amulet", CursedAmuletItem::new, relicSettings()
-			.component(ModComponentTypes.SHOW_SKELETON, true));
+	public static final Item CURSED_AMULET = registerItem("cursed_amulet", CursedAmuletItem::new, relicSettings());
 	public static final Item SMOKING_MIRROR = registerItem("smoking_mirror", SmokingMirrorItem::new, relicSettings());
 	public static final Item TRIPLE_TOOTHED_SNAKE = registerItem("triple_toothed_snake", TripleToothedSnakeItem::new, relicSettings()
 			.sword(ModToolMaterials.TRIPLE_TOOTHED_SNAKE, 5, -2.4F)

@@ -38,7 +38,7 @@ public class CursedAmuletEvent {
 			if (entity instanceof PlayerEntity player) {
 				ItemStack relicStack = LostRelicsUtil.getRelic(player, ModItems.CURSED_AMULET);
 				boolean hasRelicSkeleton = SLibUtils.hasModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
-				if (!relicStack.isEmpty() && relicStack.getOrDefault(ModComponentTypes.SHOW_SKELETON, false)) {
+				if (!relicStack.isEmpty() && relicStack.getOrDefault(ModComponentTypes.RELIC_TOGGLE, false)) {
 					if (!hasRelicSkeleton) {
 						SLibUtils.addModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
 						SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
