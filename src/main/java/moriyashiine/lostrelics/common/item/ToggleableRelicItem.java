@@ -9,7 +9,6 @@ import moriyashiine.strawberrylib.api.module.SLibUtils;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.screen.slot.Slot;
@@ -23,7 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.function.Consumer;
 
-public class ToggleableRelicItem extends Item {
+public class ToggleableRelicItem extends EquippableRelicItem {
 	private final String toggleTranslationKey;
 
 	public ToggleableRelicItem(Settings settings, String toggleTranslationKey) {

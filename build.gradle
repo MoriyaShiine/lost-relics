@@ -31,6 +31,11 @@ fabricApi {
 repositories {
     chenille.repositories.ladysnake()
     chenille.repositories.up()
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+    chenille.repositories.modrinth()
 }
 
 dependencies {
@@ -43,6 +48,8 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modImplementation "moriyashiine:strawberrylib:${strawberrylib_version}"
+    modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
+    modImplementation "maven.modrinth:ohmega:${ohmega_version}"
 }
 
 processResources {

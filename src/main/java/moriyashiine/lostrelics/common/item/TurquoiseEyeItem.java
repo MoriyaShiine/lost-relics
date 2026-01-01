@@ -3,13 +3,10 @@
  */
 package moriyashiine.lostrelics.common.item;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class TurquoiseEyeItem extends ToggleableRelicItem {
 	public TurquoiseEyeItem(Settings settings) {
@@ -17,9 +14,7 @@ public class TurquoiseEyeItem extends ToggleableRelicItem {
 	}
 
 	@Override
-	public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
-		if (entity instanceof LivingEntity living) {
-			living.removeStatusEffect(StatusEffects.INVISIBILITY);
-		}
+	public void onEquip(@NonNull PlayerEntity player, @NonNull ItemStack stack) {
+		player.removeStatusEffect(StatusEffects.INVISIBILITY);
 	}
 }

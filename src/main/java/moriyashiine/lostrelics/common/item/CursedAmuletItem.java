@@ -4,8 +4,13 @@
 package moriyashiine.lostrelics.common.item;
 
 import moriyashiine.lostrelics.common.LostRelics;
+import moriyashiine.lostrelics.common.init.ModComponentTypes;
+import moriyashiine.lostrelics.common.init.ModEntityTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.init.ModSoundEvents;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
+import moriyashiine.strawberrylib.api.module.SLibUtils;
+import moriyashiine.strawberrylib.api.objects.enums.ParticleAnchor;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.Entity;
@@ -13,11 +18,15 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +47,41 @@ public class CursedAmuletItem extends ToggleableRelicItem {
 
 	public CursedAmuletItem(Settings settings) {
 		super(settings, "tooltip.lostrelics.show_skeleton");
+	}
+
+	@Override
+	public void tick(@NonNull PlayerEntity player, @NonNull ItemStack stack) {
+		if (player.getEntityWorld() instanceof ServerWorld world) {
+			boolean hasRelicSkeleton = SLibUtils.hasModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
+			if (stack.getOrDefault(ModComponentTypes.RELIC_TOGGLE, false)) {
+				if (!hasRelicSkeleton) {
+					SLibUtils.addModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
+					SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
+					SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
+				}
+			} else if (hasRelicSkeleton) {
+				SLibUtils.removeModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
+				SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
+				SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
+			}
+			boolean apply = !player.isCreative() && player.isPartOfGame();
+			boolean applyNegative = world.isDay() && world.isSkyVisible(player.getBlockPos());
+			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, apply && !applyNegative));
+			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, apply && applyNegative));
+		}
+	}
+
+	@Override
+	public void onUnequip(@NonNull PlayerEntity player, @NonNull ItemStack stack) {
+		if (!player.getEntityWorld().isClient()) {
+			if (SLibUtils.hasModelReplacementType(player, ModEntityTypes.RELIC_SKELETON)) {
+				SLibUtils.removeModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
+				SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
+				SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
+			}
+			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, false));
+			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, false));
+		}
 	}
 
 	@Override

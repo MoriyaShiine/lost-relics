@@ -3,6 +3,7 @@
  */
 package moriyashiine.lostrelics.common.util;
 
+import com.swacky.ohmega.api.AccessoryHelper;
 import moriyashiine.lostrelics.common.init.ModEntityComponents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,7 +13,7 @@ import net.minecraft.item.ItemStack;
 public class LostRelicsUtil {
 	public static ItemStack getRelic(LivingEntity entity, Item relic) {
 		if (entity instanceof PlayerEntity player) {
-			for (ItemStack stack : player.getInventory()) {
+			for (ItemStack stack : AccessoryHelper.getStacks(player)) {
 				if (stack.isOf(relic)) {
 					return stack;
 				}
