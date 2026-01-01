@@ -1,4 +1,15 @@
 ------------------------------------------------------
+Version 1.21.11-r1
+------------------------------------------------------
+- update to 1.21.11
+- merge https://github.com/MoriyaShiine/lost-relics/pull/4
+- completely rewrote the mod
+  - depends on Ohmega instead of Trinkets
+  - rebalanced all existing relics
+  - added downsides for smoking mirror and turquoise eye
+  - added turquoise eye treasure sense ability
+
+------------------------------------------------------
 Version 1.21-r1
 ------------------------------------------------------
 - update to 1.21
