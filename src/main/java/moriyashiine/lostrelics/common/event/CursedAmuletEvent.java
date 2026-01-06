@@ -25,13 +25,9 @@ import net.minecraft.util.Identifier;
 
 public class CursedAmuletEvent {
 	public static class EffectImmunity implements ServerMobEffectEvents.AllowAdd {
-		@SuppressWarnings("RedundantIfStatement")
 		@Override
 		public boolean allowAdd(StatusEffectInstance effect, LivingEntity entity, EffectEventContext ctx) {
-			if (CursedAmuletItem.isEffectPreventable(effect.getEffectType()) && LostRelicsUtil.hasRelic(entity, ModItems.CURSED_AMULET)) {
-				return false;
-			}
-			return true;
+			return !(CursedAmuletItem.isEffectPreventable(effect.getEffectType()) && LostRelicsUtil.hasRelic(entity, ModItems.CURSED_AMULET));
 		}
 	}
 

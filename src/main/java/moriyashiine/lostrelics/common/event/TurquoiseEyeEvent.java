@@ -41,13 +41,9 @@ public class TurquoiseEyeEvent {
 	}
 
 	public static class EffectImmunity implements ServerMobEffectEvents.AllowAdd {
-		@SuppressWarnings("RedundantIfStatement")
 		@Override
 		public boolean allowAdd(StatusEffectInstance effect, LivingEntity entity, EffectEventContext ctx) {
-			if (effect.getEffectType() == StatusEffects.INVISIBILITY && LostRelicsUtil.hasRelic(entity, ModItems.TURQUOISE_EYE)) {
-				return false;
-			}
-			return true;
+			return !(effect.getEffectType() == StatusEffects.INVISIBILITY && LostRelicsUtil.hasRelic(entity, ModItems.TURQUOISE_EYE));
 		}
 	}
 }
