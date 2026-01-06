@@ -3,10 +3,12 @@
  */
 package moriyashiine.lostrelics.common;
 
-import moriyashiine.lostrelics.common.event.CursedAmuletEvent;
-import moriyashiine.lostrelics.common.event.SmokingMirrorEvent;
-import moriyashiine.lostrelics.common.event.TripleToothedSnakeEvent;
-import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
+import com.swacky.ohmega.api.event.AccessoryCanEquipEvent;
+import moriyashiine.lostrelics.common.event.EquippableRelicEvent;
+import moriyashiine.lostrelics.common.event.relic.CursedAmuletEvent;
+import moriyashiine.lostrelics.common.event.relic.SmokingMirrorEvent;
+import moriyashiine.lostrelics.common.event.relic.TripleToothedSnakeEvent;
+import moriyashiine.lostrelics.common.event.relic.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
 import moriyashiine.lostrelics.common.supporter.SupporterInit;
 import moriyashiine.strawberrylib.api.SLib;
@@ -45,6 +47,8 @@ public class LostRelics implements ModInitializer {
 	}
 
 	private void initEvents() {
+		AccessoryCanEquipEvent.EVENT.register(new EquippableRelicEvent());
+
 		ServerMobEffectEvents.ALLOW_ADD.register(new CursedAmuletEvent.EffectImmunity());
 		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new CursedAmuletEvent.FireWeakness());
 		PreventHostileTargetingEvent.EVENT.register(new CursedAmuletEvent.UndeadNeutrality());

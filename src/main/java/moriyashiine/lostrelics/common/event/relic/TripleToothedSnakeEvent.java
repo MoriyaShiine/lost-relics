@@ -1,7 +1,7 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-package moriyashiine.lostrelics.common.event;
+package moriyashiine.lostrelics.common.event.relic;
 
 import moriyashiine.lostrelics.common.init.ModItems;
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;

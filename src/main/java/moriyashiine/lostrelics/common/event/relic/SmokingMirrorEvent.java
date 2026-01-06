@@ -1,7 +1,7 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
-package moriyashiine.lostrelics.common.event;
+package moriyashiine.lostrelics.common.event.relic;
 
 import moriyashiine.lostrelics.common.entity.projectile.SmokeBallEntity;
 import moriyashiine.lostrelics.common.init.ModItems;
