@@ -3,7 +3,7 @@
   <a href="https://modrinth.com/mod/strawberrylib"><img src="https://github.com/ContentSMP/Badges/raw/refs/heads/main/strawberrylib/cozy_vector.svg"></a>
   <a href="https://discord.gg/Am6M8VQ"><img src="https://github.com/intergrav/devins-badges/raw/refs/heads/v3/assets/cozy/social/discord-singular_vector.svg"></a>
   <a href="https://ko-fi.com/moriyashiine"><img src="https://github.com/intergrav/devins-badges/raw/refs/heads/v3/assets/cozy/donate/kofi-singular_vector.svg"></a>
-  <h3>Find unique and powerful artifacts found in the ancient structures of the world!</h3>
+  <h3>Find unique and powerful artifacts in the ancient structures of the world!</h3>
 </div>
 
 Lost Relics seeks to add unique and powerful loot to ancient structures found in Minecraft. However, rather than just increasing stats or applying a potion effect, these treasures offer a wide range of interesting and unique powers and equipment, but of course, have side effects that might be considered unpleasant... I mean, there had to be a reason they were hidden here in the first place?
