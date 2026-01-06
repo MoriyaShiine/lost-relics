@@ -6,13 +6,10 @@ package moriyashiine.lostrelics.mixin.cursedamulet;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import moriyashiine.lostrelics.common.init.ModItems;
-import moriyashiine.lostrelics.common.tag.ModStatusEffectTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import net.minecraft.component.type.DeathProtectionComponent;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -36,14 +33,6 @@ public class LivingEntityMixin {
 	@ModifyExpressionValue(method = "canHaveStatusEffect", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EntityType;isIn(Lnet/minecraft/registry/tag/TagKey;)Z", ordinal = 2))
 	private boolean lostrelics$cursedAmulet$ignorePoisonAndRegen(boolean original) {
 		return original || hasCursedAmulet();
-	}
-
-	@ModifyReturnValue(method = "canHaveStatusEffect", at = @At("RETURN"))
-	private boolean lostrelics$cursedAmulet$statusEffectImmunity(boolean original, StatusEffectInstance effect) {
-		if (hasCursedAmulet() && effect.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL && !effect.getEffectType().isIn(ModStatusEffectTags.BYPASSES_CURSED_AMULET)) {
-			return false;
-		}
-		return original;
 	}
 
 	@ModifyReturnValue(method = "hasInvertedHealingAndHarm", at = @At("RETURN"))

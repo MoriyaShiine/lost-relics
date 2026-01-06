@@ -8,6 +8,7 @@ import moriyashiine.lostrelics.common.init.ModComponentTypes;
 import moriyashiine.lostrelics.common.init.ModEntityTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.init.ModSoundEvents;
+import moriyashiine.lostrelics.common.tag.ModStatusEffectTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
 import moriyashiine.strawberrylib.api.objects.enums.ParticleAnchor;
@@ -18,6 +19,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -29,6 +33,7 @@ import net.minecraft.util.Formatting;
 import org.jspecify.annotations.NonNull;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -72,6 +77,15 @@ public class CursedAmuletItem extends ToggleableRelicItem {
 	}
 
 	@Override
+	public void onEquip(@NonNull PlayerEntity player, @NonNull ItemStack stack) {
+		for (StatusEffectInstance effect : new HashSet<>(player.getStatusEffects())) {
+			if (isEffectPreventable(effect.getEffectType())) {
+				player.removeStatusEffect(effect.getEffectType());
+			}
+		}
+	}
+
+	@Override
 	public void onUnequip(@NonNull PlayerEntity player, @NonNull ItemStack stack) {
 		if (!player.getEntityWorld().isClient()) {
 			if (SLibUtils.hasModelReplacementType(player, ModEntityTypes.RELIC_SKELETON)) {
@@ -97,5 +111,9 @@ public class CursedAmuletItem extends ToggleableRelicItem {
 			return LostRelicsUtil.hasRelic(living, ModItems.CURSED_AMULET);
 		}
 		return false;
+	}
+
+	public static boolean isEffectPreventable(RegistryEntry<StatusEffect> effect) {
+		return effect.value().getCategory() == StatusEffectCategory.HARMFUL && !effect.isIn(ModStatusEffectTags.BYPASSES_CURSED_AMULET);
 	}
 }

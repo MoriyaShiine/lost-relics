@@ -14,6 +14,7 @@ import moriyashiine.strawberrylib.api.event.ModifyCriticalStatusEvent;
 import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
 import moriyashiine.strawberrylib.api.event.PreventHostileTargetingEvent;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.entity.event.v1.effect.ServerMobEffectEvents;
 import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
 import net.minecraft.util.Identifier;
 
@@ -44,6 +45,7 @@ public class LostRelics implements ModInitializer {
 	}
 
 	private void initEvents() {
+		ServerMobEffectEvents.ALLOW_ADD.register(new CursedAmuletEvent.EffectImmunity());
 		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new CursedAmuletEvent.FireWeakness());
 		PreventHostileTargetingEvent.EVENT.register(new CursedAmuletEvent.UndeadNeutrality());
 
@@ -51,6 +53,7 @@ public class LostRelics implements ModInitializer {
 
 		EnchantmentEvents.ALLOW_ENCHANTING.register(new TripleToothedSnakeEvent());
 
-		ModifyCriticalStatusEvent.EVENT.register(new TurquoiseEyeEvent());
+		ModifyCriticalStatusEvent.EVENT.register(new TurquoiseEyeEvent.Attack());
+		ServerMobEffectEvents.ALLOW_ADD.register(new TurquoiseEyeEvent.EffectImmunity());
 	}
 }
