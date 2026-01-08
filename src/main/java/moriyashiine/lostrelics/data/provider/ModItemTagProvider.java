@@ -4,14 +4,13 @@
 package moriyashiine.lostrelics.data.provider;
 
 import com.swacky.ohmega.common.accessorytype.AccessoryType;
+import com.swacky.ohmega.common.init.OhmegaTags;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.tag.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -35,7 +34,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 		valueLookupBuilder(ItemTags.SWORDS)
 				.add(ModItems.TRIPLE_TOOTHED_SNAKE);
 
-		valueLookupBuilder(TagKey.of(RegistryKeys.ITEM, AccessoryType.NORMAL_ID))
+		valueLookupBuilder(OhmegaTags.get(AccessoryType.NORMAL_ID))
 				.add(ModItems.CURSED_AMULET)
 				.add(ModItems.SMOKING_MIRROR)
 				.add(ModItems.TURQUOISE_EYE);
