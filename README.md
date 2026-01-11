@@ -17,7 +17,7 @@ Seek out the Cursed Amulet, Smoking Mirror, Triple Toothed Snake, and Turquoise 
 ![Jungle Altar](https://github.com/MoriyaShiine/lost-relics/blob/main/.webassets/jungle_altar.png?raw=true)
 
 ### Cursed Amulet
-- Causes you to become undead and visibly become a skeleton (toggleable).
+- Causes you to become undead and visibly become a skeleton.
 - Increases or decreases armor and attack damage depending on if you're exposed to sunlight.
 - Other undead will no longer actively target you.
 - Grants immunity to negative status effects.
@@ -32,7 +32,7 @@ Seek out the Cursed Amulet, Smoking Mirror, Triple Toothed Snake, and Turquoise 
 
 ### Smoking Mirror
 - When worn, reflects half of the damage you take in the form of a smoke ball.
-- When used, summons 4 temporary copies of the user, or a Mirror Demon (which instead copies the equipment of its target) when sneaking.
+- When used, summons 4 temporary copies of the user, or a Mirror Demon (which instead copies the equipment of its target if the target is a player) when sneaking.
 - Phantoms will always spawn at night.
 
 ![Smoking Mirror](https://github.com/MoriyaShiine/lost-relics/blob/main/.webassets/smoking_mirror.png?raw=true)
