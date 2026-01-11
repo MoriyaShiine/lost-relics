@@ -1,4 +1,11 @@
 ------------------------------------------------------
+Version 1.21.11-r3
+------------------------------------------------------
+- relics can now be equipped with right click if their main right click function isn't called
+- mirror demons now only copy their target's equipment if the target is a player, otherwise they copy their owner's equipment
+- fix various relic skeleton model issues, and the skeleton model is no longer optional
+
+------------------------------------------------------
 Version 1.21.11-r2
 ------------------------------------------------------
 - cursed amulet now removes applicable effects when equipped
