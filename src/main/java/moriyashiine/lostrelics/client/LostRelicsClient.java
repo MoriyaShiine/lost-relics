@@ -8,7 +8,6 @@ import moriyashiine.lostrelics.client.event.TurquoiseEyeClientEvent;
 import moriyashiine.lostrelics.client.particle.TreasureSenseParticle;
 import moriyashiine.lostrelics.client.render.block.entity.AltarBlockEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.DoppelgangerEntityRenderer;
-import moriyashiine.lostrelics.client.render.entity.RelicSkeletonEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.SmokeBallEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.TaintedBloodCrystalEntityRenderer;
 import moriyashiine.lostrelics.client.render.entity.model.RelicSkeletonEntityModel;
@@ -41,7 +40,6 @@ public class LostRelicsClient implements ClientModInitializer {
 
 	private void initEntities() {
 		EntityModelLayerRegistry.registerModelLayer(RelicSkeletonEntityModel.LAYER, RelicSkeletonEntityModel::getTexturedModelData);
-		EntityRendererFactories.register(ModEntityTypes.RELIC_SKELETON, RelicSkeletonEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(SlimBipedEntityModel.LAYER, SlimBipedEntityModel::getTexturedModelData);
 		EntityRendererFactories.register(ModEntityTypes.DOPPELGANGER, DoppelgangerEntityRenderer::new);
 		EntityRendererFactories.register(ModEntityTypes.SMOKE_BALL, SmokeBallEntityRenderer::new);

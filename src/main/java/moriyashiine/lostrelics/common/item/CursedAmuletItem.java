@@ -4,8 +4,6 @@
 package moriyashiine.lostrelics.common.item;
 
 import moriyashiine.lostrelics.common.LostRelics;
-import moriyashiine.lostrelics.common.init.ModComponentTypes;
-import moriyashiine.lostrelics.common.init.ModEntityTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.init.ModSoundEvents;
 import moriyashiine.lostrelics.common.tag.ModStatusEffectTags;
@@ -37,7 +35,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class CursedAmuletItem extends ToggleableRelicItem {
+public class CursedAmuletItem extends EquippableRelicItem {
 	public static final Map<RegistryEntry<EntityAttribute>, EntityAttributeModifier> GOOD_MODIFIERS, BAD_MODIFIERS;
 
 	static {
@@ -51,24 +49,12 @@ public class CursedAmuletItem extends ToggleableRelicItem {
 	}
 
 	public CursedAmuletItem(Settings settings) {
-		super(settings, "tooltip.lostrelics.show_skeleton");
+		super(settings);
 	}
 
 	@Override
 	public void tick(@NonNull PlayerEntity player, @NonNull ItemStack stack) {
 		if (player.getEntityWorld() instanceof ServerWorld world) {
-			boolean hasRelicSkeleton = SLibUtils.hasModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
-			if (stack.getOrDefault(ModComponentTypes.RELIC_TOGGLE, false)) {
-				if (!hasRelicSkeleton) {
-					SLibUtils.addModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
-					SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
-					SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
-				}
-			} else if (hasRelicSkeleton) {
-				SLibUtils.removeModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
-				SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
-				SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
-			}
 			boolean apply = !player.isCreative() && player.isPartOfGame();
 			boolean applyNegative = world.isDay() && world.isSkyVisible(player.getBlockPos());
 			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, apply && !applyNegative));
@@ -78,6 +64,10 @@ public class CursedAmuletItem extends ToggleableRelicItem {
 
 	@Override
 	public void onEquip(@NonNull PlayerEntity player, @NonNull ItemStack stack) {
+		if (!player.getEntityWorld().isClient()) {
+			SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
+			SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
+		}
 		for (StatusEffectInstance effect : new HashSet<>(player.getStatusEffects())) {
 			if (isEffectPreventable(effect.getEffectType())) {
 				player.removeStatusEffect(effect.getEffectType());
@@ -88,11 +78,8 @@ public class CursedAmuletItem extends ToggleableRelicItem {
 	@Override
 	public void onUnequip(@NonNull PlayerEntity player, @NonNull ItemStack stack) {
 		if (!player.getEntityWorld().isClient()) {
-			if (SLibUtils.hasModelReplacementType(player, ModEntityTypes.RELIC_SKELETON)) {
-				SLibUtils.removeModelReplacementType(player, ModEntityTypes.RELIC_SKELETON);
-				SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
-				SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
-			}
+			SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
+			SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
 			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, false));
 			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, false));
 		}
@@ -100,7 +87,6 @@ public class CursedAmuletItem extends ToggleableRelicItem {
 
 	@Override
 	public void appendTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
-		super.appendTooltip(stack, context, displayComponent, textConsumer, type);
 		textConsumer.accept(Text.empty());
 		textConsumer.accept(Text.translatable("item.modifiers.armor").formatted(Formatting.GRAY));
 		GOOD_MODIFIERS.forEach((attribute, modifier) -> textConsumer.accept(Text.translatable("attribute.modifier.plus." + modifier.operation().getId(), AttributeModifiersComponent.DECIMAL_FORMAT.format(modifier.value()), Text.translatable(attribute.value().getTranslationKey())).append("?").formatted(Formatting.LIGHT_PURPLE)));
