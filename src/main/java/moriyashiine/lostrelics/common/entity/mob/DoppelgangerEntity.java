@@ -120,8 +120,8 @@ public class DoppelgangerEntity extends PathAwareEntity {
 				}
 			}
 			@Nullable LivingEntity targetCopy = owner;
-			if (mirrorDemon && getTarget() != null) {
-				targetCopy = getTarget();
+			if (mirrorDemon && getTarget() instanceof PlayerLikeEntity playerLike) {
+				targetCopy = playerLike;
 			}
 			if (getCopiedEntity() != targetCopy) {
 				setCopiedEntity(targetCopy);
