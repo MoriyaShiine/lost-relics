@@ -1,15 +1,16 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common.component.entity;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersistentCooldownComponent implements AutoSyncedComponent, CommonTickingComponent {
-	public static PlayerEntity currentPlayer = null;
+	public static Player currentPlayer = null;
 
 	private final List<CooldownEntry> cooldownEntries = new ArrayList<>();
 
@@ -32,21 +33,21 @@ public class PersistentCooldownComponent implements AutoSyncedComponent, CommonT
 	}
 
 	@Override
-	public void readData(ReadView readView) {
+	public void readData(ValueInput input) {
 		cooldownEntries.clear();
-		cooldownEntries.addAll(readView.read("CooldownEntries", CooldownEntry.CODEC.listOf()).orElse(List.of()));
+		cooldownEntries.addAll(input.read("CooldownEntries", CooldownEntry.CODEC.listOf()).orElse(List.of()));
 	}
 
 	@Override
-	public void writeData(WriteView writeView) {
-		writeView.put("CooldownEntries", CooldownEntry.CODEC.listOf(), cooldownEntries);
+	public void writeData(ValueOutput output) {
+		output.store("CooldownEntries", CooldownEntry.CODEC.listOf(), cooldownEntries);
 	}
 
-	public float getCooldownProgress(ItemStack stack, float tickProgress) {
+	public float getCooldownProgress(ItemStack stack, float a) {
 		for (CooldownEntry entry : cooldownEntries) {
-			if (ItemStack.areEqual(stack, entry.getStack())) {
-				float delta = entry.cooldown - (entry.progress + tickProgress);
-				return MathHelper.clamp(delta / entry.cooldown, 0, 1);
+			if (ItemStack.matches(stack, entry.getStack())) {
+				float delta = entry.cooldown - (entry.progress + a);
+				return Mth.clamp(delta / entry.cooldown, 0, 1);
 			}
 		}
 		return 0;
@@ -54,7 +55,7 @@ public class PersistentCooldownComponent implements AutoSyncedComponent, CommonT
 
 	public void setCooldown(ItemStack stack, int cooldown) {
 		for (CooldownEntry entry : cooldownEntries) {
-			if (ItemStack.areEqual(stack, entry.stack)) {
+			if (ItemStack.matches(stack, entry.stack)) {
 				entry.progress = 0;
 				entry.cooldown = cooldown;
 				return;

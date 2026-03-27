@@ -1,6 +1,7 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common.init;
 
 import moriyashiine.lostrelics.common.LostRelics;
@@ -16,6 +17,6 @@ public class ModEntityComponents implements EntityComponentInitializer {
 
 	@Override
 	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-		registry.registerForPlayers(PERSISTENT_COOLDOWN, player -> new PersistentCooldownComponent(), RespawnCopyStrategy.LOSSLESS_ONLY);
+		registry.registerForPlayers(PERSISTENT_COOLDOWN, _ -> new PersistentCooldownComponent(), RespawnCopyStrategy.LOSSLESS_ONLY);
 	}
 }

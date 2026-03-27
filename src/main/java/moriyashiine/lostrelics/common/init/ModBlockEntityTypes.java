@@ -1,11 +1,12 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common.init;
 
-import moriyashiine.lostrelics.common.block.entity.AltarBlockEntity;
+import moriyashiine.lostrelics.common.world.level.block.entity.AltarBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import static moriyashiine.strawberrylib.api.module.SLibRegistries.registerBlockEntityType;
 

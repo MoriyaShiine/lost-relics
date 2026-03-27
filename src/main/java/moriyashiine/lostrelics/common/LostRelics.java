@@ -1,6 +1,7 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common;
 
 import moriyashiine.lostrelics.common.event.CursedAmuletEvent;
@@ -10,13 +11,14 @@ import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
 import moriyashiine.lostrelics.common.supporter.SupporterInit;
 import moriyashiine.strawberrylib.api.SLib;
+import moriyashiine.strawberrylib.api.event.AfterDamageIncludingDeathEvent;
 import moriyashiine.strawberrylib.api.event.ModifyCriticalStatusEvent;
 import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
 import moriyashiine.strawberrylib.api.event.PreventHostileTargetingEvent;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.effect.ServerMobEffectEvents;
 import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 
 public class LostRelics implements ModInitializer {
 	public static final String MOD_ID = "lostrelics";
@@ -30,7 +32,7 @@ public class LostRelics implements ModInitializer {
 	}
 
 	public static Identifier id(String value) {
-		return Identifier.of(MOD_ID, value);
+		return Identifier.fromNamespaceAndPath(MOD_ID, value);
 	}
 
 	private void initRegistries() {
@@ -49,7 +51,8 @@ public class LostRelics implements ModInitializer {
 		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new CursedAmuletEvent.FireWeakness());
 		PreventHostileTargetingEvent.EVENT.register(new CursedAmuletEvent.UndeadNeutrality());
 
-		ModifyDamageTakenEvent.MULTIPLY_BASE.register(new SmokingMirrorEvent());
+		ModifyDamageTakenEvent.MULTIPLY_BASE.register(new SmokingMirrorEvent.ReduceDamage());
+		AfterDamageIncludingDeathEvent.EVENT.register(new SmokingMirrorEvent.ReflectDamage());
 
 		EnchantmentEvents.ALLOW_ENCHANTING.register(new TripleToothedSnakeEvent());
 

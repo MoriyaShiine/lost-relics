@@ -1,52 +1,53 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.client.particle;
 
-import net.minecraft.client.particle.BillboardParticle;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleFactory;
-import net.minecraft.client.particle.SpriteProvider;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.SimpleParticleType;
-import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.SingleQuadParticle;
+import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.ARGB;
+import net.minecraft.util.RandomSource;
 
-public class TreasureSenseParticle extends BillboardParticle {
-	private final SpriteProvider spriteProvider;
+public class TreasureSenseParticle extends SingleQuadParticle {
+	private final SpriteSet sprites;
 
-	public TreasureSenseParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider, int color) {
-		super(world, x, y, z, 0, 0, 0, spriteProvider.getFirst());
-		velocityX = velocityY = velocityZ = velocityMultiplier = 0;
-		scale = 0.1F;
-		this.spriteProvider = spriteProvider;
-		red = ColorHelper.getRedFloat(color);
-		green = ColorHelper.getGreenFloat(color);
-		blue = ColorHelper.getBlueFloat(color);
+	public TreasureSenseParticle(ClientLevel level, double x, double y, double z, SpriteSet sprites, int color) {
+		super(level, x, y, z, 0, 0, 0, sprites.first());
+		xd = yd = zd = friction = 0;
+		quadSize = 0.1F;
+		this.sprites = sprites;
+		rCol = ARGB.redFloat(color);
+		gCol = ARGB.greenFloat(color);
+		bCol = ARGB.blueFloat(color);
 		alpha = 0.75F;
-		maxAge = 3;
+		lifetime = 3;
 	}
 
 	@Override
-	protected RenderType getRenderType() {
-		return RenderType.PARTICLE_ATLAS_TRANSLUCENT;
+	protected Layer getLayer() {
+		return Layer.TRANSLUCENT;
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		setSprite(spriteProvider.getSprite(age, maxAge));
+		setSprite(sprites.get(age, lifetime));
 	}
 
 	@Override
-	protected int getBrightness(float tint) {
+	protected int getLightCoords(float a) {
 		return 240;
 	}
 
-	public record Factory(SpriteProvider spriteProvider) implements ParticleFactory<SimpleParticleType> {
+	public record Provider(SpriteSet sprites) implements ParticleProvider<SimpleParticleType> {
 		@Override
-		public Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random) {
-			return new TreasureSenseParticle(world, x, y, z, spriteProvider(), (int) velocityX);
+		public Particle createParticle(SimpleParticleType options, ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux, RandomSource random) {
+			return new TreasureSenseParticle(level, x, y, z, sprites(), (int) xAux);
 		}
 	}
 }

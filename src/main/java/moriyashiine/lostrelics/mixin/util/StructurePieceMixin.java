@@ -1,24 +1,25 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.mixin.util;
 
-import moriyashiine.lostrelics.common.block.AltarBlock;
-import moriyashiine.lostrelics.common.block.entity.AltarBlockEntity;
 import moriyashiine.lostrelics.common.init.ModBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.Item;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.LootTables;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.structure.StructurePiece;
-import net.minecraft.util.math.BlockBox;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.ServerWorldAccess;
-import org.jetbrains.annotations.Nullable;
+import moriyashiine.lostrelics.common.world.level.block.AltarBlock;
+import moriyashiine.lostrelics.common.world.level.block.entity.AltarBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootTable;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,25 +28,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(StructurePiece.class)
 public class StructurePieceMixin {
-	@Inject(method = "addChest(Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/util/math/BlockBox;Lnet/minecraft/util/math/random/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/block/BlockState;)Z", at = @At("HEAD"), cancellable = true)
-	private void lostrelics$generateAltar(ServerWorldAccess world, BlockBox boundingBox, Random random, BlockPos pos, RegistryKey<LootTable> lootTable, @Nullable BlockState block, CallbackInfoReturnable<Boolean> cir) {
-		if (lootTable == LootTables.JUNGLE_TEMPLE_CHEST && random.nextBoolean()) {
-			placeAltar(world, pos, random, (AltarBlock) ModBlocks.JUNGLE_ALTAR);
+	@Inject(method = "createChest(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/block/state/BlockState;)Z", at = @At("HEAD"), cancellable = true)
+	private void lostrelics$generateAltar(ServerLevelAccessor level, BoundingBox chunkBB, RandomSource random, BlockPos pos, ResourceKey<LootTable> lootTable, @Nullable BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
+		if (lootTable == BuiltInLootTables.JUNGLE_TEMPLE && random.nextBoolean()) {
+			placeAltar(level, pos, random, (AltarBlock) ModBlocks.JUNGLE_ALTAR);
 			cir.setReturnValue(true);
 		}
 	}
 
 	@Unique
-	private static void placeAltar(ServerWorldAccess world, BlockPos pos, Random random, AltarBlock block) {
-		world.setBlockState(pos, block.getDefaultState(), Block.NOTIFY_LISTENERS);
-		if (world.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity) {
+	private static void placeAltar(ServerLevelAccessor level, BlockPos pos, RandomSource random, AltarBlock block) {
+		level.setBlock(pos, block.defaultBlockState(), Block.UPDATE_CLIENTS);
+		if (level.getBlockEntity(pos) instanceof AltarBlockEntity altarBlockEntity) {
 			Item relic;
 			do {
-				relic = Registries.ITEM.getRandom(random).get().value();
+				relic = BuiltInRegistries.ITEM.getRandom(random).get().value();
 			}
-			while (!relic.getDefaultStack().isIn(block.relicTag));
+			while (!relic.getDefaultInstance().is(block.relicTag));
 
-			altarBlockEntity.setStack(relic.getDefaultStack());
+			altarBlockEntity.setStack(relic.getDefaultInstance());
 		}
 	}
 }

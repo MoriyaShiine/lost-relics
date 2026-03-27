@@ -1,27 +1,28 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common.supporter.payload;
 
 import moriyashiine.lostrelics.common.LostRelics;
-import moriyashiine.lostrelics.common.entity.mob.GemType;
 import moriyashiine.lostrelics.common.supporter.SupporterInit;
+import moriyashiine.lostrelics.common.world.entity.monster.GemType;
 import moriyashiine.strawberrylib.api.module.SLibSupporterUtils;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
-public record SyncRelicSkeletonGemTypePayload(GemType gemType) implements CustomPayload {
-	public static final Id<SyncRelicSkeletonGemTypePayload> ID = new Id<>(LostRelics.id("sync_relic_skeleton_gem_type"));
-	public static final PacketCodec<PacketByteBuf, SyncRelicSkeletonGemTypePayload> CODEC = PacketCodec.tuple(
+public record SyncRelicSkeletonGemTypePayload(GemType gemType) implements CustomPacketPayload {
+	public static final Type<SyncRelicSkeletonGemTypePayload> ID = new Type<>(LostRelics.id("sync_relic_skeleton_gem_type"));
+	public static final StreamCodec<FriendlyByteBuf, SyncRelicSkeletonGemTypePayload> CODEC = StreamCodec.composite(
 			GemType.PACKET_CODEC, SyncRelicSkeletonGemTypePayload::gemType,
 			SyncRelicSkeletonGemTypePayload::new
 	);
 
 	@Override
-	public Id<? extends CustomPayload> getId() {
+	public Type<? extends CustomPacketPayload> type() {
 		return ID;
 	}
 

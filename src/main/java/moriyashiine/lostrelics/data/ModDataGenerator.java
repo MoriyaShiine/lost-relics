@@ -1,6 +1,7 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.data;
 
 import moriyashiine.lostrelics.data.provider.*;
@@ -12,13 +13,13 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(ModAdvancementProvider::new);
-		pack.addProvider(ModBlockLootTableProvider::new);
-		pack.addProvider(ModBlockTagProvider::new);
-		pack.addProvider(ModEntityTypeTagProvider::new);
-		pack.addProvider(ModItemTagProvider::new);
+		pack.addProvider(ModBlockLootSubProvider::new);
+		pack.addProvider(ModBlockTagsProvider::new);
+		pack.addProvider(ModEntityTypeTagsProvider::new);
+		pack.addProvider(ModItemTagsProvider::new);
+		pack.addProvider(ModMobEffectTagsProvider::new);
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModSoundsProvider::new);
-		pack.addProvider(ModStatusEffectTagProvider::new);
 	}
 }

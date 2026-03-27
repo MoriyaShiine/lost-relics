@@ -1,57 +1,61 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.data.provider;
 
-import moriyashiine.lostrelics.client.render.item.property.numeric.SnakeChargeProperty;
+import moriyashiine.lostrelics.client.renderer.item.properties.numeric.SnakeChargeProperty;
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.ModItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.client.data.*;
-import net.minecraft.client.render.item.model.ItemModel;
-import net.minecraft.item.Item;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.world.item.Item;
 
 import java.util.Optional;
 
 public class ModModelProvider extends FabricModelProvider {
-	public static final Model SMALL_HANDHELD = new Model(Optional.of(LostRelics.id("item/small_handheld")), Optional.empty(), TextureKey.LAYER0);
+	public static final ModelTemplate FLAT_SMALL_HANDHELD_ITEM = new ModelTemplate(Optional.of(LostRelics.id("item/small_handheld")), Optional.empty(), TextureSlot.LAYER0);
 
-	public ModModelProvider(FabricDataOutput output) {
+	public ModModelProvider(FabricPackOutput output) {
 		super(output);
 	}
 
 	@Override
-	public void generateBlockStateModels(BlockStateModelGenerator generator) {
+	public void generateBlockStateModels(BlockModelGenerators generators) {
 	}
 
 	@Override
-	public void generateItemModels(ItemModelGenerator generator) {
-		generator.register(ModItems.JUNGLE_ALTAR, Models.GENERATED);
-		generator.register(ModItems.CURSED_AMULET, Models.GENERATED);
-		generator.register(ModItems.SMOKING_MIRROR, Models.GENERATED);
-		registerTripleToothedSnake(generator, ModItems.TRIPLE_TOOTHED_SNAKE);
-		generator.register(ModItems.TAINTED_BLOOD_CRYSTAL, Models.GENERATED);
-		Models.CROSSBOW.upload(LostRelics.id("item/crossbow_tainted_blood_crystal"), TextureMap.layer0(LostRelics.id("item/crossbow_tainted_blood_crystal")), generator.modelCollector);
-		generator.register(ModItems.TURQUOISE_EYE, Models.GENERATED);
+	public void generateItemModels(ItemModelGenerators generators) {
+		generators.generateFlatItem(ModItems.JUNGLE_ALTAR, ModelTemplates.FLAT_ITEM);
+		generators.generateFlatItem(ModItems.CURSED_AMULET, ModelTemplates.FLAT_ITEM);
+		generators.generateFlatItem(ModItems.SMOKING_MIRROR, ModelTemplates.FLAT_ITEM);
+		registerTripleToothedSnake(generators, ModItems.TRIPLE_TOOTHED_SNAKE);
+		generators.generateFlatItem(ModItems.TAINTED_BLOOD_CRYSTAL, ModelTemplates.FLAT_ITEM);
+		ModelTemplates.CROSSBOW.create(LostRelics.id("item/crossbow_tainted_blood_crystal"), TextureMapping.layer0(new Material(LostRelics.id("item/crossbow_tainted_blood_crystal"))), generators.modelOutput);
+		generators.generateFlatItem(ModItems.TURQUOISE_EYE, ModelTemplates.FLAT_ITEM);
 	}
 
-	public static void registerTripleToothedSnake(ItemModelGenerator generator, Item item) {
-		ItemModel.Unbaked none = ItemModels.basic(generator.upload(item, SMALL_HANDHELD));
-		ItemModel.Unbaked one = ItemModels.basic(generator.registerSubModel(item, "_1", SMALL_HANDHELD));
-		ItemModel.Unbaked two = ItemModels.basic(generator.registerSubModel(item, "_2", SMALL_HANDHELD));
-		ItemModel.Unbaked three = ItemModels.basic(generator.registerSubModel(item, "_3", SMALL_HANDHELD));
-		ItemModel.Unbaked four = ItemModels.basic(generator.registerSubModel(item, "_4", SMALL_HANDHELD));
-		generator.output.accept(
+	public static void registerTripleToothedSnake(ItemModelGenerators generators, Item item) {
+		ItemModel.Unbaked none = ItemModelUtils.plainModel(generators.createFlatItemModel(item, FLAT_SMALL_HANDHELD_ITEM));
+		ItemModel.Unbaked one = ItemModelUtils.plainModel(generators.createFlatItemModel(item, "_1", FLAT_SMALL_HANDHELD_ITEM));
+		ItemModel.Unbaked two = ItemModelUtils.plainModel(generators.createFlatItemModel(item, "_2", FLAT_SMALL_HANDHELD_ITEM));
+		ItemModel.Unbaked three = ItemModelUtils.plainModel(generators.createFlatItemModel(item, "_3", FLAT_SMALL_HANDHELD_ITEM));
+		ItemModel.Unbaked four = ItemModelUtils.plainModel(generators.createFlatItemModel(item, "_4", FLAT_SMALL_HANDHELD_ITEM));
+		generators.itemModelOutput.accept(
 				item,
-				ItemModels.rangeDispatch(
+				ItemModelUtils.rangeSelect(
 						new SnakeChargeProperty(),
 						1,
 						none,
-						ItemModels.rangeDispatchEntry(one, 1),
-						ItemModels.rangeDispatchEntry(two, 2),
-						ItemModels.rangeDispatchEntry(three, 3),
-						ItemModels.rangeDispatchEntry(four, 4)
+						ItemModelUtils.override(one, 1),
+						ItemModelUtils.override(two, 2),
+						ItemModelUtils.override(three, 3),
+						ItemModelUtils.override(four, 4)
 				)
 		);
 	}

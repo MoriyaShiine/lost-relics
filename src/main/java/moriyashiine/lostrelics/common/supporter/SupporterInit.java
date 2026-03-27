@@ -1,11 +1,12 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common.supporter;
 
 import moriyashiine.lostrelics.common.LostRelics;
-import moriyashiine.lostrelics.common.entity.mob.GemType;
 import moriyashiine.lostrelics.common.supporter.payload.SyncRelicSkeletonGemTypePayload;
+import moriyashiine.lostrelics.common.world.entity.monster.GemType;
 import moriyashiine.strawberrylib.api.module.SLibSupporterUtils;
 import moriyashiine.strawberrylib.api.supporter.objects.SupporterDataKey;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -20,7 +21,7 @@ public class SupporterInit {
 
 	private static void initPayloads() {
 		// server payloads
-		PayloadTypeRegistry.playC2S().register(SyncRelicSkeletonGemTypePayload.ID, SyncRelicSkeletonGemTypePayload.CODEC);
+		PayloadTypeRegistry.serverboundPlay().register(SyncRelicSkeletonGemTypePayload.ID, SyncRelicSkeletonGemTypePayload.CODEC);
 		// server receivers
 		ServerPlayNetworking.registerGlobalReceiver(SyncRelicSkeletonGemTypePayload.ID, new SyncRelicSkeletonGemTypePayload.Receiver());
 	}

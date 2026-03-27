@@ -1,20 +1,21 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common.util;
 
 import com.swacky.ohmega.api.AccessoryHelper;
 import moriyashiine.lostrelics.common.init.ModEntityComponents;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public class LostRelicsUtil {
 	public static ItemStack getRelic(LivingEntity entity, Item relic) {
-		if (entity instanceof PlayerEntity player) {
+		if (entity instanceof Player player) {
 			for (ItemStack stack : AccessoryHelper.getStacks(player)) {
-				if (stack.isOf(relic)) {
+				if (stack.is(relic)) {
 					return stack;
 				}
 			}
@@ -30,14 +31,14 @@ public class LostRelicsUtil {
 		if (relic.isEmpty()) {
 			return false;
 		}
-		if (entity instanceof PlayerEntity player) {
-			return !player.getItemCooldownManager().isCoolingDown(relic);
+		if (entity instanceof Player player) {
+			return !player.getCooldowns().isOnCooldown(relic);
 		}
 		return true;
 	}
 
-	public static void setCooldown(PlayerEntity player, ItemStack relic, int cooldown) {
+	public static void setCooldown(Player player, ItemStack relic, int cooldown) {
 		ModEntityComponents.PERSISTENT_COOLDOWN.get(player).setCooldown(relic, cooldown);
-		player.getItemCooldownManager().set(relic, cooldown);
+		player.getCooldowns().addCooldown(relic, cooldown);
 	}
 }

@@ -1,43 +1,44 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common.event;
 
 import moriyashiine.lostrelics.common.init.ModItems;
-import moriyashiine.lostrelics.common.item.CursedAmuletItem;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
+import moriyashiine.lostrelics.common.world.item.CursedAmuletItem;
 import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
 import moriyashiine.strawberrylib.api.event.PreventHostileTargetingEvent;
 import net.fabricmc.fabric.api.entity.event.v1.effect.EffectEventContext;
 import net.fabricmc.fabric.api.entity.event.v1.effect.ServerMobEffectEvents;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalEntityTypeTags;
 import net.fabricmc.fabric.api.util.TriState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.registry.tag.EntityTypeTags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 
 public class CursedAmuletEvent {
 	public static class EffectImmunity implements ServerMobEffectEvents.AllowAdd {
 		@Override
-		public boolean allowAdd(StatusEffectInstance effect, LivingEntity entity, EffectEventContext ctx) {
-			return !(CursedAmuletItem.isEffectPreventable(effect.getEffectType()) && LostRelicsUtil.hasRelic(entity, ModItems.CURSED_AMULET));
+		public boolean allowAdd(MobEffectInstance effect, LivingEntity entity, EffectEventContext ctx) {
+			return !(CursedAmuletItem.isEffectPreventable(effect.getEffect()) && LostRelicsUtil.hasRelic(entity, ModItems.CURSED_AMULET));
 		}
 	}
 
 	public static class FireWeakness implements ModifyDamageTakenEvent {
-		private static final RegistryKey<DamageType> SUN = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("nycto", "sun"));
+		private static final ResourceKey<DamageType> SUN = ResourceKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath("nycto", "sun"));
 
 		@Override
-		public float modify(Phase phase, float amount, ServerWorld world, DamageSource source, LivingEntity victim) {
+		public float modify(Phase phase, LivingEntity victim, ServerLevel level, DamageSource source) {
 			if (phase == Phase.FINAL && LostRelicsUtil.hasRelic(victim, ModItems.CURSED_AMULET)) {
-				if (source.isIn(DamageTypeTags.IS_FIRE) || source.isOf(SUN)) {
+				if (source.is(DamageTypeTags.IS_FIRE) || source.is(SUN)) {
 					return 1.5F;
 				}
 			}
@@ -48,7 +49,7 @@ public class CursedAmuletEvent {
 	public static class UndeadNeutrality implements PreventHostileTargetingEvent {
 		@Override
 		public TriState preventsTargeting(LivingEntity attacker, LivingEntity target) {
-			if (!attacker.getType().isIn(ConventionalEntityTypeTags.BOSSES) && attacker.getType().isIn(EntityTypeTags.UNDEAD) && LostRelicsUtil.hasRelic(target, ModItems.CURSED_AMULET)) {
+			if (!attacker.is(ConventionalEntityTypeTags.BOSSES) && attacker.is(EntityTypeTags.UNDEAD) && LostRelicsUtil.hasRelic(target, ModItems.CURSED_AMULET)) {
 				return TriState.TRUE;
 			}
 			return TriState.DEFAULT;

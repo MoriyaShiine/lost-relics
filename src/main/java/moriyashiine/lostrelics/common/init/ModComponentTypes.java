@@ -1,19 +1,20 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common.init;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.component.ComponentType;
-import net.minecraft.network.codec.PacketCodecs;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.network.codec.ByteBufCodecs;
 
 import static moriyashiine.strawberrylib.api.module.SLibRegistries.registerComponentType;
 
 public class ModComponentTypes {
-	public static final ComponentType<Boolean> RELIC_TOGGLE = registerComponentType("relic_toggle", new ComponentType.Builder<Boolean>().codec(Codec.BOOL).packetCodec(PacketCodecs.BOOLEAN));
+	public static final DataComponentType<Boolean> RELIC_TOGGLE = registerComponentType("relic_toggle", new DataComponentType.Builder<Boolean>().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
 
-	public static final ComponentType<Integer> SNAKE_CHARGE = registerComponentType("snake_charge", new ComponentType.Builder<Integer>().codec(Codec.INT).packetCodec(PacketCodecs.INTEGER));
-	public static final ComponentType<Boolean> TAINTED_POTION = registerComponentType("tainted_potion", new ComponentType.Builder<Boolean>().codec(Codec.BOOL).packetCodec(PacketCodecs.BOOLEAN));
+	public static final DataComponentType<Integer> SNAKE_CHARGE = registerComponentType("snake_charge", new DataComponentType.Builder<Integer>().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+	public static final DataComponentType<Boolean> TAINTED_POTION = registerComponentType("tainted_potion", new DataComponentType.Builder<Boolean>().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
 
 	public static void init() {
 	}

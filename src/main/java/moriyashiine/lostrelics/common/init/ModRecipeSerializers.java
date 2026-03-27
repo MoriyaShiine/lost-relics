@@ -1,16 +1,16 @@
 /*
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
+
 package moriyashiine.lostrelics.common.init;
 
-import moriyashiine.lostrelics.common.recipe.TaintedBloodCrystalRecipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialCraftingRecipe;
+import moriyashiine.lostrelics.common.world.item.crafting.TaintedBloodCrystalRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 
 import static moriyashiine.strawberrylib.api.module.SLibRegistries.registerRecipeSerializer;
 
 public class ModRecipeSerializers {
-	public static final RecipeSerializer<TaintedBloodCrystalRecipe> TAINTED_BLOOD_CRYSTAL = registerRecipeSerializer("tainted_blood_crystal", new SpecialCraftingRecipe.SpecialRecipeSerializer<>(TaintedBloodCrystalRecipe::new));
+	public static final RecipeSerializer<TaintedBloodCrystalRecipe> TAINTED_BLOOD_CRYSTAL = registerRecipeSerializer("tainted_blood_crystal", new RecipeSerializer<>(TaintedBloodCrystalRecipe.MAP_CODEC, TaintedBloodCrystalRecipe.STREAM_CODEC));
 
 	public static void init() {
 	}
