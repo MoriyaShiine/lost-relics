@@ -35,7 +35,6 @@ repositories {
         name = "Fuzs Mod Resources"
         url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
     }
-    mavenLocal()
 }
 
 dependencies {
