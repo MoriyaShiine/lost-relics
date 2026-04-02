@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 public class LostRelicsUtil {
 	public static ItemStack getRelic(LivingEntity entity, Item relic) {
 		if (entity instanceof Player player) {
-			for (ItemStack stack : AccessoryHelper.getStacks(player)) {
+			for (ItemStack stack : AccessoryHelper.getAccessoryStacks(player)) {
 				if (stack.is(relic)) {
 					return stack;
 				}
