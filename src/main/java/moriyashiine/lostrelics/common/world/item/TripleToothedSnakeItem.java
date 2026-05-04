@@ -7,6 +7,7 @@ package moriyashiine.lostrelics.common.world.item;
 import moriyashiine.lostrelics.common.init.ModComponentTypes;
 import moriyashiine.lostrelics.common.tag.ModMobEffectTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
+import moriyashiine.strawberrylib.api.module.SLibUtils;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -46,7 +47,7 @@ public class TripleToothedSnakeItem extends Item {
 						LostRelicsUtil.setCooldown(player, stack, 600);
 						float absorption = player.getAbsorptionAmount();
 						player.setAbsorptionAmount(0);
-						player.hurt(level.damageSources().indirectMagic(player, player), 8);
+						SLibUtils.runWithPvpBypass(() -> player.hurt(level.damageSources().indirectMagic(player, player), 8));
 						player.setAbsorptionAmount(absorption);
 					}
 					return InteractionResult.SUCCESS;
