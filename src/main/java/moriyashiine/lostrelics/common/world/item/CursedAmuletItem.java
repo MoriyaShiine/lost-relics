@@ -4,6 +4,7 @@
 
 package moriyashiine.lostrelics.common.world.item;
 
+import com.swacky.ohmega.api.common.item.EquipContext;
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.init.ModSoundEvents;
@@ -24,7 +25,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
@@ -54,35 +54,35 @@ public class CursedAmuletItem extends EquippableRelicItem {
 	}
 
 	@Override
-	public void tick(@NonNull Player player, @NonNull ItemStack stack) {
-		if (player.level() instanceof ServerLevel level) {
-			boolean apply = !player.isCreative() && player.slib$exists();
-			boolean applyNegative = level.isBrightOutside() && level.canSeeSky(player.blockPosition());
-			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, apply && !applyNegative));
-			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, apply && applyNegative));
+	public void accessoryTick(@NonNull LivingEntity entity, @NonNull ItemStack stack) {
+		if (entity.level() instanceof ServerLevel level) {
+			boolean apply = entity.slib$isSurvival();
+			boolean applyNegative = level.isBrightOutside() && level.canSeeSky(entity.blockPosition());
+			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, apply && !applyNegative));
+			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, apply && applyNegative));
 		}
 	}
 
 	@Override
-	public void onEquip(@NonNull Player player, @NonNull ItemStack stack) {
-		if (!player.level().isClientSide()) {
-			SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
-			SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
+	public void onEquip(@NonNull LivingEntity entity, @NonNull ItemStack stack, @NonNull EquipContext context) {
+		if (!entity.level().isClientSide()) {
+			SLibUtils.playSound(entity, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
+			SLibUtils.addParticles(entity, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
 		}
-		for (MobEffectInstance effect : new HashSet<>(player.getActiveEffects())) {
+		for (MobEffectInstance effect : new HashSet<>(entity.getActiveEffects())) {
 			if (isEffectPreventable(effect.getEffect())) {
-				player.removeEffect(effect.getEffect());
+				entity.removeEffect(effect.getEffect());
 			}
 		}
 	}
 
 	@Override
-	public void onUnequip(@NonNull Player player, @NonNull ItemStack stack) {
-		if (!player.level().isClientSide()) {
-			SLibUtils.playSound(player, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
-			SLibUtils.addParticles(player, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
-			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, false));
-			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(player, attribute, modifier, false));
+	public void onUnequip(@NonNull LivingEntity entity, @NonNull ItemStack stack) {
+		if (!entity.level().isClientSide()) {
+			SLibUtils.playSound(entity, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
+			SLibUtils.addParticles(entity, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
+			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, false));
+			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, false));
 		}
 	}
 
@@ -94,7 +94,7 @@ public class CursedAmuletItem extends EquippableRelicItem {
 	}
 
 	public static boolean doNegativesApply(Entity entity) {
-		if (entity instanceof LivingEntity living && !living.hasInfiniteMaterials()) {
+		if (entity instanceof LivingEntity living && living.slib$isSurvival()) {
 			return LostRelicsUtil.hasRelic(living, ModItems.CURSED_AMULET);
 		}
 		return false;

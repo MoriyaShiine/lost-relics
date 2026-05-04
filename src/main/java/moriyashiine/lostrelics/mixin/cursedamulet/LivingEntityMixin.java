@@ -6,6 +6,7 @@ package moriyashiine.lostrelics.mixin.cursedamulet;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import net.minecraft.server.level.ServerPlayer;
@@ -45,14 +46,14 @@ public class LivingEntityMixin {
 	@ModifyReturnValue(method = "checkTotemDeathProtection", at = @At(value = "RETURN", ordinal = 1))
 	private boolean lostrelics$cursedAmulet$preventDeath(boolean original) {
 		if (!original && (Object) this instanceof Player player && player.getRandom().nextFloat() < 1 / 3F) {
-			ItemStack relicStack = LostRelicsUtil.getRelic(player, ModItems.CURSED_AMULET);
-			if (LostRelicsUtil.isUsable(player, relicStack)) {
-				LostRelicsUtil.setCooldown(player, relicStack, 6000);
+			ItemStack relic = AccessoryHelper.getStack(player, ModItems.CURSED_AMULET);
+			if (LostRelicsUtil.isUsable(player, relic)) {
+				LostRelicsUtil.setCooldown(player, relic, 6000);
 				if (player instanceof ServerPlayer serverPlayer) {
 					serverPlayer.awardStat(Stats.ITEM_USED.get(ModItems.CURSED_AMULET));
 				}
 				player.setHealth(1);
-				DeathProtection.TOTEM_OF_UNDYING.applyEffects(relicStack, player);
+				DeathProtection.TOTEM_OF_UNDYING.applyEffects(relic, player);
 				player.level().broadcastEntityEvent(player, EntityEvent.PROTECTED_FROM_DEATH);
 				return true;
 			}

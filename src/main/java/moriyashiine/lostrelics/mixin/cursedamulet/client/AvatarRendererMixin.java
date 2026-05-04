@@ -24,8 +24,6 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Avatar;
-import net.minecraft.world.entity.player.Player;
-import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -63,7 +61,7 @@ public abstract class AvatarRendererMixin<AvatarlikeEntity extends Avatar & Clie
 
 	@ModifyReturnValue(method = "getTextureLocation(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;)Lnet/minecraft/resources/Identifier;", at = @At("RETURN"))
 	private Identifier lostrelics$cursedAmulet(Identifier original, AvatarRenderState state) {
-		@Nullable RelicSkeletonRenderState relicSkeletonRenderState = state.getData(RelicSkeletonRenderState.KEY);
+		RelicSkeletonRenderState relicSkeletonRenderState = state.getData(RelicSkeletonRenderState.KEY);
 		if (relicSkeletonRenderState != null && relicSkeletonRenderState.enabled) {
 			return relicSkeletonRenderState.gemType.getTexture();
 		}
@@ -72,7 +70,7 @@ public abstract class AvatarRendererMixin<AvatarlikeEntity extends Avatar & Clie
 
 	@Inject(method = "setupRotations(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;FF)V", at = @At("TAIL"))
 	private void lostrelics$cursedAmulet(AvatarRenderState state, PoseStack poseStack, float bodyRot, float entityScale, CallbackInfo ci) {
-		@Nullable RelicSkeletonRenderState relicSkeletonRenderState = state.getData(RelicSkeletonRenderState.KEY);
+		RelicSkeletonRenderState relicSkeletonRenderState = state.getData(RelicSkeletonRenderState.KEY);
 		if (relicSkeletonRenderState != null && relicSkeletonRenderState.enabled) {
 			model = relicSkeletonModel;
 		} else {
@@ -82,11 +80,9 @@ public abstract class AvatarRendererMixin<AvatarlikeEntity extends Avatar & Clie
 
 	@Inject(method = "extractRenderState(Lnet/minecraft/world/entity/Avatar;Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;F)V", at = @At("TAIL"))
 	private void lostrelics$cursedAmulet(AvatarlikeEntity entity, AvatarRenderState state, float partialTicks, CallbackInfo ci) {
-		if (entity instanceof Player player) {
-			RelicSkeletonRenderState relicSkeletonRenderState = new RelicSkeletonRenderState();
-			relicSkeletonRenderState.enabled = LostRelicsUtil.hasRelic(player, ModItems.CURSED_AMULET);
-			relicSkeletonRenderState.gemType = RelicSkeletonRenderState.getGemType(player);
-			state.setData(RelicSkeletonRenderState.KEY, relicSkeletonRenderState);
-		}
+		RelicSkeletonRenderState relicSkeletonRenderState = new RelicSkeletonRenderState();
+		relicSkeletonRenderState.enabled = LostRelicsUtil.hasRelic(entity, ModItems.CURSED_AMULET);
+		relicSkeletonRenderState.gemType = RelicSkeletonRenderState.getGemType(entity);
+		state.setData(RelicSkeletonRenderState.KEY, relicSkeletonRenderState);
 	}
 }

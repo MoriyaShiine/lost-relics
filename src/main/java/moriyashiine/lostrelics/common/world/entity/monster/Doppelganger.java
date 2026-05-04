@@ -4,6 +4,9 @@
 
 package moriyashiine.lostrelics.common.world.entity.monster;
 
+import com.swacky.ohmega.api.common.item.AccessoryHelper;
+import com.swacky.ohmega.api.common.item.EquipContext;
+import com.swacky.ohmega.common.dataattachment.AccessoryData;
 import moriyashiine.lostrelics.common.init.ModEntityTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
@@ -107,28 +110,39 @@ public class Doppelganger extends PathfinderMob {
 		if (level().isClientSide()) {
 			SLibClientUtils.addParticles(this, ParticleTypes.SMOKE, 1, ParticleAnchor.BODY);
 		} else {
-			@Nullable LivingEntity owner = getOwner();
+			LivingEntity owner = getOwner();
 			if (ticksExisted >= 600 || owner == null || owner.isRemoved() || level() != owner.level() || distanceTo(owner) > 32) {
 				SLibUtils.addParticles(this, ParticleTypes.SMOKE, 128, ParticleAnchor.BODY);
 				discard();
 				return;
 			} else if (owner instanceof Player player) {
-				ItemStack relicStack = LostRelicsUtil.getRelic(player, ModItems.SMOKING_MIRROR);
-				if (!relicStack.isEmpty()) {
-					LostRelicsUtil.setCooldown(player, relicStack, 600);
+				ItemStack relic = AccessoryHelper.getStack(player, ModItems.SMOKING_MIRROR);
+				if (!relic.isEmpty()) {
+					LostRelicsUtil.setCooldown(player, relic, 600);
 				}
 			}
-			@Nullable LivingEntity targetCopy = owner;
+			LivingEntity targetCopy = owner;
 			if (mirrorDemon && getTarget() instanceof Avatar avatar) {
 				targetCopy = avatar;
 			}
 			if (getCopiedEntity() != targetCopy) {
 				setCopiedEntity(targetCopy);
 			}
-			@Nullable LivingEntity copiedEntity = getCopiedEntity();
+			LivingEntity copiedEntity = getCopiedEntity();
 			if (copiedEntity != null) {
 				for (EquipmentSlot slot : EquipmentSlot.values()) {
-					setItemSlot(slot, copiedEntity.getItemBySlot(slot).copy());
+					ItemStack copiedStack = copiedEntity.getItemBySlot(slot);
+					if (!ItemStack.matches(getItemBySlot(slot), copiedStack)) {
+						setItemSlot(slot, copiedStack.copy());
+					}
+				}
+				AccessoryData data = AccessoryHelper.getData(this);
+				AccessoryData copiedData = AccessoryHelper.getData(copiedEntity);
+				for (int i = 0; i < copiedData.size(); i++) {
+					ItemStack copiedStack = copiedData.getStackInSlot(i);
+					if (!ItemStack.matches(data.getStackInSlot(i), copiedStack)) {
+						data.setStack(this, i, copiedStack.copy(), EquipContext.SLOT);
+					}
 				}
 			}
 		}

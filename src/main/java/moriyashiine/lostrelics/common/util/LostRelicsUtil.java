@@ -4,7 +4,7 @@
 
 package moriyashiine.lostrelics.common.util;
 
-import com.swacky.ohmega.api.AccessoryHelper;
+import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import moriyashiine.lostrelics.common.init.ModEntityComponents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -12,19 +12,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class LostRelicsUtil {
-	public static ItemStack getRelic(LivingEntity entity, Item relic) {
-		if (entity instanceof Player player) {
-			for (ItemStack stack : AccessoryHelper.getAccessoryStacks(player)) {
-				if (stack.is(relic)) {
-					return stack;
-				}
-			}
-		}
-		return ItemStack.EMPTY;
-	}
-
 	public static boolean hasRelic(LivingEntity entity, Item relic) {
-		return !getRelic(entity, relic).isEmpty();
+		return !AccessoryHelper.getStack(entity, relic).isEmpty();
 	}
 
 	public static boolean isUsable(LivingEntity entity, ItemStack relic) {

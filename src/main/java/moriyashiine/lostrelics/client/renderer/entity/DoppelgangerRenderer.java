@@ -21,7 +21,7 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Avatar;
 import net.minecraft.world.entity.player.PlayerModelType;
 import org.jspecify.annotations.Nullable;
 
@@ -50,7 +50,7 @@ public class DoppelgangerRenderer extends HumanoidMobRenderer<Doppelganger, Dopp
 		super.extractRenderState(entity, state, partialTicks);
 		state.texture = DefaultPlayerSkin.getDefaultTexture();
 		state.model = slimModel;
-		if (entity.getCopiedEntity() instanceof Player copiedPlayer && Minecraft.getInstance().getEntityRenderDispatcher().extractEntity(copiedPlayer, partialTicks) instanceof AvatarRenderState copiedState) {
+		if (entity.getCopiedEntity() instanceof Avatar avatar && Minecraft.getInstance().getEntityRenderDispatcher().extractEntity(avatar, partialTicks) instanceof AvatarRenderState copiedState) {
 			state.texture = copiedState.skin.body().texturePath();
 			if (copiedState.skin.model() == PlayerModelType.WIDE) {
 				state.model = wideModel;

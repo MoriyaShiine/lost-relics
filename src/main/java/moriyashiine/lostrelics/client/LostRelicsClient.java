@@ -4,6 +4,7 @@
 
 package moriyashiine.lostrelics.client;
 
+import com.swacky.ohmega.api.client.renderer.AccessoryRenderers;
 import moriyashiine.lostrelics.client.event.CursedAmuletClientEvent;
 import moriyashiine.lostrelics.client.event.TurquoiseEyeClientEvent;
 import moriyashiine.lostrelics.client.particle.TreasureSenseParticle;
@@ -11,11 +12,15 @@ import moriyashiine.lostrelics.client.renderer.blockentity.AltarRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.DoppelgangerRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.SmokeBallRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.TaintedBloodCrystalRenderer;
+import moriyashiine.lostrelics.client.renderer.entity.accessory.EyeRenderer;
+import moriyashiine.lostrelics.client.renderer.entity.accessory.HipRenderer;
+import moriyashiine.lostrelics.client.renderer.entity.accessory.NecklaceRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.model.RelicSkeletonModel;
 import moriyashiine.lostrelics.client.renderer.entity.model.SlimHumanoidModel;
 import moriyashiine.lostrelics.client.supporter.ClientSupporterInit;
 import moriyashiine.lostrelics.common.init.ModBlockEntityTypes;
 import moriyashiine.lostrelics.common.init.ModEntityTypes;
+import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.init.ModParticleTypes;
 import moriyashiine.strawberrylib.api.event.client.OutlineEntityEvent;
 import net.fabricmc.api.ClientModInitializer;
@@ -31,6 +36,7 @@ public class LostRelicsClient implements ClientModInitializer {
 		ClientSupporterInit.init();
 		initBlocks();
 		initEntities();
+		initItems();
 		initParticles();
 		initEvents();
 	}
@@ -45,6 +51,12 @@ public class LostRelicsClient implements ClientModInitializer {
 		EntityRenderers.register(ModEntityTypes.DOPPELGANGER, DoppelgangerRenderer::new);
 		EntityRenderers.register(ModEntityTypes.SMOKE_BALL, SmokeBallRenderer::new);
 		EntityRenderers.register(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, TaintedBloodCrystalRenderer::new);
+	}
+
+	private void initItems() {
+		AccessoryRenderers.registerHumanoid(ModItems.CURSED_AMULET, context -> new NecklaceRenderer(context.getItemModelResolver()));
+		AccessoryRenderers.registerHumanoid(ModItems.SMOKING_MIRROR, context -> new HipRenderer(context.getItemModelResolver()));
+		AccessoryRenderers.registerHumanoid(ModItems.TURQUOISE_EYE, context -> new EyeRenderer(context.getItemModelResolver()));
 	}
 
 	private void initParticles() {

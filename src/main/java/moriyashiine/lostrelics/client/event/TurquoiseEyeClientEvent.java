@@ -4,6 +4,7 @@
 
 package moriyashiine.lostrelics.client.event;
 
+import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import moriyashiine.lostrelics.common.init.ModComponentTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.init.ModParticleTypes;
@@ -31,9 +32,9 @@ public class TurquoiseEyeClientEvent {
 	public static class Tick implements ClientTickEvents.EndLevelTick {
 		@Override
 		public void onEndTick(ClientLevel level) {
-			ItemStack relicStack = LostRelicsUtil.getRelic(client.player, ModItems.TURQUOISE_EYE);
-			isRelicUsable = LostRelicsUtil.isUsable(client.player, relicStack);
-			if (level.getGameTime() % 20 == 0 && relicStack.getOrDefault(ModComponentTypes.RELIC_TOGGLE, false)) {
+			ItemStack relic = AccessoryHelper.getStack(client.player, ModItems.TURQUOISE_EYE);
+			isRelicUsable = LostRelicsUtil.isUsable(client.player, relic);
+			if (level.getGameTime() % 20 == 0 && relic.getOrDefault(ModComponentTypes.RELIC_TOGGLE, false)) {
 				for (BlockPos pos : BlockPos.withinManhattan(client.player.blockPosition(), 12, 12, 12)) {
 					BlockState state = level.getBlockState(pos);
 					if (state.is(ModBlockTags.TREASURE) && !state.is(ModBlockTags.UNIMPORTANT_TREASURE)) {

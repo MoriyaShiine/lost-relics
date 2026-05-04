@@ -4,6 +4,7 @@
 
 package moriyashiine.lostrelics.common.event;
 
+import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.strawberrylib.api.event.ModifyCriticalStatusEvent;
@@ -22,10 +23,10 @@ public class TurquoiseEyeEvent {
 		@Override
 		public TriState isCritical(Player attacker, Entity target, float attackCooldownProgress) {
 			if (target instanceof LivingEntity living && living.getHealth() == living.getMaxHealth()) {
-				ItemStack relicStack = LostRelicsUtil.getRelic(attacker, ModItems.TURQUOISE_EYE);
-				if (LostRelicsUtil.isUsable(attacker, relicStack)) {
+				ItemStack relic = AccessoryHelper.getStack(attacker, ModItems.TURQUOISE_EYE);
+				if (LostRelicsUtil.isUsable(attacker, relic)) {
 					if (!attacker.level().isClientSide()) {
-						LostRelicsUtil.setCooldown(attacker, relicStack, 60);
+						LostRelicsUtil.setCooldown(attacker, relic, 60);
 						living.addEffect(new MobEffectInstance(MobEffects.MINING_FATIGUE, 100, 1));
 						living.addEffect(new MobEffectInstance(MobEffects.WEAKNESS));
 					}
