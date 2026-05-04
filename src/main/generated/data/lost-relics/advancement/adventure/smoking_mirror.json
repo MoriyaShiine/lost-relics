@@ -1,0 +1,32 @@
+{
+  "parent": "lost-relics:adventure/find_jungle_pyramid",
+  "criteria": {
+	"has_relic": {
+	  "conditions": {
+		"items": [
+		  {
+			"items": "lost-relics:smoking_mirror"
+		  }
+		]
+	  },
+	  "trigger": "minecraft:inventory_changed"
+	}
+  },
+  "display": {
+	"description": {
+	  "translate": "advancements.lost-relics.adventure.smoking_mirror.description"
+	},
+	"icon": {
+	  "id": "lost-relics:smoking_mirror"
+	},
+	"title": {
+	  "translate": "advancements.lost-relics.adventure.smoking_mirror.title"
+	}
+  },
+  "requirements": [
+	[
+	  "has_relic"
+	]
+  ],
+  "sends_telemetry_event": true
+}

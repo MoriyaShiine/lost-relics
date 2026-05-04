@@ -1,0 +1,19 @@
+{
+  "variants": {
+	"facing=east": {
+	  "model": "lost-relics:block/jungle_altar",
+	  "y": 270
+	},
+	"facing=north": {
+	  "model": "lost-relics:block/jungle_altar",
+	  "y": 180
+	},
+	"facing=south": {
+	  "model": "lost-relics:block/jungle_altar"
+	},
+	"facing=west": {
+	  "model": "lost-relics:block/jungle_altar",
+	  "y": 90
+	}
+  }
+}

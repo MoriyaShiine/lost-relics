@@ -1,0 +1,6 @@
+{
+  "model": {
+	"type": "minecraft:model",
+	"model": "lost-relics:item/tainted_blood_crystal"
+  }
+}

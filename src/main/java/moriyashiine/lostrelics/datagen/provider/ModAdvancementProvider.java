@@ -34,8 +34,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
 		AdvancementHolder findJunglePyramid = Advancement.Builder.advancement()
 				.parent(Identifier.tryParse("adventure/root"))
 				.display(Items.MOSSY_COBBLESTONE,
-						Component.translatable("advancements.lostrelics.adventure.find_jungle_pyramid.title"),
-						Component.translatable("advancements.lostrelics.adventure.find_jungle_pyramid.description"),
+						Component.translatable("advancements.lost-relics.adventure.find_jungle_pyramid.title"),
+						Component.translatable("advancements.lost-relics.adventure.find_jungle_pyramid.description"),
 						null,
 						AdvancementType.TASK,
 						true,
@@ -47,8 +47,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
 		Advancement.Builder.advancement()
 				.parent(findJunglePyramid)
 				.display(ModItems.CURSED_AMULET,
-						Component.translatable("advancements.lostrelics.adventure.cursed_amulet.title"),
-						Component.translatable("advancements.lostrelics.adventure.cursed_amulet.description"),
+						Component.translatable("advancements.lost-relics.adventure.cursed_amulet.title"),
+						Component.translatable("advancements.lost-relics.adventure.cursed_amulet.description"),
 						null,
 						AdvancementType.TASK,
 						true,
@@ -59,8 +59,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
 		Advancement.Builder.advancement()
 				.parent(findJunglePyramid)
 				.display(ModItems.SMOKING_MIRROR,
-						Component.translatable("advancements.lostrelics.adventure.smoking_mirror.title"),
-						Component.translatable("advancements.lostrelics.adventure.smoking_mirror.description"),
+						Component.translatable("advancements.lost-relics.adventure.smoking_mirror.title"),
+						Component.translatable("advancements.lost-relics.adventure.smoking_mirror.description"),
 						null,
 						AdvancementType.TASK,
 						true,
@@ -71,8 +71,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
 		Advancement.Builder.advancement()
 				.parent(findJunglePyramid)
 				.display(ModItems.TRIPLE_TOOTHED_SNAKE,
-						Component.translatable("advancements.lostrelics.adventure.triple_toothed_snake.title"),
-						Component.translatable("advancements.lostrelics.adventure.triple_toothed_snake.description"),
+						Component.translatable("advancements.lost-relics.adventure.triple_toothed_snake.title"),
+						Component.translatable("advancements.lost-relics.adventure.triple_toothed_snake.description"),
 						null,
 						AdvancementType.TASK,
 						true,
@@ -83,8 +83,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
 		Advancement.Builder.advancement()
 				.parent(findJunglePyramid)
 				.display(ModItems.TURQUOISE_EYE,
-						Component.translatable("advancements.lostrelics.adventure.turquoise_eye.title"),
-						Component.translatable("advancements.lostrelics.adventure.turquoise_eye.description"),
+						Component.translatable("advancements.lost-relics.adventure.turquoise_eye.title"),
+						Component.translatable("advancements.lost-relics.adventure.turquoise_eye.description"),
 						null,
 						AdvancementType.TASK,
 						true,

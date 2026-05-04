@@ -21,7 +21,7 @@ import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
 import net.minecraft.resources.Identifier;
 
 public class LostRelics implements ModInitializer {
-	public static final String MOD_ID = "lostrelics";
+	public static final String MOD_ID = "lost-relics";
 
 	@Override
 	public void onInitialize() {
