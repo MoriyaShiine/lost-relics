@@ -1,4 +1,14 @@
 ------------------------------------------------------
+Version 26.1-r3
+------------------------------------------------------
+### This update changes the mod id from lostrelics to lost-relics. Please make a backup of your world and give yourself any items you had prior to the switch!
+- update mod id
+- update to ohmega 1.6.0-beta.5
+- accessories now render on entities wearing them
+- fix triple toothed snake not hurting its user when pvp is off
+- fix relic skeleton model being applied when it shouldn't be sometimes
+
+------------------------------------------------------
 Version 26.1-r2
 ------------------------------------------------------
 - update to new ohmega 1.6.0-beta.2
