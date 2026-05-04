@@ -2,7 +2,7 @@
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
 
-package moriyashiine.lostrelics.data.provider;
+package moriyashiine.lostrelics.datagen.provider;
 
 import moriyashiine.lostrelics.common.init.ModBlocks;
 import moriyashiine.lostrelics.common.tag.ModBlockTags;

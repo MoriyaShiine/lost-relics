@@ -2,7 +2,7 @@
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
 
-package moriyashiine.lostrelics.data.provider;
+package moriyashiine.lostrelics.datagen.provider;
 
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.ModItems;

@@ -2,7 +2,7 @@
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
 
-package moriyashiine.lostrelics.data.provider;
+package moriyashiine.lostrelics.datagen.provider;
 
 import com.swacky.ohmega.common.accessorytype.AccessoryType;
 import com.swacky.ohmega.common.init.OhmegaTags;

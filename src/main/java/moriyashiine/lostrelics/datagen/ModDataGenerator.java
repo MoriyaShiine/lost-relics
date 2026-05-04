@@ -2,9 +2,9 @@
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
 
-package moriyashiine.lostrelics.data;
+package moriyashiine.lostrelics.datagen;
 
-import moriyashiine.lostrelics.data.provider.*;
+import moriyashiine.lostrelics.datagen.provider.*;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
