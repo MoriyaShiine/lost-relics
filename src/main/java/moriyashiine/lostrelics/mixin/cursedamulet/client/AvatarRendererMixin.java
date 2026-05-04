@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Avatar;
@@ -73,9 +74,12 @@ public abstract class AvatarRendererMixin<AvatarlikeEntity extends Avatar & Clie
 		RelicSkeletonRenderState relicSkeletonRenderState = state.getData(RelicSkeletonRenderState.KEY);
 		if (relicSkeletonRenderState != null && relicSkeletonRenderState.enabled) {
 			model = relicSkeletonModel;
-		} else {
-			model = originalModel;
 		}
+	}
+
+	@Inject(method = "submitNameDisplay(Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V", at = @At("TAIL"))
+	private void lostrelics$cursedAmulet(AvatarRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera, CallbackInfo ci) {
+		model = originalModel;
 	}
 
 	@Inject(method = "extractRenderState(Lnet/minecraft/world/entity/Avatar;Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;F)V", at = @At("TAIL"))
