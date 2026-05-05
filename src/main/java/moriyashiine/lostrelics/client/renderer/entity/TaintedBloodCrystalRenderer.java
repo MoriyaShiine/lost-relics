@@ -5,7 +5,7 @@
 package moriyashiine.lostrelics.client.renderer.entity;
 
 import moriyashiine.lostrelics.common.LostRelics;
-import moriyashiine.lostrelics.common.world.entity.projectile.TaintedBloodCrystal;
+import moriyashiine.lostrelics.common.world.entity.projectile.arrow.TaintedBloodCrystal;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.ArrowRenderState;

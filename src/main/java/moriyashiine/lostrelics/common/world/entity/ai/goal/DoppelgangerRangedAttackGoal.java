@@ -2,9 +2,9 @@
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
 
-package moriyashiine.lostrelics.common.world.entity.monster.ai.goal;
+package moriyashiine.lostrelics.common.world.entity.ai.goal;
 
-import moriyashiine.lostrelics.common.world.entity.monster.Doppelganger;
+import moriyashiine.lostrelics.common.world.entity.Doppelganger;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.server.level.ServerLevel;
@@ -17,7 +17,6 @@ import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ProjectileWeaponItem;
-import org.jspecify.annotations.Nullable;
 
 public class DoppelgangerRangedAttackGoal extends Goal {
 	private final Doppelganger doppelganger;
@@ -43,9 +42,9 @@ public class DoppelgangerRangedAttackGoal extends Goal {
 			attackTime--;
 		}
 		if (attackTime == 0) {
-			@Nullable LivingEntity copiedEntity = doppelganger.getCopiedEntity();
+			LivingEntity copiedEntity = doppelganger.getCopiedEntity();
 			if (copiedEntity != null) {
-				@Nullable LivingEntity target = doppelganger.getTarget();
+				LivingEntity target = doppelganger.getTarget();
 				if (target != null && doppelganger.distanceTo(target) <= 24 && doppelganger.hasLineOfSight(target)) {
 					attackTime = 60;
 					doppelganger.lookAt(EntityAnchorArgument.Anchor.EYES, target.position());

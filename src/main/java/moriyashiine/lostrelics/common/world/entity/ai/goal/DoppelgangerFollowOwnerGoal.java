@@ -2,9 +2,9 @@
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
 
-package moriyashiine.lostrelics.common.world.entity.monster.ai.goal;
+package moriyashiine.lostrelics.common.world.entity.ai.goal;
 
-import moriyashiine.lostrelics.common.world.entity.monster.Doppelganger;
+import moriyashiine.lostrelics.common.world.entity.Doppelganger;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;

@@ -7,7 +7,7 @@ package moriyashiine.lostrelics.client.renderer.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import moriyashiine.lostrelics.client.renderer.entity.model.SlimHumanoidModel;
 import moriyashiine.lostrelics.client.renderer.entity.state.DoppelgangerRenderState;
-import moriyashiine.lostrelics.common.world.entity.monster.Doppelganger;
+import moriyashiine.lostrelics.common.world.entity.Doppelganger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayers;

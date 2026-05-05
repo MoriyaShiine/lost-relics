@@ -4,7 +4,7 @@
 
 package moriyashiine.lostrelics.common.world.item;
 
-import moriyashiine.lostrelics.common.world.entity.projectile.TaintedBloodCrystal;
+import moriyashiine.lostrelics.common.world.entity.projectile.arrow.TaintedBloodCrystal;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.world.entity.LivingEntity;

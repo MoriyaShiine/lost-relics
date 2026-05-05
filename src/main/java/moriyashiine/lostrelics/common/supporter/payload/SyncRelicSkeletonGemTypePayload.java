@@ -6,7 +6,7 @@ package moriyashiine.lostrelics.common.supporter.payload;
 
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.supporter.SupporterInit;
-import moriyashiine.lostrelics.common.world.entity.monster.GemType;
+import moriyashiine.lostrelics.common.world.entity.GemType;
 import moriyashiine.strawberrylib.api.module.SLibSupporterUtils;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;

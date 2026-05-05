@@ -2,7 +2,7 @@
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
 
-package moriyashiine.lostrelics.common.world.entity.monster;
+package moriyashiine.lostrelics.common.world.entity;
 
 import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import com.swacky.ohmega.api.common.item.EquipContext;
@@ -10,7 +10,7 @@ import com.swacky.ohmega.common.dataattachment.AccessoryData;
 import moriyashiine.lostrelics.common.init.ModEntityTypes;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
-import moriyashiine.lostrelics.common.world.entity.monster.ai.goal.*;
+import moriyashiine.lostrelics.common.world.entity.ai.goal.*;
 import moriyashiine.strawberrylib.api.module.SLibClientUtils;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
 import moriyashiine.strawberrylib.api.objects.enums.ParticleAnchor;
@@ -62,7 +62,7 @@ public class Doppelganger extends PathfinderMob {
 	@Override
 	protected void readAdditionalSaveData(ValueInput input) {
 		owner = EntityReference.read(input, "Owner");
-		entityData.set(COPIED_ENTITY, Optional.ofNullable(EntityReference.read(input, "CopiedEntity")));
+		setCopiedEntityReference(EntityReference.read(input, "CopiedEntity"));
 		mirrorDemon = input.getBooleanOr("MirrorDemon", false);
 		ticksExisted = input.getIntOr("TicksExisted", 0);
 	}
@@ -210,22 +210,23 @@ public class Doppelganger extends PathfinderMob {
 		return isPassenger() || mayBeLeashed() || getOwner() != null && getOwner().isSpectator();
 	}
 
-	@Nullable
-	public LivingEntity getOwner() {
+	public @Nullable LivingEntity getOwner() {
 		return EntityReference.getLivingEntity(owner, level());
 	}
 
-	@Nullable
-	public EntityReference<LivingEntity> getCopiedEntityReference() {
-		return entityData.get(COPIED_ENTITY).orElse(null);
-	}
-
-	@Nullable
-	public LivingEntity getCopiedEntity() {
+	public @Nullable LivingEntity getCopiedEntity() {
 		return EntityReference.getLivingEntity(getCopiedEntityReference(), level());
 	}
 
-	public void setCopiedEntity(@Nullable LivingEntity entity) {
+	private void setCopiedEntity(@Nullable LivingEntity entity) {
 		entityData.set(COPIED_ENTITY, Optional.ofNullable(entity).map(EntityReference::of));
+	}
+
+	private @Nullable EntityReference<LivingEntity> getCopiedEntityReference() {
+		return entityData.get(COPIED_ENTITY).orElse(null);
+	}
+
+	private void setCopiedEntityReference(EntityReference<LivingEntity> reference) {
+		entityData.set(COPIED_ENTITY, Optional.ofNullable(reference));
 	}
 }

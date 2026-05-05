@@ -6,7 +6,7 @@ package moriyashiine.lostrelics.common.world.item;
 
 import moriyashiine.lostrelics.common.init.ModSoundEvents;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
-import moriyashiine.lostrelics.common.world.entity.monster.Doppelganger;
+import moriyashiine.lostrelics.common.world.entity.Doppelganger;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
 import moriyashiine.strawberrylib.api.objects.enums.ParticleAnchor;
 import net.minecraft.core.particles.ParticleTypes;

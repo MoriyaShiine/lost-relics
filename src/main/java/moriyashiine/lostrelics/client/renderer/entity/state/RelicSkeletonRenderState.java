@@ -5,7 +5,7 @@
 package moriyashiine.lostrelics.client.renderer.entity.state;
 
 import moriyashiine.lostrelics.common.supporter.SupporterInit;
-import moriyashiine.lostrelics.common.world.entity.monster.GemType;
+import moriyashiine.lostrelics.common.world.entity.GemType;
 import moriyashiine.strawberrylib.api.module.SLibSupporterUtils;
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.minecraft.world.entity.LivingEntity;

@@ -4,9 +4,9 @@
 
 package moriyashiine.lostrelics.common.init;
 
-import moriyashiine.lostrelics.common.world.entity.monster.Doppelganger;
+import moriyashiine.lostrelics.common.world.entity.Doppelganger;
 import moriyashiine.lostrelics.common.world.entity.projectile.SmokeBall;
-import moriyashiine.lostrelics.common.world.entity.projectile.TaintedBloodCrystal;
+import moriyashiine.lostrelics.common.world.entity.projectile.arrow.TaintedBloodCrystal;
 import net.minecraft.world.entity.Avatar;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;

@@ -2,7 +2,7 @@
  * Copyright (c) MoriyaShiine. All Rights Reserved.
  */
 
-package moriyashiine.lostrelics.common.world.entity.monster;
+package moriyashiine.lostrelics.common.world.entity;
 
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;

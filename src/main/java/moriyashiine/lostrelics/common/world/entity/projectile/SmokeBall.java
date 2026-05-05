@@ -66,8 +66,8 @@ public class SmokeBall extends Entity {
 	public void tick() {
 		super.tick();
 		if (level() instanceof ServerLevel level) {
-			@Nullable LivingEntity owner = getOwner();
-			@Nullable LivingEntity target = getTarget();
+			LivingEntity owner = getOwner();
+			LivingEntity target = getTarget();
 			if (owner == null || owner.isRemoved() || level != owner.level() || target == null || target.isRemoved() || level != target.level() || !level.hasChunkAt(blockPosition())) {
 				discard();
 			} else {
@@ -83,13 +83,11 @@ public class SmokeBall extends Entity {
 		setPos(getX() + getDeltaMovement().x(), getY() + getDeltaMovement().y(), getZ() + getDeltaMovement().z());
 	}
 
-	@Nullable
-	private LivingEntity getOwner() {
+	private @Nullable LivingEntity getOwner() {
 		return EntityReference.getLivingEntity(owner, level());
 	}
 
-	@Nullable
-	private LivingEntity getTarget() {
+	private @Nullable LivingEntity getTarget() {
 		return EntityReference.getLivingEntity(target, level());
 	}
 }
