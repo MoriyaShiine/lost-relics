@@ -1,4 +1,9 @@
 ------------------------------------------------------
+Version 26.1-r4
+------------------------------------------------------
+- fix various translation issues
+
+------------------------------------------------------
 Version 26.1-r3
 ------------------------------------------------------
 ### This update changes the mod id from lostrelics to lost-relics. Please make a backup of your world and give yourself any items you had prior to the switch!
