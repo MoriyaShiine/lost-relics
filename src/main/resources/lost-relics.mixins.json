@@ -13,7 +13,6 @@
 	"tripletoothedsnake.ItemStackMixin",
 	"tripletoothedsnake.LivingEntityMixin",
 	"tripletoothedsnake.PotionBrewingMixin",
-	"turquoiseeye.LivingEntityMixin",
 	"util.ItemCooldownsMixin",
 	"util.PlayerMixin",
 	"util.StructurePieceMixin"
