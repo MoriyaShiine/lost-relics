@@ -1,4 +1,9 @@
 ------------------------------------------------------
+Version 26.1-r5
+------------------------------------------------------
+- jungle pyramids now always replace the hallway chest with an altar instead of both of the chests having a 50% chance of being replaced
+
+------------------------------------------------------
 Version 26.1-r4
 ------------------------------------------------------
 - fix various translation issues
