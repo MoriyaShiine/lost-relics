@@ -48,7 +48,7 @@ public enum GemType implements StringRepresentable {
 	}
 
 	public Component getOptionsName() {
-		return Component.translatable("gemtype.lostrelics." + getName());
+		return Component.translatable("gemtype.lost-relics." + getName());
 	}
 
 	@Override

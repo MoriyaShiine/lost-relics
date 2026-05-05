@@ -6,7 +6,7 @@
 		"name": "minecraft:block.fire.extinguish"
 	  }
 	],
-	"subtitle": "subtitles.lostrelics.block.altar.convert"
+	"subtitle": "subtitles.lost-relics.block.altar.convert"
   },
   "entity.generic.spawn": {
 	"sounds": [
@@ -16,7 +16,7 @@
 		"volume": 0.2
 	  }
 	],
-	"subtitle": "subtitles.lostrelics.entity.generic.spawn"
+	"subtitle": "subtitles.lost-relics.entity.generic.spawn"
   },
   "entity.generic.transform": {
 	"sounds": [
@@ -25,7 +25,7 @@
 		"name": "minecraft:block.fire.extinguish"
 	  }
 	],
-	"subtitle": "subtitles.lostrelics.entity.generic.transform"
+	"subtitle": "subtitles.lost-relics.entity.generic.transform"
   },
   "entity.tainted_blood_crystal.shatter": {
 	"sounds": [
@@ -34,7 +34,7 @@
 		"name": "minecraft:block.glass.break"
 	  }
 	],
-	"subtitle": "subtitles.lostrelics.entity.tainted_blood_crystal.shatter"
+	"subtitle": "subtitles.lost-relics.entity.tainted_blood_crystal.shatter"
   },
   "item.relic.toggle": {
 	"sounds": [
@@ -43,6 +43,6 @@
 		"name": "minecraft:entity.experience_orb.pickup"
 	  }
 	],
-	"subtitle": "subtitles.lostrelics.item.relic.toggle"
+	"subtitle": "subtitles.lost-relics.item.relic.toggle"
   }
 }

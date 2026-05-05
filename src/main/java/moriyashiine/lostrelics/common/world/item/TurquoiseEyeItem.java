@@ -12,7 +12,7 @@ import org.jspecify.annotations.NonNull;
 
 public class TurquoiseEyeItem extends ToggleableRelicItem {
 	public TurquoiseEyeItem(Properties properties) {
-		super(properties, "tooltip.lostrelics.treasure_sense");
+		super(properties, "tooltip.lost-relics.treasure_sense");
 	}
 
 	@Override
