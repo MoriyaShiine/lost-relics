@@ -39,7 +39,7 @@
 	"java": ">=25",
 	"fabric-api": "*",
 	"strawberrylib": "*",
-	"ohmega": "*"
+	"ohmega": ">=1.6.0-beta"
   },
   "custom": {
 	"cardinal-components": [
