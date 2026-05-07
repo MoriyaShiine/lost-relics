@@ -1,4 +1,12 @@
 ------------------------------------------------------
+Version 26.1-r6
+------------------------------------------------------
+- depend specifically on the ohmega 1.6 beta
+- add [Nycto](https://modrinth.com/mod/nycto) integration
+  - vampires can no longer wear cursed amulets
+  - players wearing cursed amulets have no blood
+
+------------------------------------------------------
 Version 26.1-r5
 ------------------------------------------------------
 - jungle pyramids now always replace the hallway chest with an altar instead of both of the chests having a 50% chance of being replaced
