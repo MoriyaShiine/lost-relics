@@ -18,10 +18,13 @@ import moriyashiine.strawberrylib.api.event.PreventHostileTargetingEvent;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.effect.ServerMobEffectEvents;
 import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.Identifier;
 
 public class LostRelics implements ModInitializer {
 	public static final String MOD_ID = "lost-relics";
+
+	public static boolean nyctoLoaded = false;
 
 	@Override
 	public void onInitialize() {
@@ -29,6 +32,7 @@ public class LostRelics implements ModInitializer {
 		SupporterInit.init();
 		initRegistries();
 		initEvents();
+		nyctoLoaded = FabricLoader.getInstance().isModLoaded("nycto");
 	}
 
 	public static Identifier id(String value) {

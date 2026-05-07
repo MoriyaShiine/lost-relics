@@ -1,12 +1,14 @@
 {
   "required": true,
   "package": "moriyashiine.lostrelics.mixin",
+  "plugin": "moriyashiine.lostrelics.common.ModMixinPlugin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
 	"cursedamulet.IronGolemMixin",
 	"cursedamulet.LivingEntityMixin",
 	"cursedamulet.PanicGoalMixin",
 	"cursedamulet.VillagerMixin",
+	"cursedamulet.integration.nycto.NyctoAPIMixin",
 	"smokingmirror.PhantomSpawnerMixin",
 	"tripletoothedsnake.AbstractArrowMixin",
 	"tripletoothedsnake.ImbueRecipeMixin",

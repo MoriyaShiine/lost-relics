@@ -4,12 +4,14 @@
 
 package moriyashiine.lostrelics.common.world.item;
 
+import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import com.swacky.ohmega.api.common.item.EquipContext;
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.ModItems;
 import moriyashiine.lostrelics.common.init.ModSoundEvents;
 import moriyashiine.lostrelics.common.tag.ModMobEffectTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
+import moriyashiine.nycto.api.NyctoAPI;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
 import moriyashiine.strawberrylib.api.objects.enums.ParticleAnchor;
 import net.minecraft.ChatFormatting;
@@ -61,6 +63,21 @@ public class CursedAmuletItem extends EquippableRelicItem {
 			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, apply && !applyNegative));
 			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, apply && applyNegative));
 		}
+		if (LostRelics.nyctoLoaded && NyctoAPI.isVampire(entity)) {
+			ItemStack relic = stack.copyAndClear();
+			AccessoryHelper.getData(entity).doUnequip(entity, relic);
+			if (entity.level() instanceof ServerLevel level) {
+				SLibUtils.insertOrDrop(level, entity, relic);
+			}
+		}
+	}
+
+	@Override
+	public boolean canEquip(@NonNull LivingEntity entity, @NonNull ItemStack stack, @NonNull EquipContext context) {
+		if (LostRelics.nyctoLoaded && NyctoAPI.isVampire(entity)) {
+			return false;
+		}
+		return super.canEquip(entity, stack, context);
 	}
 
 	@Override

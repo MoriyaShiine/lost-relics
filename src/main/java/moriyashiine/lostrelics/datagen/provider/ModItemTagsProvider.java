@@ -39,5 +39,8 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
 				.add(ModItems.CURSED_AMULET)
 				.add(ModItems.SMOKING_MIRROR)
 				.add(ModItems.TURQUOISE_EYE);
+
+		valueLookupBuilder(moriyashiine.nycto.common.tag.ModItemTags.HURTS_VAMPIRES)
+				.add(ModItems.CURSED_AMULET);
 	}
 }
