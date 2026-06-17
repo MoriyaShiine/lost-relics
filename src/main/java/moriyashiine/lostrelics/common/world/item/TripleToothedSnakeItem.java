@@ -4,7 +4,7 @@
 
 package moriyashiine.lostrelics.common.world.item;
 
-import moriyashiine.lostrelics.common.init.ModComponentTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsDataComponents;
 import moriyashiine.lostrelics.common.tag.ModMobEffectTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
@@ -71,11 +71,11 @@ public class TripleToothedSnakeItem extends Item {
 	}
 
 	public static int getCharges(ItemStack stack) {
-		return stack.getOrDefault(ModComponentTypes.SNAKE_CHARGE, 0);
+		return stack.getOrDefault(LostRelicsDataComponents.SNAKE_CHARGE, 0);
 	}
 
 	public static void setCharges(ItemStack stack, int charges) {
-		stack.set(ModComponentTypes.SNAKE_CHARGE, charges);
+		stack.set(LostRelicsDataComponents.SNAKE_CHARGE, charges);
 		if (charges == 0) {
 			stack.remove(DataComponents.POTION_CONTENTS);
 		}

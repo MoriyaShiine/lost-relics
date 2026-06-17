@@ -5,7 +5,7 @@
 package moriyashiine.lostrelics.mixin.cursedamulet.integration.nycto;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.nycto.api.NyctoAPI;
 import net.minecraft.world.entity.Entity;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public class NyctoAPIMixin {
 	@ModifyReturnValue(method = "hasBlood", at = @At("RETURN"))
 	private static boolean lostrelics$cursedAmulet(boolean original, Entity entity) {
-		if (original && entity instanceof LivingEntity living && LostRelicsUtil.hasRelic(living, ModItems.CURSED_AMULET)) {
+		if (original && entity instanceof LivingEntity living && LostRelicsUtil.hasRelic(living, LostRelicsItems.CURSED_AMULET)) {
 			return false;
 		}
 		return original;

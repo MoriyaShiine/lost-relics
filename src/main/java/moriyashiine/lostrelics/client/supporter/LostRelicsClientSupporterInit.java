@@ -12,7 +12,7 @@ import net.minecraft.client.OptionInstance;
 
 import java.util.Arrays;
 
-public class ClientSupporterInit {
+public class LostRelicsClientSupporterInit {
 	private static final OptionInstance.Enum<GemType> GEM_TYPE_VALUES = new OptionInstance.Enum<>(
 			Arrays.stream(GemType.values()).toList(),
 			GemType.CODEC);

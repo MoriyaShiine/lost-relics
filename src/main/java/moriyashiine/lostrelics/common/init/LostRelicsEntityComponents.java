@@ -12,7 +12,7 @@ import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
 import org.ladysnake.cca.api.v3.entity.RespawnCopyStrategy;
 
-public class ModEntityComponents implements EntityComponentInitializer {
+public class LostRelicsEntityComponents implements EntityComponentInitializer {
 	public static final ComponentKey<PersistentCooldownComponent> PERSISTENT_COOLDOWN = ComponentRegistry.getOrCreate(LostRelics.id("persistent_cooldown"), PersistentCooldownComponent.class);
 
 	@Override

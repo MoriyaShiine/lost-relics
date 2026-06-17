@@ -5,7 +5,7 @@
 package moriyashiine.lostrelics.mixin.tripletoothedsnake.client;
 
 import moriyashiine.lostrelics.common.LostRelics;
-import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.core.component.DataComponents;
@@ -25,7 +25,7 @@ public class ItemModelResolverMixin {
 
 	@ModifyVariable(method = "appendItemLayers", at = @At("STORE"), name = "modelId")
 	private Identifier lostrelics$tripleToothedSnake(Identifier modelId, ItemStackRenderState output, ItemStack item) {
-		if (item.is(Items.CROSSBOW) && item.getOrDefault(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY).contains(ModItems.TAINTED_BLOOD_CRYSTAL)) {
+		if (item.is(Items.CROSSBOW) && item.getOrDefault(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY).contains(LostRelicsItems.TAINTED_BLOOD_CRYSTAL)) {
 			return CROSSBOW_TAINTED_BLOOD_CRYSTAL;
 		}
 		return modelId;

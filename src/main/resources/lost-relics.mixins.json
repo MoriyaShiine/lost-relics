@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "moriyashiine.lostrelics.mixin",
-  "plugin": "moriyashiine.lostrelics.common.ModMixinPlugin",
+  "plugin": "moriyashiine.lostrelics.common.LostRelicsMixinPlugin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
 	"cursedamulet.IronGolemMixin",

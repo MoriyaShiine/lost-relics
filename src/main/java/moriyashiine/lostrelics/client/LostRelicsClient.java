@@ -17,14 +17,12 @@ import moriyashiine.lostrelics.client.renderer.entity.accessory.HipRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.accessory.NecklaceRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.model.RelicSkeletonModel;
 import moriyashiine.lostrelics.client.renderer.entity.model.SlimHumanoidModel;
-import moriyashiine.lostrelics.client.supporter.ClientSupporterInit;
-import moriyashiine.lostrelics.common.init.ModBlockEntityTypes;
-import moriyashiine.lostrelics.common.init.ModEntityTypes;
-import moriyashiine.lostrelics.common.init.ModItems;
-import moriyashiine.lostrelics.common.init.ModParticleTypes;
-import moriyashiine.strawberrylib.api.event.client.OutlineEntityEvent;
+import moriyashiine.lostrelics.client.supporter.LostRelicsClientSupporterInit;
+import moriyashiine.lostrelics.common.init.LostRelicsBlockEntityTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsEntityTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
+import moriyashiine.lostrelics.common.init.LostRelicsParticleTypes;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -33,7 +31,7 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 public class LostRelicsClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		ClientSupporterInit.init();
+		LostRelicsClientSupporterInit.init();
 		initBlocks();
 		initEntities();
 		initItems();
@@ -42,31 +40,29 @@ public class LostRelicsClient implements ClientModInitializer {
 	}
 
 	private void initBlocks() {
-		BlockEntityRenderers.register(ModBlockEntityTypes.ALTAR, AltarRenderer::new);
+		BlockEntityRenderers.register(LostRelicsBlockEntityTypes.ALTAR, AltarRenderer::new);
 	}
 
 	private void initEntities() {
 		ModelLayerRegistry.registerModelLayer(RelicSkeletonModel.LAYER, RelicSkeletonModel::createBodyLayer);
 		ModelLayerRegistry.registerModelLayer(SlimHumanoidModel.LAYER, SlimHumanoidModel::createBodyLayer);
-		EntityRenderers.register(ModEntityTypes.DOPPELGANGER, DoppelgangerRenderer::new);
-		EntityRenderers.register(ModEntityTypes.SMOKE_BALL, SmokeBallRenderer::new);
-		EntityRenderers.register(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, TaintedBloodCrystalRenderer::new);
+		EntityRenderers.register(LostRelicsEntityTypes.DOPPELGANGER, DoppelgangerRenderer::new);
+		EntityRenderers.register(LostRelicsEntityTypes.SMOKE_BALL, SmokeBallRenderer::new);
+		EntityRenderers.register(LostRelicsEntityTypes.TAINTED_BLOOD_CRYSTAL, TaintedBloodCrystalRenderer::new);
 	}
 
 	private void initItems() {
-		AccessoryRenderers.registerHumanoid(ModItems.CURSED_AMULET, context -> new NecklaceRenderer(context.getItemModelResolver()));
-		AccessoryRenderers.registerHumanoid(ModItems.SMOKING_MIRROR, context -> new HipRenderer(context.getItemModelResolver()));
-		AccessoryRenderers.registerHumanoid(ModItems.TURQUOISE_EYE, context -> new EyeRenderer(context.getItemModelResolver()));
+		AccessoryRenderers.registerHumanoid(LostRelicsItems.CURSED_AMULET, context -> new NecklaceRenderer(context.getItemModelResolver()));
+		AccessoryRenderers.registerHumanoid(LostRelicsItems.SMOKING_MIRROR, context -> new HipRenderer(context.getItemModelResolver()));
+		AccessoryRenderers.registerHumanoid(LostRelicsItems.TURQUOISE_EYE, context -> new EyeRenderer(context.getItemModelResolver()));
 	}
 
 	private void initParticles() {
-		ParticleProviderRegistry.getInstance().register(ModParticleTypes.TREASURE_SENSE, TreasureSenseParticle.Provider::new);
+		ParticleProviderRegistry.getInstance().register(LostRelicsParticleTypes.TREASURE_SENSE, TreasureSenseParticle.Provider::new);
 	}
 
 	private void initEvents() {
-		ClientTickEvents.END_CLIENT_TICK.register(new CursedAmuletClientEvent());
-
-		ClientTickEvents.END_LEVEL_TICK.register(new TurquoiseEyeClientEvent.Tick());
-		OutlineEntityEvent.EVENT.register(new TurquoiseEyeClientEvent.Outline());
+		CursedAmuletClientEvent.init();
+		TurquoiseEyeClientEvent.init();
 	}
 }

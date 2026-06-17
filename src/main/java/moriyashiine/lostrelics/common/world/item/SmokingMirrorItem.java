@@ -4,7 +4,7 @@
 
 package moriyashiine.lostrelics.common.world.item;
 
-import moriyashiine.lostrelics.common.init.ModSoundEvents;
+import moriyashiine.lostrelics.common.init.LostRelicsSoundEvents;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.lostrelics.common.world.entity.Doppelganger;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
@@ -39,7 +39,7 @@ public class SmokingMirrorItem extends EquippableRelicItem {
 						if (doppelganger.randomTeleport(player.getX() + dX, player.getY() + dY, player.getZ() + dZ, false)) {
 							level.addFreshEntity(doppelganger);
 							SLibUtils.addParticles(doppelganger, ParticleTypes.SMOKE, 128, ParticleAnchor.BODY);
-							SLibUtils.playSound(doppelganger, ModSoundEvents.ENTITY_GENERIC_SPAWN);
+							SLibUtils.playSound(doppelganger, LostRelicsSoundEvents.ENTITY_GENERIC_SPAWN);
 							break;
 						}
 					}

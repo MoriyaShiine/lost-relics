@@ -5,8 +5,8 @@
 package moriyashiine.lostrelics.common.world.item.crafting;
 
 import com.mojang.serialization.MapCodec;
-import moriyashiine.lostrelics.common.init.ModItems;
-import moriyashiine.lostrelics.common.init.ModRecipeSerializers;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
+import moriyashiine.lostrelics.common.init.LostRelicsRecipeSerializers;
 import moriyashiine.lostrelics.common.world.item.TripleToothedSnakeItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
@@ -28,7 +28,7 @@ public class TaintedBloodCrystalRecipe extends CustomRecipe {
 		int foundSnakes = 0, foundChargedSnakes = 0;
 		for (int i = 0; i < input.size(); i++) {
 			ItemStack stack = input.getItem(i);
-			if (stack.is(ModItems.TRIPLE_TOOTHED_SNAKE)) {
+			if (stack.is(LostRelicsItems.TRIPLE_TOOTHED_SNAKE)) {
 				foundSnakes++;
 				if (TripleToothedSnakeItem.getCharges(stack) > 0) {
 					foundChargedSnakes++;
@@ -44,8 +44,8 @@ public class TaintedBloodCrystalRecipe extends CustomRecipe {
 	public ItemStack assemble(CraftingInput input) {
 		for (int i = 0; i < input.size(); i++) {
 			ItemStack stack = input.getItem(i);
-			if (stack.is(ModItems.TRIPLE_TOOTHED_SNAKE)) {
-				ItemStack crystal = new ItemStack(ModItems.TAINTED_BLOOD_CRYSTAL, TripleToothedSnakeItem.getCharges(stack));
+			if (stack.is(LostRelicsItems.TRIPLE_TOOTHED_SNAKE)) {
+				ItemStack crystal = new ItemStack(LostRelicsItems.TAINTED_BLOOD_CRYSTAL, TripleToothedSnakeItem.getCharges(stack));
 				crystal.set(DataComponents.POTION_CONTENTS, stack.get(DataComponents.POTION_CONTENTS));
 				return crystal;
 			}
@@ -66,6 +66,6 @@ public class TaintedBloodCrystalRecipe extends CustomRecipe {
 
 	@Override
 	public RecipeSerializer<TaintedBloodCrystalRecipe> getSerializer() {
-		return ModRecipeSerializers.TAINTED_BLOOD_CRYSTAL;
+		return LostRelicsRecipeSerializers.TAINTED_BLOOD_CRYSTAL;
 	}
 }

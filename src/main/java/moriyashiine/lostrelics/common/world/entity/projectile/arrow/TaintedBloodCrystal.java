@@ -4,9 +4,9 @@
 
 package moriyashiine.lostrelics.common.world.entity.projectile.arrow;
 
-import moriyashiine.lostrelics.common.init.ModEntityTypes;
-import moriyashiine.lostrelics.common.init.ModItems;
-import moriyashiine.lostrelics.common.init.ModSoundEvents;
+import moriyashiine.lostrelics.common.init.LostRelicsEntityTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
+import moriyashiine.lostrelics.common.init.LostRelicsSoundEvents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaintedBloodCrystal extends AbstractArrow {
-	private static final ParticleOptions PARTICLE = new ItemParticleOption(ParticleTypes.ITEM, ModItems.TAINTED_BLOOD_CRYSTAL);
+	private static final ParticleOptions PARTICLE = new ItemParticleOption(ParticleTypes.ITEM, LostRelicsItems.TAINTED_BLOOD_CRYSTAL);
 
 	private final List<MobEffectInstance> effects = new ArrayList<>();
 
@@ -40,18 +40,18 @@ public class TaintedBloodCrystal extends AbstractArrow {
 	}
 
 	public TaintedBloodCrystal(Level level, double x, double y, double z, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
-		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, x, y, z, level, pickupItemStack, firedFromWeapon);
+		super(LostRelicsEntityTypes.TAINTED_BLOOD_CRYSTAL, x, y, z, level, pickupItemStack, firedFromWeapon);
 		pickupItemStack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).getAllEffects().forEach(instance -> effects.add(new MobEffectInstance(instance)));
 	}
 
 	public TaintedBloodCrystal(Level level, LivingEntity owner, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
-		super(ModEntityTypes.TAINTED_BLOOD_CRYSTAL, owner, level, pickupItemStack, firedFromWeapon);
+		super(LostRelicsEntityTypes.TAINTED_BLOOD_CRYSTAL, owner, level, pickupItemStack, firedFromWeapon);
 		pickupItemStack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).getAllEffects().forEach(instance -> effects.add(new MobEffectInstance(instance)));
 	}
 
 	@Override
 	protected ItemStack getDefaultPickupItem() {
-		return ModItems.TAINTED_BLOOD_CRYSTAL.getDefaultInstance();
+		return LostRelicsItems.TAINTED_BLOOD_CRYSTAL.getDefaultInstance();
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class TaintedBloodCrystal extends AbstractArrow {
 
 	@Override
 	protected SoundEvent getDefaultHitGroundSoundEvent() {
-		return ModSoundEvents.ENTITY_TAINTED_BLOOD_CRYSTAL_SHATTER;
+		return LostRelicsSoundEvents.ENTITY_TAINTED_BLOOD_CRYSTAL_SHATTER;
 	}
 
 	@Override

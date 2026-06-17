@@ -7,8 +7,8 @@ package moriyashiine.lostrelics.common.world.item;
 import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import com.swacky.ohmega.api.common.item.EquipContext;
 import moriyashiine.lostrelics.common.LostRelics;
-import moriyashiine.lostrelics.common.init.ModItems;
-import moriyashiine.lostrelics.common.init.ModSoundEvents;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
+import moriyashiine.lostrelics.common.init.LostRelicsSoundEvents;
 import moriyashiine.lostrelics.common.tag.ModMobEffectTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.nycto.api.NyctoAPI;
@@ -60,12 +60,12 @@ public class CursedAmuletItem extends EquippableRelicItem {
 		if (entity.level() instanceof ServerLevel level) {
 			boolean apply = entity.slib$isSurvival();
 			boolean applyNegative = level.isBrightOutside() && level.canSeeSky(entity.blockPosition());
-			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, apply && !applyNegative));
-			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, apply && applyNegative));
+			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.applyAttributeModifier(entity, attribute, modifier, apply && !applyNegative));
+			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.applyAttributeModifier(entity, attribute, modifier, apply && applyNegative));
 		}
 		if (LostRelics.nyctoLoaded && NyctoAPI.isVampire(entity)) {
 			ItemStack relic = stack.copyAndClear();
-			AccessoryHelper.getData(entity).doUnequip(entity, relic);
+			AccessoryHelper.getData(entity).doUnequip(entity, relic, EquipContext.SLOT);
 			if (entity.level() instanceof ServerLevel level) {
 				SLibUtils.insertOrDrop(level, entity, relic);
 			}
@@ -83,7 +83,7 @@ public class CursedAmuletItem extends EquippableRelicItem {
 	@Override
 	public void onEquip(@NonNull LivingEntity entity, @NonNull ItemStack stack, @NonNull EquipContext context) {
 		if (!entity.level().isClientSide()) {
-			SLibUtils.playSound(entity, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
+			SLibUtils.playSound(entity, LostRelicsSoundEvents.ENTITY_GENERIC_TRANSFORM);
 			SLibUtils.addParticles(entity, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
 		}
 		for (MobEffectInstance effect : new HashSet<>(entity.getActiveEffects())) {
@@ -94,12 +94,12 @@ public class CursedAmuletItem extends EquippableRelicItem {
 	}
 
 	@Override
-	public void onUnequip(@NonNull LivingEntity entity, @NonNull ItemStack stack) {
+	public void onUnequip(@NonNull LivingEntity entity, @NonNull ItemStack stack, @NonNull EquipContext context) {
 		if (!entity.level().isClientSide()) {
-			SLibUtils.playSound(entity, ModSoundEvents.ENTITY_GENERIC_TRANSFORM);
+			SLibUtils.playSound(entity, LostRelicsSoundEvents.ENTITY_GENERIC_TRANSFORM);
 			SLibUtils.addParticles(entity, ParticleTypes.SMOKE, 48, ParticleAnchor.BODY);
-			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, false));
-			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.conditionallyApplyAttributeModifier(entity, attribute, modifier, false));
+			GOOD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.applyAttributeModifier(entity, attribute, modifier, false));
+			BAD_MODIFIERS.forEach((attribute, modifier) -> SLibUtils.applyAttributeModifier(entity, attribute, modifier, false));
 		}
 	}
 
@@ -112,7 +112,7 @@ public class CursedAmuletItem extends EquippableRelicItem {
 
 	public static boolean doNegativesApply(Entity entity) {
 		if (entity instanceof LivingEntity living && living.slib$isSurvival()) {
-			return LostRelicsUtil.hasRelic(living, ModItems.CURSED_AMULET);
+			return LostRelicsUtil.hasRelic(living, LostRelicsItems.CURSED_AMULET);
 		}
 		return false;
 	}

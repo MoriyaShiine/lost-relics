@@ -4,11 +4,11 @@
 
 package moriyashiine.lostrelics.common.world.entity;
 
+import com.swacky.ohmega.api.common.dataattachment.AccessoryData;
 import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import com.swacky.ohmega.api.common.item.EquipContext;
-import com.swacky.ohmega.common.dataattachment.AccessoryData;
-import moriyashiine.lostrelics.common.init.ModEntityTypes;
-import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.init.LostRelicsEntityTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.lostrelics.common.world.entity.ai.goal.*;
 import moriyashiine.strawberrylib.api.module.SLibClientUtils;
@@ -50,7 +50,7 @@ public class Doppelganger extends PathfinderMob {
 	}
 
 	public Doppelganger(Level level, LivingEntity owner, boolean mirrorDemon) {
-		this(ModEntityTypes.DOPPELGANGER, level);
+		this(LostRelicsEntityTypes.DOPPELGANGER, level);
 		this.owner = EntityReference.of(owner);
 		this.mirrorDemon = mirrorDemon;
 	}
@@ -116,7 +116,7 @@ public class Doppelganger extends PathfinderMob {
 				discard();
 				return;
 			} else if (owner instanceof Player player) {
-				ItemStack relic = AccessoryHelper.getStack(player, ModItems.SMOKING_MIRROR);
+				ItemStack relic = AccessoryHelper.getStack(player, LostRelicsItems.SMOKING_MIRROR);
 				if (!relic.isEmpty()) {
 					LostRelicsUtil.setCooldown(player, relic, 600);
 				}

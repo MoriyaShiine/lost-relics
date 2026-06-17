@@ -4,7 +4,7 @@
 
 package moriyashiine.lostrelics.common.event;
 
-import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.lostrelics.common.world.item.CursedAmuletItem;
 import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
@@ -25,19 +25,25 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 
 public class CursedAmuletEvent {
-	public static class EffectImmunity implements ServerMobEffectEvents.AllowAdd {
+	public static void init() {
+		ServerMobEffectEvents.ALLOW_ADD.register(new EffectImmunity());
+		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new FireWeakness());
+		PreventHostileTargetingEvent.EVENT.register(new UndeadNeutrality());
+	}
+
+	private static class EffectImmunity implements ServerMobEffectEvents.AllowAdd {
 		@Override
 		public boolean allowAdd(MobEffectInstance effect, LivingEntity entity, EffectEventContext ctx) {
-			return !(CursedAmuletItem.isEffectPreventable(effect.getEffect()) && LostRelicsUtil.hasRelic(entity, ModItems.CURSED_AMULET));
+			return !(CursedAmuletItem.isEffectPreventable(effect.getEffect()) && LostRelicsUtil.hasRelic(entity, LostRelicsItems.CURSED_AMULET));
 		}
 	}
 
-	public static class FireWeakness implements ModifyDamageTakenEvent {
+	private static class FireWeakness implements ModifyDamageTakenEvent {
 		private static final ResourceKey<DamageType> SUN = ResourceKey.create(Registries.DAMAGE_TYPE, Identifier.fromNamespaceAndPath("nycto", "sun"));
 
 		@Override
 		public float modify(Phase phase, LivingEntity victim, ServerLevel level, DamageSource source) {
-			if (phase == Phase.FINAL && LostRelicsUtil.hasRelic(victim, ModItems.CURSED_AMULET)) {
+			if (phase == Phase.FINAL && LostRelicsUtil.hasRelic(victim, LostRelicsItems.CURSED_AMULET)) {
 				if (source.is(DamageTypeTags.IS_FIRE) || source.is(SUN)) {
 					return 1.5F;
 				}
@@ -46,10 +52,10 @@ public class CursedAmuletEvent {
 		}
 	}
 
-	public static class UndeadNeutrality implements PreventHostileTargetingEvent {
+	private static class UndeadNeutrality implements PreventHostileTargetingEvent {
 		@Override
 		public TriState preventsTargeting(LivingEntity attacker, LivingEntity target) {
-			if (!attacker.is(ConventionalEntityTypeTags.BOSSES) && attacker.is(EntityTypeTags.UNDEAD) && LostRelicsUtil.hasRelic(target, ModItems.CURSED_AMULET)) {
+			if (!attacker.is(ConventionalEntityTypeTags.BOSSES) && attacker.is(EntityTypeTags.UNDEAD) && LostRelicsUtil.hasRelic(target, LostRelicsItems.CURSED_AMULET)) {
 				return TriState.TRUE;
 			}
 			return TriState.DEFAULT;

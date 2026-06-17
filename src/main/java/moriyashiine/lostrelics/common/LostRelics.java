@@ -11,13 +11,7 @@ import moriyashiine.lostrelics.common.event.TurquoiseEyeEvent;
 import moriyashiine.lostrelics.common.init.*;
 import moriyashiine.lostrelics.common.supporter.SupporterInit;
 import moriyashiine.strawberrylib.api.SLib;
-import moriyashiine.strawberrylib.api.event.AfterDamageIncludingDeathEvent;
-import moriyashiine.strawberrylib.api.event.ModifyCriticalStatusEvent;
-import moriyashiine.strawberrylib.api.event.ModifyDamageTakenEvent;
-import moriyashiine.strawberrylib.api.event.PreventHostileTargetingEvent;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.entity.event.v1.effect.ServerMobEffectEvents;
-import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.Identifier;
 
@@ -40,27 +34,20 @@ public class LostRelics implements ModInitializer {
 	}
 
 	private void initRegistries() {
-		ModBlocks.init();
-		ModBlockEntityTypes.init();
-		ModComponentTypes.init();
-		ModEntityTypes.init();
-		ModItems.init();
-		ModParticleTypes.init();
-		ModRecipeSerializers.init();
-		ModSoundEvents.init();
+		LostRelicsBlocks.init();
+		LostRelicsBlockEntityTypes.init();
+		LostRelicsDataComponents.init();
+		LostRelicsEntityTypes.init();
+		LostRelicsItems.init();
+		LostRelicsParticleTypes.init();
+		LostRelicsRecipeSerializers.init();
+		LostRelicsSoundEvents.init();
 	}
 
 	private void initEvents() {
-		ServerMobEffectEvents.ALLOW_ADD.register(new CursedAmuletEvent.EffectImmunity());
-		ModifyDamageTakenEvent.MULTIPLY_TOTAL.register(new CursedAmuletEvent.FireWeakness());
-		PreventHostileTargetingEvent.EVENT.register(new CursedAmuletEvent.UndeadNeutrality());
-
-		ModifyDamageTakenEvent.MULTIPLY_BASE.register(new SmokingMirrorEvent.ReduceDamage());
-		AfterDamageIncludingDeathEvent.EVENT.register(new SmokingMirrorEvent.ReflectDamage());
-
-		EnchantmentEvents.ALLOW_ENCHANTING.register(new TripleToothedSnakeEvent());
-
-		ModifyCriticalStatusEvent.EVENT.register(new TurquoiseEyeEvent.Attack());
-		ServerMobEffectEvents.ALLOW_ADD.register(new TurquoiseEyeEvent.EffectImmunity());
+		CursedAmuletEvent.init();
+		SmokingMirrorEvent.init();
+		TripleToothedSnakeEvent.init();
+		TurquoiseEyeEvent.init();
 	}
 }

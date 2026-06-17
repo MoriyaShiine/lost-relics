@@ -8,7 +8,7 @@ import net.minecraft.sounds.SoundEvent;
 
 import static moriyashiine.strawberrylib.api.module.SLibRegistries.registerSoundEvent;
 
-public class ModSoundEvents {
+public class LostRelicsSoundEvents {
 	public static final SoundEvent BLOCK_ALTAR_CONVERT = registerSoundEvent("block.altar.convert");
 
 	public static final SoundEvent ENTITY_GENERIC_SPAWN = registerSoundEvent("entity.generic.spawn");

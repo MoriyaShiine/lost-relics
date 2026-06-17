@@ -7,7 +7,7 @@ package moriyashiine.lostrelics.mixin.util;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import moriyashiine.lostrelics.common.init.ModBlocks;
+import moriyashiine.lostrelics.common.init.LostRelicsBlocks;
 import moriyashiine.lostrelics.common.world.level.block.AltarBlock;
 import moriyashiine.lostrelics.common.world.level.block.entity.AltarBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -30,7 +30,7 @@ public class StructurePieceMixin {
 	@WrapOperation(method = "createChest(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/block/state/BlockState;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/ServerLevelAccessor;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z"))
 	private boolean lostrelics$generateAltar(ServerLevelAccessor instance, BlockPos pos, BlockState blockState, int i, Operation<Boolean> original, @Local(argsOnly = true) RandomSource random, @Local(argsOnly = true) ResourceKey<LootTable> lootTable) {
 		if (lootTable == BuiltInLootTables.JUNGLE_TEMPLE && isExposedHorizontally(instance, pos)) {
-			AltarBlock altarBlock = (AltarBlock) ModBlocks.JUNGLE_ALTAR;
+			AltarBlock altarBlock = (AltarBlock) LostRelicsBlocks.JUNGLE_ALTAR;
 			boolean call = original.call(instance, pos, altarBlock.defaultBlockState(), i);
 			tryPopulateAltar(instance, pos, random, altarBlock);
 			return call;

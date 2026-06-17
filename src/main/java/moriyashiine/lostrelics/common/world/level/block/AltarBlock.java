@@ -5,7 +5,7 @@
 package moriyashiine.lostrelics.common.world.level.block;
 
 import com.mojang.serialization.MapCodec;
-import moriyashiine.lostrelics.common.init.ModSoundEvents;
+import moriyashiine.lostrelics.common.init.LostRelicsSoundEvents;
 import moriyashiine.lostrelics.common.tag.ModItemTags;
 import moriyashiine.lostrelics.common.world.level.block.entity.AltarBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -91,7 +91,7 @@ public class AltarBlock extends HorizontalDirectionalBlock implements EntityBloc
 					while (stack.is(newRelic) || altarBlockEntity.getStack().is(newRelic) || !newRelic.getDefaultInstance().is(relicTag));
 					altarBlockEntity.setStack(newRelic.getDefaultInstance());
 					stack.consume(1, player);
-					level.playSound(null, pos, ModSoundEvents.BLOCK_ALTAR_CONVERT, SoundSource.BLOCKS, 1, 1);
+					level.playSound(null, pos, LostRelicsSoundEvents.BLOCK_ALTAR_CONVERT, SoundSource.BLOCKS, 1, 1);
 					float dX = Mth.nextFloat(level.getRandom(), -0.2F, 0.2F);
 					float dY = Mth.nextFloat(level.getRandom(), -0.2F, 0.2F);
 					float dZ = Mth.nextFloat(level.getRandom(), -0.2F, 0.2F);

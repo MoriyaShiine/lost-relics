@@ -4,8 +4,8 @@
 
 package moriyashiine.lostrelics.common.world.item;
 
-import moriyashiine.lostrelics.common.init.ModComponentTypes;
-import moriyashiine.lostrelics.common.init.ModSoundEvents;
+import moriyashiine.lostrelics.common.init.LostRelicsDataComponents;
+import moriyashiine.lostrelics.common.init.LostRelicsSoundEvents;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -27,7 +27,7 @@ public class ToggleableRelicItem extends EquippableRelicItem {
 	private final String toggleTranslationKey;
 
 	public ToggleableRelicItem(Properties properties, String toggleTranslationKey) {
-		super(properties.component(ModComponentTypes.RELIC_TOGGLE, true));
+		super(properties.component(LostRelicsDataComponents.RELIC_TOGGLE, true));
 		this.toggleTranslationKey = toggleTranslationKey;
 	}
 
@@ -35,9 +35,9 @@ public class ToggleableRelicItem extends EquippableRelicItem {
 	public InteractionResult use(Level level, Player player, InteractionHand hand) {
 		if (player.isShiftKeyDown()) {
 			ItemStack stack = player.getItemInHand(hand);
-			if (stack.has(ModComponentTypes.RELIC_TOGGLE)) {
-				SLibUtils.playSound(player, ModSoundEvents.ITEM_RELIC_TOGGLE);
-				stack.set(ModComponentTypes.RELIC_TOGGLE, !stack.get(ModComponentTypes.RELIC_TOGGLE));
+			if (stack.has(LostRelicsDataComponents.RELIC_TOGGLE)) {
+				SLibUtils.playSound(player, LostRelicsSoundEvents.ITEM_RELIC_TOGGLE);
+				stack.set(LostRelicsDataComponents.RELIC_TOGGLE, !stack.get(LostRelicsDataComponents.RELIC_TOGGLE));
 				return InteractionResult.SUCCESS;
 			}
 		}
@@ -46,11 +46,11 @@ public class ToggleableRelicItem extends EquippableRelicItem {
 
 	@Override
 	public boolean overrideOtherStackedOnMe(ItemStack self, ItemStack other, Slot slot, ClickAction clickAction, Player player, SlotAccess carriedItem) {
-		if (clickAction == ClickAction.SECONDARY && other.isEmpty() && self.has(ModComponentTypes.RELIC_TOGGLE)) {
+		if (clickAction == ClickAction.SECONDARY && other.isEmpty() && self.has(LostRelicsDataComponents.RELIC_TOGGLE)) {
 			if (player.level().isClientSide()) {
-				player.playSound(ModSoundEvents.ITEM_RELIC_TOGGLE, 1, 1);
+				player.playSound(LostRelicsSoundEvents.ITEM_RELIC_TOGGLE, 1, 1);
 			}
-			self.set(ModComponentTypes.RELIC_TOGGLE, !self.get(ModComponentTypes.RELIC_TOGGLE));
+			self.set(LostRelicsDataComponents.RELIC_TOGGLE, !self.get(LostRelicsDataComponents.RELIC_TOGGLE));
 			return true;
 		}
 		return super.overrideOtherStackedOnMe(self, other, slot, clickAction, player, carriedItem);
@@ -60,7 +60,7 @@ public class ToggleableRelicItem extends EquippableRelicItem {
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
 		MutableComponent icon = Component.literal("× ");
 		ChatFormatting formatting = ChatFormatting.DARK_RED;
-		if (stack.getOrDefault(ModComponentTypes.RELIC_TOGGLE, false)) {
+		if (stack.getOrDefault(LostRelicsDataComponents.RELIC_TOGGLE, false)) {
 			icon = Component.literal("✔ ");
 			formatting = ChatFormatting.DARK_GREEN;
 		}

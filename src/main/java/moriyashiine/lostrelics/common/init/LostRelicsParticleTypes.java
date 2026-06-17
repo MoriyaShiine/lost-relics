@@ -9,7 +9,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 
 import static moriyashiine.strawberrylib.api.module.SLibRegistries.registerParticleType;
 
-public class ModParticleTypes {
+public class LostRelicsParticleTypes {
 	public static final SimpleParticleType TREASURE_SENSE = registerParticleType("treasure_sense", FabricParticleTypes.simple(true));
 
 	public static void init() {

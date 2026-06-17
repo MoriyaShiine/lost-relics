@@ -4,7 +4,7 @@
 
 package moriyashiine.lostrelics.datagen.provider;
 
-import moriyashiine.lostrelics.common.init.ModEntityTypes;
+import moriyashiine.lostrelics.common.references.LostRelicsEntityTypeIds;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
@@ -15,17 +15,17 @@ import net.minecraft.tags.TagKey;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModEntityTypeTagsProvider extends FabricTagsProvider.EntityTypeTagsProvider {
-	public ModEntityTypeTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class LostRelicsEntityTypeTagsProvider extends FabricTagsProvider.EntityTypeTagsProvider {
+	public LostRelicsEntityTypeTagsProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
 	@Override
 	protected void addTags(HolderLookup.Provider registries) {
-		valueLookupBuilder(EntityTypeTags.ARROWS)
-				.add(ModEntityTypes.TAINTED_BLOOD_CRYSTAL);
+		builder(EntityTypeTags.ARROWS)
+				.add(LostRelicsEntityTypeIds.TAINTED_BLOOD_CRYSTAL);
 
-		valueLookupBuilder(TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath("enchancement", "cannot_disarm")))
-				.add(ModEntityTypes.DOPPELGANGER);
+		builder(TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath("enchancement", "cannot_disarm")))
+				.add(LostRelicsEntityTypeIds.DOPPELGANGER);
 	}
 }

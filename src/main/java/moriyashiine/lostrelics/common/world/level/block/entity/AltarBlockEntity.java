@@ -4,7 +4,7 @@
 
 package moriyashiine.lostrelics.common.world.level.block.entity;
 
-import moriyashiine.lostrelics.common.init.ModBlockEntityTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -25,7 +25,7 @@ public class AltarBlockEntity extends BlockEntity {
 	private ItemStack stack = ItemStack.EMPTY;
 
 	public AltarBlockEntity(BlockPos pos, BlockState state) {
-		super(ModBlockEntityTypes.ALTAR, pos, state);
+		super(LostRelicsBlockEntityTypes.ALTAR, pos, state);
 	}
 
 	@Override

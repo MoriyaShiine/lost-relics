@@ -9,7 +9,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import moriyashiine.lostrelics.client.event.CursedAmuletClientEvent;
 import moriyashiine.lostrelics.client.renderer.entity.model.RelicSkeletonModel;
 import moriyashiine.lostrelics.client.renderer.entity.state.RelicSkeletonRenderState;
-import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import net.minecraft.client.entity.ClientAvatarEntity;
 import net.minecraft.client.model.geom.ModelPart;
@@ -85,7 +85,7 @@ public abstract class AvatarRendererMixin<AvatarlikeEntity extends Avatar & Clie
 	@Inject(method = "extractRenderState(Lnet/minecraft/world/entity/Avatar;Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;F)V", at = @At("TAIL"))
 	private void lostrelics$cursedAmulet(AvatarlikeEntity entity, AvatarRenderState state, float partialTicks, CallbackInfo ci) {
 		RelicSkeletonRenderState relicSkeletonRenderState = new RelicSkeletonRenderState();
-		relicSkeletonRenderState.enabled = LostRelicsUtil.hasRelic(entity, ModItems.CURSED_AMULET);
+		relicSkeletonRenderState.enabled = LostRelicsUtil.hasRelic(entity, LostRelicsItems.CURSED_AMULET);
 		relicSkeletonRenderState.gemType = RelicSkeletonRenderState.getGemType(entity);
 		state.setData(RelicSkeletonRenderState.KEY, relicSkeletonRenderState);
 	}

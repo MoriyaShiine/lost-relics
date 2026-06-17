@@ -5,7 +5,7 @@
 package moriyashiine.lostrelics.mixin.tripletoothedsnake;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import moriyashiine.lostrelics.common.init.ModEntityTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsEntityTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -22,6 +22,6 @@ public abstract class AbstractArrowMixin extends Projectile {
 
 	@WrapWithCondition(method = "onHitEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;setArrowCount(I)V"))
 	private boolean lostrelics$tripleToothedSnake(LivingEntity instance, int count) {
-		return getType() != ModEntityTypes.TAINTED_BLOOD_CRYSTAL;
+		return getType() != LostRelicsEntityTypes.TAINTED_BLOOD_CRYSTAL;
 	}
 }

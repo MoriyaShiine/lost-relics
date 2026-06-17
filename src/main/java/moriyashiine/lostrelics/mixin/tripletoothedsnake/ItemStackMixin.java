@@ -5,7 +5,7 @@
 package moriyashiine.lostrelics.mixin.tripletoothedsnake;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import moriyashiine.lostrelics.common.init.ModComponentTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsDataComponents;
 import net.minecraft.core.component.DataComponentHolder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -23,7 +23,7 @@ public abstract class ItemStackMixin implements ItemInstance, DataComponentHolde
 
 	@ModifyReturnValue(method = "getItemName", at = @At("RETURN"))
 	private Component lostrelics$tripleToothedSnake(Component original) {
-		if (has(ModComponentTypes.TAINTED_POTION)) {
+		if (has(LostRelicsDataComponents.TAINTED_POTION)) {
 			if (is(Items.POTION) || is(Items.SPLASH_POTION) || is(Items.LINGERING_POTION) || is(Items.TIPPED_ARROW)) {
 				return Component.translatable((getItem().getDescriptionId() + ".lostrelics.tainted_potion").replace(".effect.empty", ""));
 			}

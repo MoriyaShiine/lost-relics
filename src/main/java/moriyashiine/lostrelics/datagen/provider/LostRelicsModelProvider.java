@@ -6,7 +6,7 @@ package moriyashiine.lostrelics.datagen.provider;
 
 import moriyashiine.lostrelics.client.renderer.item.properties.numeric.SnakeChargeProperty;
 import moriyashiine.lostrelics.common.LostRelics;
-import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -18,10 +18,10 @@ import net.minecraft.world.item.Item;
 
 import java.util.Optional;
 
-public class ModModelProvider extends FabricModelProvider {
+public class LostRelicsModelProvider extends FabricModelProvider {
 	public static final ModelTemplate FLAT_SMALL_HANDHELD_ITEM = new ModelTemplate(Optional.of(LostRelics.id("item/small_handheld")), Optional.empty(), TextureSlot.LAYER0);
 
-	public ModModelProvider(FabricPackOutput output) {
+	public LostRelicsModelProvider(FabricPackOutput output) {
 		super(output);
 	}
 
@@ -31,13 +31,13 @@ public class ModModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateItemModels(ItemModelGenerators generators) {
-		generators.generateFlatItem(ModItems.JUNGLE_ALTAR, ModelTemplates.FLAT_ITEM);
-		generators.generateFlatItem(ModItems.CURSED_AMULET, ModelTemplates.FLAT_ITEM);
-		generators.generateFlatItem(ModItems.SMOKING_MIRROR, ModelTemplates.FLAT_ITEM);
-		registerTripleToothedSnake(generators, ModItems.TRIPLE_TOOTHED_SNAKE);
-		generators.generateFlatItem(ModItems.TAINTED_BLOOD_CRYSTAL, ModelTemplates.FLAT_ITEM);
+		generators.generateFlatItem(LostRelicsItems.JUNGLE_ALTAR, ModelTemplates.FLAT_ITEM);
+		generators.generateFlatItem(LostRelicsItems.CURSED_AMULET, ModelTemplates.FLAT_ITEM);
+		generators.generateFlatItem(LostRelicsItems.SMOKING_MIRROR, ModelTemplates.FLAT_ITEM);
+		registerTripleToothedSnake(generators, LostRelicsItems.TRIPLE_TOOTHED_SNAKE);
+		generators.generateFlatItem(LostRelicsItems.TAINTED_BLOOD_CRYSTAL, ModelTemplates.FLAT_ITEM);
 		ModelTemplates.CROSSBOW.create(LostRelics.id("item/crossbow_tainted_blood_crystal"), TextureMapping.layer0(new Material(LostRelics.id("item/crossbow_tainted_blood_crystal"))), generators.modelOutput);
-		generators.generateFlatItem(ModItems.TURQUOISE_EYE, ModelTemplates.FLAT_ITEM);
+		generators.generateFlatItem(LostRelicsItems.TURQUOISE_EYE, ModelTemplates.FLAT_ITEM);
 	}
 
 	public static void registerTripleToothedSnake(ItemModelGenerators generators, Item item) {

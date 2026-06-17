@@ -15,8 +15,8 @@ import net.minecraft.data.recipes.SpecialRecipeBuilder;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModRecipeProvider extends FabricRecipeProvider {
-	public ModRecipeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class LostRelicsRecipeProvider extends FabricRecipeProvider {
+	public LostRelicsRecipeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 

@@ -5,7 +5,7 @@
 package moriyashiine.lostrelics.common.event;
 
 import com.swacky.ohmega.api.common.item.AccessoryHelper;
-import moriyashiine.lostrelics.common.init.ModItems;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.strawberrylib.api.event.ModifyCriticalStatusEvent;
 import net.fabricmc.fabric.api.entity.event.v1.effect.EffectEventContext;
@@ -19,11 +19,16 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 public class TurquoiseEyeEvent {
-	public static class Attack implements ModifyCriticalStatusEvent {
+	public static void init() {
+		ModifyCriticalStatusEvent.EVENT.register(new Attack());
+		ServerMobEffectEvents.ALLOW_ADD.register(new EffectImmunity());
+	}
+
+	private static class Attack implements ModifyCriticalStatusEvent {
 		@Override
 		public TriState isCritical(Player attacker, Entity target, float attackCooldownProgress) {
 			if (target instanceof LivingEntity living && living.getHealth() == living.getMaxHealth()) {
-				ItemStack relic = AccessoryHelper.getStack(attacker, ModItems.TURQUOISE_EYE);
+				ItemStack relic = AccessoryHelper.getStack(attacker, LostRelicsItems.TURQUOISE_EYE);
 				if (LostRelicsUtil.isUsable(attacker, relic)) {
 					if (!attacker.level().isClientSide()) {
 						LostRelicsUtil.setCooldown(attacker, relic, 60);
@@ -42,10 +47,10 @@ public class TurquoiseEyeEvent {
 		}
 	}
 
-	public static class EffectImmunity implements ServerMobEffectEvents.AllowAdd {
+	private static class EffectImmunity implements ServerMobEffectEvents.AllowAdd {
 		@Override
 		public boolean allowAdd(MobEffectInstance effect, LivingEntity entity, EffectEventContext ctx) {
-			return !(effect.getEffect() == MobEffects.INVISIBILITY && LostRelicsUtil.hasRelic(entity, ModItems.TURQUOISE_EYE));
+			return !(effect.getEffect() == MobEffects.INVISIBILITY && LostRelicsUtil.hasRelic(entity, LostRelicsItems.TURQUOISE_EYE));
 		}
 	}
 }

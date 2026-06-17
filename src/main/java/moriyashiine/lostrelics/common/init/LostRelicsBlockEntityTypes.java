@@ -10,8 +10,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import static moriyashiine.strawberrylib.api.module.SLibRegistries.registerBlockEntityType;
 
-public class ModBlockEntityTypes {
-	public static final BlockEntityType<AltarBlockEntity> ALTAR = registerBlockEntityType("altar", FabricBlockEntityTypeBuilder.create(AltarBlockEntity::new, ModBlocks.JUNGLE_ALTAR));
+public class LostRelicsBlockEntityTypes {
+	public static final BlockEntityType<AltarBlockEntity> ALTAR = registerBlockEntityType("altar", FabricBlockEntityTypeBuilder.create(AltarBlockEntity::new, LostRelicsBlocks.JUNGLE_ALTAR));
 
 	public static void init() {
 	}

@@ -4,7 +4,7 @@
 
 package moriyashiine.lostrelics.common.world.entity.projectile;
 
-import moriyashiine.lostrelics.common.init.ModEntityTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsEntityTypes;
 import moriyashiine.strawberrylib.api.module.SLibClientUtils;
 import moriyashiine.strawberrylib.api.objects.enums.ParticleAnchor;
 import net.minecraft.core.particles.ParticleTypes;
@@ -32,7 +32,7 @@ public class SmokeBall extends Entity {
 	}
 
 	public SmokeBall(Level level, LivingEntity owner, LivingEntity target, float damage) {
-		this(ModEntityTypes.SMOKE_BALL, level);
+		this(LostRelicsEntityTypes.SMOKE_BALL, level);
 		setPos(owner.getEyePosition());
 		this.owner = EntityReference.of(owner);
 		this.target = EntityReference.of(target);

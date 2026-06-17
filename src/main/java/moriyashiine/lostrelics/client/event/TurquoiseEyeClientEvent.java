@@ -5,9 +5,9 @@
 package moriyashiine.lostrelics.client.event;
 
 import com.swacky.ohmega.api.common.item.AccessoryHelper;
-import moriyashiine.lostrelics.common.init.ModComponentTypes;
-import moriyashiine.lostrelics.common.init.ModItems;
-import moriyashiine.lostrelics.common.init.ModParticleTypes;
+import moriyashiine.lostrelics.common.init.LostRelicsDataComponents;
+import moriyashiine.lostrelics.common.init.LostRelicsItems;
+import moriyashiine.lostrelics.common.init.LostRelicsParticleTypes;
 import moriyashiine.lostrelics.common.tag.ModBlockTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.strawberrylib.api.event.client.OutlineEntityEvent;
@@ -25,16 +25,21 @@ import org.jspecify.annotations.Nullable;
 import java.util.OptionalInt;
 
 public class TurquoiseEyeClientEvent {
+	public static void init() {
+		ClientTickEvents.END_LEVEL_TICK.register(new Tick());
+		OutlineEntityEvent.EVENT.register(new Outline());
+	}
+
 	private static final Minecraft client = Minecraft.getInstance();
 
 	private static boolean isRelicUsable = false;
 
-	public static class Tick implements ClientTickEvents.EndLevelTick {
+	private static class Tick implements ClientTickEvents.EndLevelTick {
 		@Override
 		public void onEndTick(ClientLevel level) {
-			ItemStack relic = AccessoryHelper.getStack(client.player, ModItems.TURQUOISE_EYE);
+			ItemStack relic = AccessoryHelper.getStack(client.player, LostRelicsItems.TURQUOISE_EYE);
 			isRelicUsable = LostRelicsUtil.isUsable(client.player, relic);
-			if (level.getGameTime() % 20 == 0 && relic.getOrDefault(ModComponentTypes.RELIC_TOGGLE, false)) {
+			if (level.getGameTime() % 20 == 0 && relic.getOrDefault(LostRelicsDataComponents.RELIC_TOGGLE, false)) {
 				for (BlockPos pos : BlockPos.withinManhattan(client.player.blockPosition(), 12, 12, 12)) {
 					BlockState state = level.getBlockState(pos);
 					if (state.is(ModBlockTags.TREASURE) && !state.is(ModBlockTags.UNIMPORTANT_TREASURE)) {
@@ -49,7 +54,7 @@ public class TurquoiseEyeClientEvent {
 							double dX = x - (x - bX) * i;
 							double dY = y - (y - bY) * i;
 							double dZ = z - (z - bZ) * i;
-							level.addParticle(ModParticleTypes.TREASURE_SENSE, dX, dY, dZ, altColor ? 0x086F72 : 0x12C3B5, 0, 0);
+							level.addParticle(LostRelicsParticleTypes.TREASURE_SENSE, dX, dY, dZ, altColor ? 0x086F72 : 0x12C3B5, 0, 0);
 							altColor = !altColor;
 						}
 					}
@@ -58,12 +63,12 @@ public class TurquoiseEyeClientEvent {
 		}
 	}
 
-	public static class Outline implements OutlineEntityEvent {
+	private static class Outline implements OutlineEntityEvent {
 		private static final OutlineData DATA = new OutlineData(TriState.TRUE, OptionalInt.of(0x0A9A92));
 
 		@Override
 		public OutlineEntityEvent.@Nullable OutlineData getOutlineData(Entity entity) {
-			if (entity instanceof LivingEntity living && LostRelicsUtil.hasRelic(living, ModItems.TURQUOISE_EYE)) {
+			if (entity instanceof LivingEntity living && LostRelicsUtil.hasRelic(living, LostRelicsItems.TURQUOISE_EYE)) {
 				return DATA;
 			}
 			if (isRelicUsable && client.player != null && entity instanceof LivingEntity living && living.getHealth() == living.getMaxHealth() && entity.distanceTo(client.player) <= 32 && living.hasLineOfSight(client.player)) {
