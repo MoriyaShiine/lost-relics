@@ -1,0 +1,48 @@
+{
+  "block.altar.convert": {
+	"sounds": [
+	  {
+		"type": "event",
+		"name": "minecraft:block.fire.extinguish"
+	  }
+	],
+	"subtitle": "subtitles.lost_relics.block.altar.convert"
+  },
+  "entity.generic.spawn": {
+	"sounds": [
+	  {
+		"type": "event",
+		"name": "minecraft:entity.wither.shoot",
+		"volume": 0.2
+	  }
+	],
+	"subtitle": "subtitles.lost_relics.entity.generic.spawn"
+  },
+  "entity.generic.transform": {
+	"sounds": [
+	  {
+		"type": "event",
+		"name": "minecraft:block.fire.extinguish"
+	  }
+	],
+	"subtitle": "subtitles.lost_relics.entity.generic.transform"
+  },
+  "entity.tainted_blood_crystal.shatter": {
+	"sounds": [
+	  {
+		"type": "event",
+		"name": "minecraft:block.glass.break"
+	  }
+	],
+	"subtitle": "subtitles.lost_relics.entity.tainted_blood_crystal.shatter"
+  },
+  "item.relic.toggle": {
+	"sounds": [
+	  {
+		"type": "event",
+		"name": "minecraft:entity.experience_orb.pickup"
+	  }
+	],
+	"subtitle": "subtitles.lost_relics.item.relic.toggle"
+  }
+}

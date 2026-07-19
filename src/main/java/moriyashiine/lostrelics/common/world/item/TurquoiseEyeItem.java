@@ -16,7 +16,7 @@ import org.jspecify.annotations.Nullable;
 
 public class TurquoiseEyeItem extends ToggleableRelicItem {
 	public TurquoiseEyeItem(Properties properties) {
-		super(properties, "tooltip.lost-relics.treasure_sense");
+		super(properties, "tooltip.lost_relics.treasure_sense");
 	}
 
 	@Override

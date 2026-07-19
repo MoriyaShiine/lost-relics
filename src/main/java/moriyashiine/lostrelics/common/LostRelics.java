@@ -16,7 +16,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.Identifier;
 
 public class LostRelics implements ModInitializer {
-	public static final String MOD_ID = "lost-relics";
+	public static final String MOD_ID = "lost_relics";
 
 	public static boolean nyctoLoaded = false;
 

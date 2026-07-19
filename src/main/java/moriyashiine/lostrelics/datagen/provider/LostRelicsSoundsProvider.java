@@ -23,17 +23,17 @@ public class LostRelicsSoundsProvider extends FabricSoundsProvider {
 
 	@Override
 	protected void configure(HolderLookup.Provider registries, SoundExporter exporter) {
-		exporter.add(LostRelicsSoundEvents.BLOCK_ALTAR_CONVERT, of().subtitle("subtitles.lost-relics.block.altar.convert")
+		exporter.add(LostRelicsSoundEvents.BLOCK_ALTAR_CONVERT, of().subtitle("subtitles.lost_relics.block.altar.convert")
 				.sound(ofEvent(SoundEvents.FIRE_EXTINGUISH)));
 
-		exporter.add(LostRelicsSoundEvents.ENTITY_GENERIC_SPAWN, of().subtitle("subtitles.lost-relics.entity.generic.spawn")
+		exporter.add(LostRelicsSoundEvents.ENTITY_GENERIC_SPAWN, of().subtitle("subtitles.lost_relics.entity.generic.spawn")
 				.sound(ofEvent(SoundEvents.WITHER_SHOOT).volume(0.2F)));
-		exporter.add(LostRelicsSoundEvents.ENTITY_GENERIC_TRANSFORM, of().subtitle("subtitles.lost-relics.entity.generic.transform")
+		exporter.add(LostRelicsSoundEvents.ENTITY_GENERIC_TRANSFORM, of().subtitle("subtitles.lost_relics.entity.generic.transform")
 				.sound(ofEvent(SoundEvents.FIRE_EXTINGUISH)));
-		exporter.add(LostRelicsSoundEvents.ENTITY_TAINTED_BLOOD_CRYSTAL_SHATTER, of().subtitle("subtitles.lost-relics.entity.tainted_blood_crystal.shatter")
+		exporter.add(LostRelicsSoundEvents.ENTITY_TAINTED_BLOOD_CRYSTAL_SHATTER, of().subtitle("subtitles.lost_relics.entity.tainted_blood_crystal.shatter")
 				.sound(ofEvent(SoundEvents.GLASS_BREAK)));
 
-		exporter.add(LostRelicsSoundEvents.ITEM_RELIC_TOGGLE, of().subtitle("subtitles.lost-relics.item.relic.toggle")
+		exporter.add(LostRelicsSoundEvents.ITEM_RELIC_TOGGLE, of().subtitle("subtitles.lost_relics.item.relic.toggle")
 				.sound(ofEvent(SoundEvents.EXPERIENCE_ORB_PICKUP)));
 	}
 

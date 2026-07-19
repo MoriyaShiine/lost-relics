@@ -1,0 +1,32 @@
+{
+  "parent": "lost_relics:adventure/find_jungle_pyramid",
+  "criteria": {
+	"has_relic": {
+	  "conditions": {
+		"items": [
+		  {
+			"items": "lost_relics:turquoise_eye"
+		  }
+		]
+	  },
+	  "trigger": "minecraft:inventory_changed"
+	}
+  },
+  "display": {
+	"description": {
+	  "translate": "advancements.lost_relics.adventure.turquoise_eye.description"
+	},
+	"icon": {
+	  "id": "lost_relics:turquoise_eye"
+	},
+	"title": {
+	  "translate": "advancements.lost_relics.adventure.turquoise_eye.title"
+	}
+  },
+  "requirements": [
+	[
+	  "has_relic"
+	]
+  ],
+  "sends_telemetry_event": true
+}

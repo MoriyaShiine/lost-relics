@@ -1,6 +1,0 @@
-{
-  "parent": "lost-relics:item/small_handheld",
-  "textures": {
-	"layer0": "lost-relics:item/triple_toothed_snake_2"
-  }
-}
