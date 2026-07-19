@@ -1,0 +1,14 @@
+package moriyashiine.lostrelics.common.init;
+
+import moriyashiine.lostrelics.common.world.level.block.entity.AltarBlockEntity;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+
+import static moriyashiine.strawberrylib.api.module.SLibRegistries.registerBlockEntityType;
+
+public class LostRelicsBlockEntityTypes {
+	public static final BlockEntityType<AltarBlockEntity> ALTAR = registerBlockEntityType("altar", FabricBlockEntityTypeBuilder.create(AltarBlockEntity::new, LostRelicsBlocks.JUNGLE_ALTAR));
+
+	public static void init() {
+	}
+}

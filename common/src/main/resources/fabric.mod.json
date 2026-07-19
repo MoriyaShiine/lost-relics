@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": [
+	"MoriyaShiine",
+	"cybercat5555"
+  ],
+  "contact": {
+	"homepage": "https://modrinth.com/mod/${project_name}",
+	"sources": "https://github.com/MoriyaShiine/${project_name}",
+	"issues": "https://github.com/MoriyaShiine/${project_name}/issues"
+  },
+  "license": "All Rights Reserved",
+  "icon": "assets/${mod_id}/icon.png",
+  "environment": "*",
+  "entrypoints": {
+	"fabric-datagen": [
+	  "moriyashiine.lostrelics.datagen.LostRelicsDataGenerator"
+	],
+	"main": [
+	  "moriyashiine.lostrelics.common.LostRelics"
+	],
+	"client": [
+	  "moriyashiine.lostrelics.client.LostRelicsClient"
+	],
+	"cardinal-components-entity": [
+	  "moriyashiine.lostrelics.common.init.LostRelicsEntityComponents"
+	]
+  },
+  "mixins": [
+	"${mod_id}.mixins.json"
+  ],
+  "depends": {
+	"fabricloader": "*",
+	"minecraft": "~26.1",
+	"java": ">=25",
+	"fabric-api": "*",
+	"strawberrylib": "*",
+	"ohmega": ">=1.6.0-beta"
+  },
+  "custom": {
+	"launchpad:compatible": true,
+	"cardinal-components": [
+	  "${mod_id}:persistent_cooldown"
+	]
+  }
+}
