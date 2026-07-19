@@ -8,11 +8,13 @@ import com.swacky.ohmega.api.common.accessorytype.AccessoryType;
 import com.swacky.ohmega.common.init.OhmegaTags;
 import moriyashiine.lostrelics.common.references.LostRelicsItemIds;
 import moriyashiine.lostrelics.common.tag.ModItemTags;
-import moriyashiine.nycto.common.tag.NyctoItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -41,7 +43,7 @@ public class LostRelicsItemTagsProvider extends FabricTagsProvider.ItemTagsProvi
 				.add(LostRelicsItemIds.SMOKING_MIRROR)
 				.add(LostRelicsItemIds.TURQUOISE_EYE);
 
-		builder(NyctoItemTags.HURTS_VAMPIRES)
+		builder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("nycto", "hurts_vampires")))
 				.add(LostRelicsItemIds.CURSED_AMULET);
 	}
 }

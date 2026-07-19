@@ -5,24 +5,13 @@
 package moriyashiine.lostrelics.common.supporter;
 
 import moriyashiine.lostrelics.common.LostRelics;
-import moriyashiine.lostrelics.common.supporter.payload.SyncRelicSkeletonGemTypePayload;
 import moriyashiine.lostrelics.common.world.entity.GemType;
 import moriyashiine.strawberrylib.api.module.SLibSupporterUtils;
-import moriyashiine.strawberrylib.api.supporter.objects.SupporterDataKey;
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import moriyashiine.strawberrylib.api.supporter.objects.SupporterDataType;
 
 public class SupporterInit {
-	public static final SupporterDataKey<GemType> RELIC_SKELETON_GEM_TYPE = SLibSupporterUtils.registerData(LostRelics.id("relic_skeleton_gem_type"), GemType.CODEC, GemType.DEFAULT);
+	public static final SupporterDataType<GemType> RELIC_SKELETON_GEM_TYPE = SLibSupporterUtils.registerDataType(LostRelics.id("relic_skeleton_gem_type"), GemType.CODEC, GemType.STREAM_CODEC, GemType.DEFAULT);
 
 	public static void init() {
-		initPayloads();
-	}
-
-	private static void initPayloads() {
-		// server payloads
-		PayloadTypeRegistry.serverboundPlay().register(SyncRelicSkeletonGemTypePayload.ID, SyncRelicSkeletonGemTypePayload.CODEC);
-		// server receivers
-		ServerPlayNetworking.registerGlobalReceiver(SyncRelicSkeletonGemTypePayload.ID, new SyncRelicSkeletonGemTypePayload.Receiver());
 	}
 }

@@ -30,8 +30,8 @@ public class LostRelicsBlockTagsProvider extends FabricTagsProvider.BlockTagsPro
 				.forceAddTag(BlockTags.IRON_ORES);
 
 		builder(BlockTags.MINEABLE_WITH_PICKAXE)
-				.add(LostRelicsBlockItemIds.JUNGLE_ALTAR);
+				.add(LostRelicsBlockItemIds.JUNGLE_ALTAR.block());
 		builder(BlockTags.NEEDS_DIAMOND_TOOL)
-				.add(LostRelicsBlockItemIds.JUNGLE_ALTAR);
+				.add(LostRelicsBlockItemIds.JUNGLE_ALTAR.block());
 	}
 }

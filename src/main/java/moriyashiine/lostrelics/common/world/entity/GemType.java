@@ -29,7 +29,7 @@ public enum GemType implements StringRepresentable {
 
 	private static final IntFunction<GemType> INDEX_MAPPER = ByIdMap.continuous(GemType::ordinal, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
 	public static final Codec<GemType> CODEC = StringRepresentable.fromEnum(GemType::values);
-	public static final StreamCodec<ByteBuf, GemType> PACKET_CODEC = ByteBufCodecs.idMapper(INDEX_MAPPER, GemType::ordinal);
+	public static final StreamCodec<ByteBuf, GemType> STREAM_CODEC = ByteBufCodecs.idMapper(INDEX_MAPPER, GemType::ordinal);
 
 	private final String name;
 	private final Identifier texture;
