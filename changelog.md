@@ -1,4 +1,10 @@
 ------------------------------------------------------
+Version 26.1-r7
+------------------------------------------------------
+- **This update changes the mod id! Please respawn any relics or altars that are lost in the update.**
+- compile against latest strawberrylib
+
+------------------------------------------------------
 Version 26.2-r1
 ------------------------------------------------------
 - update to 26.2
