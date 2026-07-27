@@ -1,6 +1,7 @@
 package moriyashiine.lostrelics.common.world.entity;
 
 import com.swacky.ohmega.api.common.dataattachment.AccessoryData;
+import com.swacky.ohmega.api.common.init.OhmegaDataAttachments;
 import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import com.swacky.ohmega.api.common.item.EquipContext;
 import moriyashiine.lostrelics.common.init.LostRelicsEntityTypes;
@@ -132,12 +133,12 @@ public class Doppelganger extends PathfinderMob {
 						setItemSlot(slot, copiedStack.copy());
 					}
 				}
-				AccessoryData data = AccessoryHelper.getData(this);
-				AccessoryData copiedData = AccessoryHelper.getData(copiedEntity);
+				AccessoryData data = OhmegaDataAttachments.getData(this);
+				AccessoryData copiedData = OhmegaDataAttachments.getData(copiedEntity);
 				for (int i = 0; i < copiedData.size(); i++) {
-					ItemStack copiedStack = copiedData.getStackInSlot(i);
-					if (!ItemStack.matches(data.getStackInSlot(i), copiedStack)) {
-						data.setStack(this, i, copiedStack.copy(), EquipContext.SLOT);
+					ItemStack copiedStack = copiedData.getEntry(i).getStack();
+					if (!ItemStack.matches(data.getEntry(i).getStack(), copiedStack)) {
+						data.getEntry(i).setStack(this, copiedStack.copy(), i, EquipContext.SLOT);
 					}
 				}
 			}

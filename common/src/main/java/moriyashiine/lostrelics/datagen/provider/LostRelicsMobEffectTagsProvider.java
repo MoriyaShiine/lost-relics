@@ -8,7 +8,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.tags.TagAppender;
 import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
@@ -32,7 +31,7 @@ public class LostRelicsMobEffectTagsProvider extends FabricTagsProvider<MobEffec
 
 	@SafeVarargs
 	private void add(TagKey<MobEffect> tagKey, Holder<MobEffect>... effects) {
-		TagAppender<ResourceKey<MobEffect>, MobEffect> builder = builder(tagKey);
+		TagAppender<MobEffect> builder = builder(tagKey);
 		for (Holder<MobEffect> effect : effects) {
 			builder.add(effect.unwrapKey().orElseThrow());
 		}

@@ -1,6 +1,6 @@
 package moriyashiine.lostrelics.common.world.item;
 
-import com.swacky.ohmega.api.common.item.AccessoryHelper;
+import com.swacky.ohmega.api.common.dataattachment.AccessoryDataEntry;
 import com.swacky.ohmega.api.common.item.EquipContext;
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.LostRelicsItems;
@@ -61,7 +61,7 @@ public class CursedAmuletItem extends EquippableRelicItem {
 		}
 		if (LostRelics.nyctoLoaded && NyctoAPI.isVampire(entity)) {
 			ItemStack relic = stack.copyAndClear();
-			AccessoryHelper.getData(entity).doUnequip(entity, relic, EquipContext.SLOT);
+			AccessoryDataEntry.doUnequip(entity, relic, EquipContext.SLOT);
 			if (entity.level() instanceof ServerLevel level) {
 				SLibUtils.insertOrDrop(level, entity, relic);
 			}

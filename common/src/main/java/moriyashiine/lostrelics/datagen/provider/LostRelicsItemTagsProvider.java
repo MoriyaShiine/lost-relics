@@ -1,7 +1,7 @@
 package moriyashiine.lostrelics.datagen.provider;
 
 import com.swacky.ohmega.api.common.accessorytype.AccessoryType;
-import com.swacky.ohmega.common.init.OhmegaTags;
+import com.swacky.ohmega.api.common.init.OhmegaTags;
 import moriyashiine.lostrelics.common.references.LostRelicsItemIds;
 import moriyashiine.lostrelics.common.tag.LostRelicsItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
