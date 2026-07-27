@@ -1,4 +1,9 @@
 ------------------------------------------------------
+Version 26.1-r8
+------------------------------------------------------
+- fix persistent cooldowns being buggy between world loads
+
+------------------------------------------------------
 Version 26.1-r7
 ------------------------------------------------------
 - **This update changes the mod id! Please respawn any relics or altars that are lost in the update.**
