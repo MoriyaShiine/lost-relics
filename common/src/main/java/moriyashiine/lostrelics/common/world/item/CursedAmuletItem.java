@@ -5,7 +5,7 @@ import com.swacky.ohmega.api.common.item.EquipContext;
 import moriyashiine.lostrelics.common.LostRelics;
 import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.init.LostRelicsSoundEvents;
-import moriyashiine.lostrelics.common.tag.ModMobEffectTags;
+import moriyashiine.lostrelics.common.tag.LostRelicsMobEffectTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.nycto.api.NyctoAPI;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
@@ -114,6 +114,6 @@ public class CursedAmuletItem extends EquippableRelicItem {
 	}
 
 	public static boolean isEffectPreventable(Holder<MobEffect> effect) {
-		return effect.value().getCategory() == MobEffectCategory.HARMFUL && !effect.is(ModMobEffectTags.BYPASSES_CURSED_AMULET);
+		return effect.value().getCategory() == MobEffectCategory.HARMFUL && !effect.is(LostRelicsMobEffectTags.BYPASSES_CURSED_AMULET);
 	}
 }

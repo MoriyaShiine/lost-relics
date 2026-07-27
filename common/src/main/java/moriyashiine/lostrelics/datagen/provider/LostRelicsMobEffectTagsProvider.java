@@ -1,6 +1,6 @@
 package moriyashiine.lostrelics.datagen.provider;
 
-import moriyashiine.lostrelics.common.tag.ModMobEffectTags;
+import moriyashiine.lostrelics.common.tag.LostRelicsMobEffectTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.Holder;
@@ -22,11 +22,11 @@ public class LostRelicsMobEffectTagsProvider extends FabricTagsProvider<MobEffec
 
 	@Override
 	protected void addTags(HolderLookup.Provider registries) {
-		add(ModMobEffectTags.BYPASSES_CURSED_AMULET,
+		add(LostRelicsMobEffectTags.BYPASSES_CURSED_AMULET,
 				MobEffects.INSTANT_DAMAGE,
 				MobEffects.WITHER);
 
-		builder(ModMobEffectTags.CANNOT_BE_SIPHONED)
+		builder(LostRelicsMobEffectTags.CANNOT_BE_SIPHONED)
 				.addOptionalTag(TagKey.create(Registries.MOB_EFFECT, Identifier.fromNamespaceAndPath("nycto", "infection")));
 	}
 

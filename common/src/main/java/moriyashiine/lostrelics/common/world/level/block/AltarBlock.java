@@ -2,7 +2,7 @@ package moriyashiine.lostrelics.common.world.level.block;
 
 import com.mojang.serialization.MapCodec;
 import moriyashiine.lostrelics.common.init.LostRelicsSoundEvents;
-import moriyashiine.lostrelics.common.tag.ModItemTags;
+import moriyashiine.lostrelics.common.tag.LostRelicsItemTags;
 import moriyashiine.lostrelics.common.world.level.block.entity.AltarBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -44,7 +44,7 @@ public class AltarBlock extends HorizontalDirectionalBlock implements EntityBloc
 	}
 
 	public AltarBlock(Properties properties) {
-		this(properties, ModItemTags.RELICS);
+		this(properties, LostRelicsItemTags.RELICS);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package moriyashiine.lostrelics.datagen.provider;
 
 import moriyashiine.lostrelics.common.references.LostRelicsBlockItemIds;
-import moriyashiine.lostrelics.common.tag.ModBlockTags;
+import moriyashiine.lostrelics.common.tag.LostRelicsBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
@@ -17,10 +17,10 @@ public class LostRelicsBlockTagsProvider extends FabricTagsProvider.BlockTagsPro
 
 	@Override
 	protected void addTags(HolderLookup.Provider registries) {
-		builder(ModBlockTags.TREASURE)
+		builder(LostRelicsBlockTags.TREASURE)
 				.forceAddTag(ConventionalBlockTags.ORES)
 				.forceAddTag(ConventionalBlockTags.CHESTS);
-		builder(ModBlockTags.UNIMPORTANT_TREASURE)
+		builder(LostRelicsBlockTags.UNIMPORTANT_TREASURE)
 				.forceAddTag(ConventionalBlockTags.COAL_ORES)
 				.forceAddTag(BlockTags.COPPER_ORES)
 				.forceAddTag(BlockTags.IRON_ORES);

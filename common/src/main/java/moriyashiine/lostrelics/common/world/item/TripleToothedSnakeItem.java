@@ -1,7 +1,7 @@
 package moriyashiine.lostrelics.common.world.item;
 
 import moriyashiine.lostrelics.common.init.LostRelicsDataComponents;
-import moriyashiine.lostrelics.common.tag.ModMobEffectTags;
+import moriyashiine.lostrelics.common.tag.LostRelicsMobEffectTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
 import net.minecraft.core.component.DataComponents;
@@ -31,7 +31,7 @@ public class TripleToothedSnakeItem extends Item {
 			if (getCharges(stack) == 0) {
 				List<MobEffectInstance> effects = new ArrayList<>();
 				for (MobEffectInstance instance : player.getActiveEffects()) {
-					if (instance.getEffect().value().getCategory() != MobEffectCategory.BENEFICIAL && !instance.getEffect().is(ModMobEffectTags.CANNOT_BE_SIPHONED)) {
+					if (instance.getEffect().value().getCategory() != MobEffectCategory.BENEFICIAL && !instance.getEffect().is(LostRelicsMobEffectTags.CANNOT_BE_SIPHONED)) {
 						effects.add(instance);
 					}
 				}

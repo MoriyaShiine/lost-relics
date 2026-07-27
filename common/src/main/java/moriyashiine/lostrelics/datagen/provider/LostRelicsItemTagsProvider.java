@@ -3,7 +3,7 @@ package moriyashiine.lostrelics.datagen.provider;
 import com.swacky.ohmega.api.common.accessorytype.AccessoryType;
 import com.swacky.ohmega.common.init.OhmegaTags;
 import moriyashiine.lostrelics.common.references.LostRelicsItemIds;
-import moriyashiine.lostrelics.common.tag.ModItemTags;
+import moriyashiine.lostrelics.common.tag.LostRelicsItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
@@ -21,9 +21,9 @@ public class LostRelicsItemTagsProvider extends FabricTagsProvider.ItemTagsProvi
 
 	@Override
 	protected void addTags(HolderLookup.Provider registries) {
-		builder(ModItemTags.RELICS)
-				.addTag(ModItemTags.JUNGLE_RELICS);
-		builder(ModItemTags.JUNGLE_RELICS)
+		builder(LostRelicsItemTags.RELICS)
+				.addTag(LostRelicsItemTags.JUNGLE_RELICS);
+		builder(LostRelicsItemTags.JUNGLE_RELICS)
 				.add(LostRelicsItemIds.CURSED_AMULET)
 				.add(LostRelicsItemIds.SMOKING_MIRROR)
 				.add(LostRelicsItemIds.TRIPLE_TOOTHED_SNAKE)

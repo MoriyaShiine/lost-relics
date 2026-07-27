@@ -4,7 +4,7 @@ import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import moriyashiine.lostrelics.common.init.LostRelicsDataComponents;
 import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.init.LostRelicsParticleTypes;
-import moriyashiine.lostrelics.common.tag.ModBlockTags;
+import moriyashiine.lostrelics.common.tag.LostRelicsBlockTags;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.strawberrylib.api.event.client.OutlineEntityEvent;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -38,7 +38,7 @@ public class TurquoiseEyeClientEvent {
 			if (level.getGameTime() % 20 == 0 && relic.getOrDefault(LostRelicsDataComponents.RELIC_TOGGLE, false)) {
 				for (BlockPos pos : BlockPos.withinManhattan(client.player.blockPosition(), 12, 12, 12)) {
 					BlockState state = level.getBlockState(pos);
-					if (state.is(ModBlockTags.TREASURE) && !state.is(ModBlockTags.UNIMPORTANT_TREASURE)) {
+					if (state.is(LostRelicsBlockTags.TREASURE) && !state.is(LostRelicsBlockTags.UNIMPORTANT_TREASURE)) {
 						double x = client.player.getX();
 						double y = client.player.getY(0.5);
 						double z = client.player.getZ();
