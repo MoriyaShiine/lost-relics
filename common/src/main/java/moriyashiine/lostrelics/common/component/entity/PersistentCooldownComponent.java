@@ -41,7 +41,7 @@ public class PersistentCooldownComponent implements AutoSyncedComponent, CommonT
 
 	public float getCooldownProgress(ItemStack stack, float a) {
 		for (CooldownEntry entry : cooldownEntries) {
-			if (ItemStack.matches(stack, entry.getStack())) {
+			if (ItemStack.isSameItem(stack, entry.getStack())) {
 				float delta = entry.cooldown - (entry.progress + a);
 				return Mth.clamp(delta / entry.cooldown, 0, 1);
 			}
@@ -51,13 +51,13 @@ public class PersistentCooldownComponent implements AutoSyncedComponent, CommonT
 
 	public void setCooldown(ItemStack stack, int cooldown) {
 		for (CooldownEntry entry : cooldownEntries) {
-			if (ItemStack.matches(stack, entry.stack)) {
+			if (ItemStack.isSameItem(stack, entry.stack)) {
 				entry.progress = 0;
 				entry.cooldown = cooldown;
 				return;
 			}
 		}
-		cooldownEntries.add(new CooldownEntry(stack, 0, cooldown));
+		cooldownEntries.add(new CooldownEntry(stack.copy(), 0, cooldown));
 	}
 
 	private static class CooldownEntry {
@@ -65,7 +65,8 @@ public class PersistentCooldownComponent implements AutoSyncedComponent, CommonT
 						ItemStack.CODEC.fieldOf("stack").forGetter(CooldownEntry::getStack),
 						Codec.INT.fieldOf("progress").forGetter(CooldownEntry::getProgress),
 						Codec.INT.fieldOf("cooldown").forGetter(CooldownEntry::getCooldown))
-				.apply(instance, CooldownEntry::new));
+				.apply(instance, CooldownEntry::new)
+		);
 
 		private final ItemStack stack;
 		private int progress, cooldown;
