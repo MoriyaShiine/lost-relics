@@ -1,7 +1,6 @@
 package moriyashiine.lostrelics.datagen.provider;
 
-import com.swacky.ohmega.api.common.accessorytype.AccessoryType;
-import com.swacky.ohmega.common.init.OhmegaTags;
+import eu.pb4.trinkets.api.DefaultTrinketSlotTags;
 import moriyashiine.lostrelics.common.references.LostRelicsItemIds;
 import moriyashiine.lostrelics.common.tag.LostRelicsItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
@@ -34,10 +33,11 @@ public class LostRelicsItemTagsProvider extends FabricTagsProvider.ItemTagsProvi
 		builder(ItemTags.SWORDS)
 				.add(LostRelicsItemIds.TRIPLE_TOOTHED_SNAKE);
 
-		builder(OhmegaTags.get(AccessoryType.NORMAL_ID))
-				.add(LostRelicsItemIds.CURSED_AMULET)
-				.add(LostRelicsItemIds.SMOKING_MIRROR)
+		builder(DefaultTrinketSlotTags.HEAD_FACE)
 				.add(LostRelicsItemIds.TURQUOISE_EYE);
+		builder(DefaultTrinketSlotTags.CHEST_NECKLACE)
+				.add(LostRelicsItemIds.CURSED_AMULET)
+				.add(LostRelicsItemIds.SMOKING_MIRROR);
 
 		builder(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("nycto", "hurts_vampires")))
 				.add(LostRelicsItemIds.CURSED_AMULET);

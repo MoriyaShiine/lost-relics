@@ -12,6 +12,7 @@ import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
@@ -19,7 +20,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Consumer;
 
-public class ToggleableRelicItem extends EquippableRelicItem {
+public class ToggleableRelicItem extends Item {
 	private final String toggleTranslationKey;
 
 	public ToggleableRelicItem(Properties properties, String toggleTranslationKey) {

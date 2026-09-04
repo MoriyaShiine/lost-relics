@@ -58,7 +58,7 @@ dependencies {
 
 	neoForgeAccessTransformers(neoForgeInterfaceInjections(implementation("org.sinytra.forgified-fabric-api:forgified-fabric-api:${forgified_fabric_api_version}")))
 	implementation("moriyashiine.strawberrylib:strawberrylib-neoforge:${strawberrylib_version}")
-	implementation("io.github.swackyy:ohmega-neoforge:${ohmega_version}")
+	implementation("eu.pb4:trinkets:${trinkets_version}")
 
-	compileOnly("moriyashiine:nycto:${nycto_version}")
+	compileOnly("moriyashiine.nycto:nycto-neoforge:${nycto_version}")
 }

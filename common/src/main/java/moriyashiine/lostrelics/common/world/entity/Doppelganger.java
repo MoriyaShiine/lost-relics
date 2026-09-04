@@ -1,11 +1,9 @@
 package moriyashiine.lostrelics.common.world.entity;
 
-import com.swacky.ohmega.api.common.dataattachment.AccessoryData;
-import com.swacky.ohmega.api.common.item.AccessoryHelper;
-import com.swacky.ohmega.api.common.item.EquipContext;
+import eu.pb4.trinkets.api.TrinketAttachment;
+import eu.pb4.trinkets.api.TrinketSlotAccess;
+import eu.pb4.trinkets.api.TrinketsApi;
 import moriyashiine.lostrelics.common.init.LostRelicsEntityTypes;
-import moriyashiine.lostrelics.common.init.LostRelicsItems;
-import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.lostrelics.common.world.entity.ai.goal.*;
 import moriyashiine.strawberrylib.api.module.SLibClientUtils;
 import moriyashiine.strawberrylib.api.module.SLibUtils;
@@ -111,11 +109,6 @@ public class Doppelganger extends PathfinderMob {
 				SLibUtils.addParticles(this, ParticleTypes.SMOKE, 128, ParticleAnchor.BODY);
 				discard();
 				return;
-			} else if (owner instanceof Player player) {
-				ItemStack relic = AccessoryHelper.getStack(player, LostRelicsItems.SMOKING_MIRROR);
-				if (!relic.isEmpty()) {
-					LostRelicsUtil.setCooldown(player, relic, 600);
-				}
 			}
 			LivingEntity targetCopy = owner;
 			if (mirrorDemon && getTarget() instanceof Avatar avatar) {
@@ -132,14 +125,18 @@ public class Doppelganger extends PathfinderMob {
 						setItemSlot(slot, copiedStack.copy());
 					}
 				}
-				AccessoryData data = AccessoryHelper.getData(this);
-				AccessoryData copiedData = AccessoryHelper.getData(copiedEntity);
-				for (int i = 0; i < copiedData.size(); i++) {
-					ItemStack copiedStack = copiedData.getStackInSlot(i);
-					if (!ItemStack.matches(data.getStackInSlot(i), copiedStack)) {
-						data.setStack(this, i, copiedStack.copy(), EquipContext.SLOT);
+				TrinketAttachment attachment = TrinketsApi.getAttachment(this);
+				TrinketAttachment copiedAttachment = TrinketsApi.getAttachment(copiedEntity);
+				attachment.forEach(access -> {
+					ItemStack copiedStack = ItemStack.EMPTY;
+					TrinketSlotAccess copiedAccess = copiedAttachment.getSlotAccess(access.reference());
+					if (copiedAccess != null) {
+						copiedStack = copiedAccess.get();
 					}
-				}
+					if (!ItemStack.matches(access.get(), copiedStack)) {
+						access.set(copiedStack);
+					}
+				});
 			}
 		}
 	}
