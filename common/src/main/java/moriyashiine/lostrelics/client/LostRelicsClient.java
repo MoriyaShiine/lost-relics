@@ -1,5 +1,6 @@
 package moriyashiine.lostrelics.client;
 
+import moriyashiine.lostrelics.client.event.AltarClientEvent;
 import moriyashiine.lostrelics.client.event.CursedAmuletClientEvent;
 import moriyashiine.lostrelics.client.event.TurquoiseEyeClientEvent;
 import moriyashiine.lostrelics.client.particle.TreasureSenseParticle;
@@ -46,6 +47,7 @@ public class LostRelicsClient implements ClientModInitializer {
 	}
 
 	private void initEvents() {
+		AltarClientEvent.init();
 		CursedAmuletClientEvent.init();
 		TurquoiseEyeClientEvent.init();
 	}
