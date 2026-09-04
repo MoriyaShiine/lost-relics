@@ -39,7 +39,7 @@
 	"java": ">=25",
 	"fabric-api": "*",
 	"strawberrylib": "*",
-	"trinkets": "*"
+	"trinkets_updated": "*"
   },
   "custom": {
 	"launchpad:compatible": true,
