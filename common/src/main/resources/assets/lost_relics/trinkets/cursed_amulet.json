@@ -1,0 +1,44 @@
+{
+  "target": [
+	"lost_relics:cursed_amulet"
+  ],
+  "render": [
+	{
+	  "type": "item",
+	  "model_part": "body",
+	  "offset": [
+		0,
+		0.45,
+		1.075
+	  ],
+	  "transformation": {
+		"translation": [
+		  0,
+		  0,
+		  0
+		],
+		"left_rotation": {
+		  "axis": [
+			0,
+			0,
+			0
+		  ],
+		  "angle": 0
+		},
+		"scale": [
+		  0.25,
+		  0.25,
+		  0.25
+		],
+		"right_rotation": {
+		  "axis": [
+			0,
+			0,
+			0
+		  ],
+		  "angle": 0
+		}
+	  }
+	}
+  ]
+}

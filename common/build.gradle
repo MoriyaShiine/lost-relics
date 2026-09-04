@@ -16,9 +16,9 @@ dependencies {
 
 	localImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
 	localImplementation("moriyashiine.strawberrylib:strawberrylib-fabric:${strawberrylib_version}")
-	localImplementation("io.github.swackyy:ohmega-fabric:${ohmega_version}")
+	localImplementation("eu.pb4:trinkets:${trinkets_version}")
 
-	compileOnly("moriyashiine:nycto:${nycto_version}")
+	compileOnly("moriyashiine.nycto:nycto-fabric:${nycto_version}")
 }
 
 def commonJava = configurations.consumable("commonJava")

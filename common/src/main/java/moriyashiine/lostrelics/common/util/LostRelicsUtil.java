@@ -1,6 +1,7 @@
 package moriyashiine.lostrelics.common.util;
 
-import com.swacky.ohmega.api.common.item.AccessoryHelper;
+import eu.pb4.trinkets.api.TrinketSlotAccess;
+import eu.pb4.trinkets.api.TrinketsApi;
 import moriyashiine.lostrelics.common.init.LostRelicsEntityComponents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -8,8 +9,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class LostRelicsUtil {
+	public static ItemStack getRelic(LivingEntity entity, Item relic) {
+		return TrinketsApi.getAttachment(entity).findFirst(relic).map(TrinketSlotAccess::get).orElse(ItemStack.EMPTY);
+	}
+
 	public static boolean hasRelic(LivingEntity entity, Item relic) {
-		return !AccessoryHelper.getStack(entity, relic).isEmpty();
+		return TrinketsApi.getAttachment(entity).isEquipped(relic);
 	}
 
 	public static boolean isUsable(LivingEntity entity, ItemStack relic) {

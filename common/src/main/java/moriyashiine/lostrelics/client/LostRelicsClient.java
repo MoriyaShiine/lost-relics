@@ -1,6 +1,5 @@
 package moriyashiine.lostrelics.client;
 
-import com.swacky.ohmega.api.client.renderer.AccessoryRenderers;
 import moriyashiine.lostrelics.client.event.CursedAmuletClientEvent;
 import moriyashiine.lostrelics.client.event.TurquoiseEyeClientEvent;
 import moriyashiine.lostrelics.client.particle.TreasureSenseParticle;
@@ -8,15 +7,11 @@ import moriyashiine.lostrelics.client.renderer.blockentity.AltarRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.DoppelgangerRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.SmokeBallRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.TaintedBloodCrystalRenderer;
-import moriyashiine.lostrelics.client.renderer.entity.accessory.EyeRenderer;
-import moriyashiine.lostrelics.client.renderer.entity.accessory.HipRenderer;
-import moriyashiine.lostrelics.client.renderer.entity.accessory.NecklaceRenderer;
 import moriyashiine.lostrelics.client.renderer.entity.model.RelicSkeletonModel;
 import moriyashiine.lostrelics.client.renderer.entity.model.SlimHumanoidModel;
 import moriyashiine.lostrelics.client.supporter.LostRelicsClientSupporterInit;
 import moriyashiine.lostrelics.common.init.LostRelicsBlockEntityTypes;
 import moriyashiine.lostrelics.common.init.LostRelicsEntityTypes;
-import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.init.LostRelicsParticleTypes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
@@ -30,7 +25,6 @@ public class LostRelicsClient implements ClientModInitializer {
 		LostRelicsClientSupporterInit.init();
 		initBlocks();
 		initEntities();
-		initItems();
 		initParticles();
 		initEvents();
 	}
@@ -45,12 +39,6 @@ public class LostRelicsClient implements ClientModInitializer {
 		EntityRenderers.register(LostRelicsEntityTypes.DOPPELGANGER, DoppelgangerRenderer::new);
 		EntityRenderers.register(LostRelicsEntityTypes.SMOKE_BALL, SmokeBallRenderer::new);
 		EntityRenderers.register(LostRelicsEntityTypes.TAINTED_BLOOD_CRYSTAL, TaintedBloodCrystalRenderer::new);
-	}
-
-	private void initItems() {
-		AccessoryRenderers.registerHumanoid(LostRelicsItems.CURSED_AMULET, context -> new NecklaceRenderer(context.getItemModelResolver()));
-		AccessoryRenderers.registerHumanoid(LostRelicsItems.SMOKING_MIRROR, context -> new HipRenderer(context.getItemModelResolver()));
-		AccessoryRenderers.registerHumanoid(LostRelicsItems.TURQUOISE_EYE, context -> new EyeRenderer(context.getItemModelResolver()));
 	}
 
 	private void initParticles() {

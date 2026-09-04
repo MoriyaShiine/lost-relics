@@ -9,10 +9,11 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class SmokingMirrorItem extends EquippableRelicItem {
+public class SmokingMirrorItem extends Item {
 	public SmokingMirrorItem(Properties properties) {
 		super(properties);
 	}
@@ -22,7 +23,7 @@ public class SmokingMirrorItem extends EquippableRelicItem {
 		ItemStack stack = player.getItemInHand(hand);
 		if (LostRelicsUtil.isUsable(player, stack)) {
 			if (!level.isClientSide()) {
-				LostRelicsUtil.setCooldown(player, stack, 600);
+				LostRelicsUtil.setCooldown(player, stack, 1200);
 				player.hurt(level.damageSources().magic(), player.getMaxHealth() / 2);
 				boolean mirrorDemon = player.isShiftKeyDown();
 				for (int i = 0; i < (mirrorDemon ? 1 : 4); i++) {

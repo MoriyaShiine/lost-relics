@@ -1,0 +1,10 @@
+{
+  "entities": [
+	"minecraft:player",
+	"lost_relics:doppelganger"
+  ],
+  "slots": [
+	"head/face",
+	"chest/necklace"
+  ]
+}

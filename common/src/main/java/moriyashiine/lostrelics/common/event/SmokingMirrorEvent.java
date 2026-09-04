@@ -1,6 +1,5 @@
 package moriyashiine.lostrelics.common.event;
 
-import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.init.LostRelicsSoundEvents;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
@@ -24,7 +23,7 @@ public class SmokingMirrorEvent {
 		@Override
 		public float modify(Phase phase, LivingEntity victim, ServerLevel level, DamageSource source) {
 			if (phase == Phase.BASE && source.getEntity() instanceof LivingEntity attacker && SLibUtils.shouldHurt(attacker, victim)) {
-				ItemStack relic = AccessoryHelper.getStack(victim, LostRelicsItems.SMOKING_MIRROR);
+				ItemStack relic = LostRelicsUtil.getRelic(victim, LostRelicsItems.SMOKING_MIRROR);
 				if (LostRelicsUtil.isUsable(victim, relic)) {
 					return 0.5F;
 				}
@@ -37,7 +36,7 @@ public class SmokingMirrorEvent {
 		@Override
 		public void afterDamage(LivingEntity victim, DamageSource source, float originalDamage, float modifiedDamage, boolean blocked) {
 			if (modifiedDamage > 0 && source.getEntity() instanceof LivingEntity attacker && SLibUtils.shouldHurt(attacker, victim)) {
-				ItemStack relic = AccessoryHelper.getStack(victim, LostRelicsItems.SMOKING_MIRROR);
+				ItemStack relic = LostRelicsUtil.getRelic(victim, LostRelicsItems.SMOKING_MIRROR);
 				if (LostRelicsUtil.isUsable(victim, relic)) {
 					if (victim instanceof Player player) {
 						LostRelicsUtil.setCooldown(player, relic, 60);

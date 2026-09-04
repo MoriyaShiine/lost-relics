@@ -1,6 +1,5 @@
 package moriyashiine.lostrelics.common.event;
 
-import com.swacky.ohmega.api.common.item.AccessoryHelper;
 import moriyashiine.lostrelics.common.init.LostRelicsItems;
 import moriyashiine.lostrelics.common.util.LostRelicsUtil;
 import moriyashiine.strawberrylib.api.event.ModifyCriticalStatusEvent;
@@ -24,7 +23,7 @@ public class TurquoiseEyeEvent {
 		@Override
 		public TriState isCritical(Player attacker, Entity target, float attackCooldownProgress) {
 			if (target instanceof LivingEntity living && living.getHealth() == living.getMaxHealth()) {
-				ItemStack relic = AccessoryHelper.getStack(attacker, LostRelicsItems.TURQUOISE_EYE);
+				ItemStack relic = LostRelicsUtil.getRelic(attacker, LostRelicsItems.TURQUOISE_EYE);
 				if (LostRelicsUtil.isUsable(attacker, relic)) {
 					if (!attacker.level().isClientSide()) {
 						LostRelicsUtil.setCooldown(attacker, relic, 60);

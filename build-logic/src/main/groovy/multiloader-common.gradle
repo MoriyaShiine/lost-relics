@@ -16,8 +16,8 @@ repositories {
 		url = "https://repo.codemc.io/repository/relativitymc"
 	}
 	maven {
-		name = "Fuzs Mod Resources"
-		url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven"
+		name = "Nucleoid"
+		url = "https://maven.nucleoid.xyz/releases"
 	}
 	chenille.repositories.ladysnake()
 	chenille.repositories.up()
