@@ -1,4 +1,14 @@
 ------------------------------------------------------
+Version 26.2-r3
+------------------------------------------------------
+- port to Trinkets instead of Ohmega
+  - **please make sure to unequip any currently equipped trinkets if you are uninstalling Ohmega as well to avoid item deletion!**
+  - turquoise eye uses the face slot
+  - cursed amulet and smoking mirror use the necklace slot
+- smoking mirror now has twice as long of a cooldown
+- turquoise eye now allows mobs to see you through walls
+
+------------------------------------------------------
 Version 26.2-r2
 ------------------------------------------------------
 - **This update changes the mod id! Please respawn any relics or altars that are lost in the update.**
