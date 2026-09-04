@@ -52,6 +52,6 @@ Seek out the Cursed Amulet, Smoking Mirror, Triple Toothed Snake, and Turquoise 
 - Points towards nearby chests and valuable ores (toggleable).
 - You cannot become invisible.
 - You will always be highlighted to others.
-- Monsters can detect you from farther away.
+- Monsters can detect you through walls.
 
 ![Turquoise Eye](https://github.com/MoriyaShiine/lost-relics/blob/main/.webassets/turquoise_eye.gif?raw=true)
